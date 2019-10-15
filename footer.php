@@ -44,6 +44,22 @@ The website does not have a commercial purpose and we do not accept payments for
 
 		</div>
 		<!-- /wrapper -->
+		<script
+  src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+  integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+  crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+		}
+
+		</style>
+
+		<!-- Resources -->
+		<script src="https://www.amcharts.com/lib/4/core.js"></script>
+		<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+		<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+		<script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
+		<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 		<!-- analytics -->
 		<script>

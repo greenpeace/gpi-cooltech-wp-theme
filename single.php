@@ -3,7 +3,7 @@
 	<main role="main">
 	<!-- section -->
 	<section>
-	<div class="container">
+	<div class="container"> 
 
 	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
