@@ -5,7 +5,7 @@ $link-hover-decoration:  none;
 $font-family-sans-serif:  'SwissRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
 $font-family-base:   'SwissRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
 
-$enable-rounded:   false;
+/* $enable-rounded:   false; */
 
 $dropdown-link-hover-bg: black;
 $dropdown-link-color: white;
@@ -13,6 +13,8 @@ $dropdown-link-hover-color:white;
 $dropdown-border-width: 0px;
 $dropdown-spacer: 0;
 $caret-width:0px;
+
+$border-radius:30px;
 
 @mixin nav-divider($color: $nav-divider-color, $margin-y: $nav-divider-margin-y) {
   height: 0;
@@ -27,5 +29,8 @@ $caret-width:0px;
   // Generate the caret automatically
   // @include caret;
 }
+
+
+
 
 @import "bootstrap/scss/bootstrap";
