@@ -1,0 +1,100 @@
+// Variables
+
+// Colors
+
+// rgba(46, 188, 208, 1) 20 => D5F2F6 Turqouise
+$first-color: #2EDBC0;
+
+// 22 87 116 dark blue (al 20 diventa D0DDE3) Chatham Blue
+$second-color:#165774;
+
+//77 174 239 (al 20 diventa DBEFFC) Picton Blue
+$third-color: #4DAEEF;
+
+//34 144 190 (al 20 diventa D3E9F2) Eastern Blue
+$fourth-color: #2290BE;
+
+// 18 49 106 (al 20 diventa D0D6E1) Chatham Blue
+$fifth-color: #12316A;
+
+
+$background-grey: #F1F1F1;
+$black-cooling: #0a1321;
+
+
+$air-conditioning-color:$first-color;
+//font
+$second-font:'SwissAntique';
+
+// the same as h1 bootstrap
+$font-big:2.5rem;
+
+$background1: rgba(33, 154, 185, 0.2);
+$background2: rgba(22, 87, 116, 0.2);
+$background3: rgba(77, 174, 239, 0.2);
+$background4: rgba(34,144,190, 0.2);
+$background5: rgba(18,49,106, 0.2);
+
+$margin-bottom:1rem;
+
+div.div-home {
+  background-color: $background1;
+  color: $black-cooling;
+}
+div.text-intro {
+  font-size:$font-big;
+  font-family:$second-font;
+  line-height:1.2;
+}
+div.div-home div.text-intro {
+  color:$second-color;
+  padding-bottom:1rem;
+}
+
+section.sector-first {
+  background-color:$background-grey;
+}
+
+section.category-list.air-conditioning, section.category-list.refrigeration {
+  background-color: $background1;
+}
+section.category-list.air-conditioning h3 {
+  color:$air-conditioning-color;
+  font-family: $second-font;
+}
+.btn-outline-dark.air-conditioning {
+  border-color:$air-conditioning-color;
+  color:$air-conditioning-color;
+}
+.btn-outline-dark.air-conditioning:hover {
+    color: #fff;
+    background-color: $air-conditioning-color;
+    border-color: $air-conditioning-color;
+}
+
+.air-conditioning .text-intro {
+  color:$air-conditioning-color;
+}
+
+header.masthead.second-taxonomy {
+	background-color: $background-grey;
+  color:$second-color;
+}
+header.masthead.second-taxonomy h1 {
+	color: $second-color;
+}
+
+/* RESULTS */
+section.results {
+  background-color: $background1;
+}
+article.element {
+  background-color: white;
+  margin-bottom:$margin-bottom;
+}
+.result_meta_title, .result_title {
+  color:$fourth-color;
+}
+.result_meta_content {
+  font-family: $second-font;
+}

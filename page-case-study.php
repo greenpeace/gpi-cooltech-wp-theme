@@ -32,17 +32,68 @@ $x=0;
 		$the_query->the_post(); ?>
 		<div class="col-sm-4 d-flex pb-3">
 			<div class="card card-block element w-100">
-	<?php	echo get_the_title();
+        <article class="element" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+          <?php
+          $se=wp_get_post_terms( $the_query->post->ID, "type", $args );
+          $ap=wp_get_post_terms( $the_query->post->ID, "application", $args );
+          $tt=wp_get_post_terms( $the_query->post->ID, "technology-type", $args );
+          $ma=wp_get_post_terms( $the_query->post->ID, "manufacturer", $args );
+          $re=wp_get_post_terms( $the_query->post->ID, "refrigerant", $args );
+           ?>
+
+          <h2><?php the_title(); ?></h2>
+
+          <div class="d-table w-100">
+            <div class="d-table-cell w-50">
+              <div>Sector</div>
+              <?php foreach ($se as $s ) { ?>
+              <b><?php echo $s->name ?></b><br/>
+            <?php	} ?>
+              <div>Application</div>		<?php foreach ($ap as $a ) { ?>
+                  <b><?php	echo $a->name ?></b><br/>
+                <?php	}?>
+              <div>Technology Type </div>
+              <?php foreach ($tt as $t ) { ?>
+              <b><?php echo $t->name ?></b><br/>
+            <?php	} ?>
+             </div>
+            <div class="d-table-cell w-50">
+              <div>Refrigerant</div>
+              <?php foreach ($re as $r ) { ?>
+              <b><?php echo $r->name ?></b><br/>
+            <?php	} ?>
+              <div>Energy Efficency</div>
+              <div>Manufacturer</div>
+              <?php foreach ($ma as $m ) { ?>
+              <b><?php echo $m->name ?></b><br/>
+            <?php	} ?>
+            </div>
+          </div>
+
+          <?php  // the_content(); ?>
+
+          <br class="clear">
+          <div class="d-table-cell w-100"><button class="expand_text btn btn-rounded btn-outline-dark"> More Information </a> </button>
+          <div class="equipment_full_text"><?php the_content(); ?> </div>
+
+           </div>
+
+
+
+          <?php // edit_post_link(); ?>
+
+        </article>
+<?php
 	$country=wp_get_post_terms( $the_query->post->ID, "country", $args );
 	if($country) {
-		echo $country[0]->name;
+
 		if($countrycodes[$country[0]->name]) {
 			if($x>0) {
 				$iso.=",";
 			}
 		// $iso.='{id:"'.$countrycodes[$country[0]->name].'", url:"../?country='.$country[0]->slug.'"}';
-		$iso.='{"id":"'.$countrycodes[$country[0]->name].'","name": "'.$country[0]->name.'","value": 100,"fill": am4core.color("#F05C5C")}';
+		$iso.='{"id":"'.$countrycodes[$country[0]->name].'","name": "'.$country[0]->name.'", "fill": am4core.color("#F05C5C")}';
 		$x++;
 		}
 	}
@@ -78,8 +129,9 @@ polygonSeries.useGeodata = true;
 
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
-polygonTemplate.tooltipText = "{name}";
-polygonTemplate.fill = am4core.color("#74B266");
+// polygonTemplate.tooltipText = "{name}";
+polygonTemplate.fill = am4core.color("#2EBCD0");
+ polygonTemplate.tooltipText = "{name}: {value}";
 
 // Create hover state and set alternative fill color
 var hs = polygonTemplate.states.create("hover");
@@ -87,6 +139,7 @@ hs.properties.fill = am4core.color("#367B25");
 
 // Remove Antarctica
 polygonSeries.exclude = ["AQ"];
+
 
 // Add some data
 polygonSeries.data = [<?php echo $iso; ?>];
