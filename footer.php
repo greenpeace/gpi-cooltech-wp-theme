@@ -5,7 +5,7 @@
 					<div class="row">
 							<div class="col-md-7 offset-md-2">
 								<h1> We welcome information on news technologies and products as they come to market</h1>
-								<button type="button" class="btn-300 btn-lg btn btn-outline-light btn-arrow">Go to the form</button>
+								<a href="" class="btn-300 btn btn-outline-light btn-arrow">Go to the form<i class="i-arrow-right-w"></i></a>
 							</div>
 					</div>
 				</div>
@@ -43,14 +43,33 @@ The website does not have a commercial purpose and we do not accept payments for
 			<!-- /footer -->
 
 		</div>
+
+		<div id="sidr">
+			<div class="close_menu"> X </div>
+			<ul class="">
+  <!-- Your content -->
+	<?php
+
+ $menu=wp_get_nav_menu_items("Menu 1");
+		foreach($menu as $m) {
+			if($m->post_parent==0) {
+		?>
+		<li> <?php echo $m->title; ?></li>
+		<?php
+			}
+		}
+
+  ?>
+	</ul>
+</div>
+
+
 		<!-- /wrapper -->
 		<script
   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
   integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
   crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
-
-		}
 
 		</style>
 

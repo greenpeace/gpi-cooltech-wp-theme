@@ -21,73 +21,7 @@
 		echo do_shortcode('[cooltech_cat]');
 		?>
 
-	 <section>
-		 <div class="container">
 
-		 <div class="tab-content" id="pills-tabContent">
-
-		 <?php  $tabs=array(126,128,132);
-		 $args = array(
-  	 	'numberposts' => 3,
-  		'post_type'   => 'page'
-			);
-
-			$pages = get_posts( $args );
-			$x=0;
-			?>
-
-			<?php
-				foreach($pages as $page) {
-			?>
-			<div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
-				<div class="row">
-					<div class="col">
-				<?php echo get_the_post_thumbnail($page->ID); ?>
-					</div>
-					<div class="col">
-						<h2><?php echo $page->post_title;  ?></h2>
-				<?php echo $page->post_content; ?>
-				<div>
-				<a class="btn btn-rounded btn-outline-dark" href="<?php echo get_permalink($page->ID); ?>"> More information <i class="i-arrow-left"></i></a>
-				</div>
-					</div>
-				</div>
-			</div>
-			<?php
-				$x++;
-					}
-		 	?>
-		 	</div>
-
-
-		<div class="row">
-			<div class="col-md-12">
-		 <ul id="cooling-tab" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-			 <?php
-			 		$x=0;
-				 foreach($pages as $page) {
-			 ?>
-			 <li class="nav-item nav-fill">
-				<a class="btn btn-rounded btn-outline-dark nav-link <?php echo '',($x == 0 ? 'active' : ''); ?>" id="pills-<?php echo $page->ID; ?>-tab" data-toggle="pill" href="#pills-<?php echo $page->ID; ?>" role="tab" aria-controls="<?php echo $page->ID; ?>" aria-selected="true"><?php echo $page->post_title; ?></a>
-			</li>
-			 <?php
-			 		$x++;
-				 }
-				?>
-		 </ul>
-	 </div>
-	 </div>
-	 </div>
-	</section>
-<!--
-		<section>
-			<div class="container">
-					<div class="odometer"></div>
-
-			</div>
-		</section>
--->
 		<!-- section -->
 		<section>
 			<div class="container">

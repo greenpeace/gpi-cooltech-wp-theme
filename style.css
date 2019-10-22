@@ -1,7 +1,7 @@
 /*
 	Theme Name: Cooltech
 	Description: Cooltech Theme
-	Version: 1.0.0
+	Version: 1.0.2
 	Author: Fabrizio Giannone
 	Tags: CSS3
 
@@ -68,6 +68,12 @@ input:focus {
     STRUCTURE
 \*------------------------------------*/
 
+
+
+#main-menu2 {
+	padding-left:200px;
+}
+
 /* wrapper */
 .wrapper {
 	max-width:1280px;
@@ -80,13 +86,71 @@ input:focus {
 
 }
 /* logo */
-.logo {
-
+#logo {
+z-index:10;
+position:absolute;
+border:0px solid red;
+height:96px;
+padding:0px 1.5rem;
+line-height: 96px;
 }
 .logo-img {
 
 }
-/* nav */
+
+
+.navbar {
+	padding: 0.25rem 1rem !important;
+}
+/* nav top */
+.navbar-first {
+	height:40px;
+}
+
+.navbar-nav {
+	display: none !important;
+}
+
+.navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
+    display: inline-block;
+    border-radius: 0px;
+    width: auto;
+    text-align: center;
+    top:50px;
+    right: 0;
+    background-color: black;
+}
+
+.navbar-nav.navbar-top .dropdown-menu {
+	left:auto !important;
+	right:0px;
+	width:auto;
+}
+
+.navbar-nav.navbar-top .dropdown-menu > li {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+/* nav  normal */
+
+	img.logo_partner {
+		height: 50px;
+	}
+
+	.btn-responsive-menu {
+			z-index:10;
+			position: absolute;
+			top:10px;
+			right:20px;
+	}
+
+	.navbar-main.navbar-expand-md {
+		justify-content: flex-end;
+	}
+
 .navbar-nav > li.dropdown.show{
   position: static;
 }
@@ -120,6 +184,35 @@ a.dropdown-item:before {
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
+
+/* menu-responsive */
+
+.icon-bar {
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin: 5px;
+    background-color: #000000;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.btn-responsive-menu {
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    background: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+	}
+
+	.icon-bar {
+		display: block !important;
+	}
+
+
 a:hover:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -174,7 +267,7 @@ a {
 
 /* footer */
 .footer {
-	background-color: #272727;
+	background-color: #165773;
 	color:white;
 }
 
@@ -190,6 +283,9 @@ header.masthead {
     background-size: cover;
 		background-color:grey;
 }
+
+
+
 section {
 			display: flex;
 	    flex-direction: column;
@@ -197,8 +293,12 @@ section {
 
 }
 
-section.category:nth-child(2n+0) {
-  background: #ddd;
+section.category-list {
+  background: white;
+}
+
+.wp-block-cgb-block-magic-numbers {
+	background: #f1f1f1;
 }
 
 .cat_desc {
@@ -240,7 +340,7 @@ section.category:nth-child(2n+0) {
 font-size: 0.8rem;
 }
 
-.i-arrow-left {
+.i-arrow-right {
 	background-image: url("img/arrow-right.svg");
 	background-repeat: no-repeat;
 	background-position: right 20px center;
@@ -248,6 +348,20 @@ font-size: 0.8rem;
 	width:60px;
 	height: 20px;
 	display: inline-block;
+	vertical-align: middle;
+	float:right;
+}
+
+.i-arrow-right-w {
+	background-image: url("img/arrow-right-white.svg");
+	background-repeat: no-repeat;
+	background-position: right 20px center;
+	background-size:contain;
+	width:60px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	float:right;
 }
 
 [class*="icon"] {
@@ -317,11 +431,22 @@ font-size: 0.8rem;
 	    padding-bottom: 0;
 		}
 		section {
-			padding: 125px 100px;
+			padding: 100px 100px;
 		}
+
 }
 @media only screen and (min-width:1024px) {
 
+	.navbar-main.navbar-expand-md {
+		justify-content: space-between;
+	}
+
+ 	.navbar-nav {
+	 display:flex !important;
+ }
+ .btn-responsive-menu {
+	 display:none;
+ }
 }
 @media only screen and (min-width:1140px) {
 
@@ -344,10 +469,31 @@ font-size: 0.8rem;
 
 .equipment_full_text {
 	display:none;
+	padding:0.5rem 0;
 }
 
 .equipment_full_text.expanded {
 	display:block;
+}
+.magic-up {
+	text-align: center;
+}
+
+.magic-number {
+  font-size:4rem;
+  font-weight: bold;
+  text-align: center;
+	display:inline;
+}
+.magic-value {
+	font-size:4rem;
+	font-weight: bold;
+	text-align: center;
+	display: inline;
+}
+.magic-text {
+	clear:both;
+	text-align: center;
 }
 
 #selectblock {
@@ -560,3 +706,5 @@ a img.aligncenter {
 		page-break-after:avoid;
 	}
 }
+
+@import url("css/theme.css");

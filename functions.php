@@ -12,7 +12,7 @@
 
 
 $cooltech_includes = array(
-	'/class-wp-bootstrap-navwalker.php', '/metaterm.php'   // Load custom WordPress nav walker.
+	'/class-wp-bootstrap-navwalker.php', '/blocks.php'   // Load custom WordPress nav walker.
 );
 
 foreach ( $cooltech_includes as $file ) {
@@ -119,19 +119,17 @@ function cooltech_header_scripts()
         wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('cooltechscripts'); // Enqueue it!
 
-				wp_register_script('odometerscr', get_template_directory_uri() . '/js/odometer.min.js', array('jquery'), '1.0.0'); // Custom scripts
-				wp_enqueue_script('odometerscr'); // Enqueue it!
-
 				wp_register_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), '4.3.0'); // Conditionizr
 				wp_enqueue_script('bootstrapjs');
 
-				wp_register_script('gut-js', get_template_directory_uri()  . '/assets/block-number.js', array( 'wp-blocks', 'wp-element' ));
-				wp_enqueue_script('gut-js');
+				wp_register_script('waypoints', get_template_directory_uri()  . '/js/jquery.waypoints.min.js', array( 'jquery' ));
+				wp_enqueue_script('waypoints');
 
-				wp_register_script('tab-js', get_template_directory_uri()  . '/assets/block-tabs.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor'));
-				wp_enqueue_script('tab-js');
+				wp_register_script('sidr', get_template_directory_uri()  . '/js/jquery.sidr.min.js', array( 'jquery' ));
+				wp_enqueue_script('sidr');
 
-
+				wp_register_script('animate', get_template_directory_uri()  . '/js/jquery.animateNumber.min.js', array( 'jquery' ));
+				wp_enqueue_script('animate');
 
 wp_localize_script(
 		'global',
@@ -164,11 +162,13 @@ function cooltech_styles()
 		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), '1.0', 'all');
 		wp_enqueue_style('bootstrap'); // Enqueue it!
 
-		wp_register_style('odometer', get_template_directory_uri() . '/css/odometer-theme-minimal.css', array(), '1.0', 'all');
-		wp_enqueue_style('odometer');
+		wp_register_style('theme-css', get_template_directory_uri() . '/css/theme.css');
+		wp_enqueue_style('theme-css');
 
-		wp_register_style('tab-css', get_template_directory_uri() . '/assets/block-number.css', array( 'wp-edit-blocks' ));
-		wp_enqueue_style('tab-css');
+		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
+		wp_enqueue_style('sidr-css');
+
+
 
 }
 
@@ -177,8 +177,8 @@ function register_cooltech_menu()
 {
     register_nav_menus(array( // Using array to specify more menus if needed
         'header-menu' => __('Header Menu', 'cooltech'), // Main Navigation
-        'sidebar-menu' => __('Sidebar Menu', 'cooltech'), // Sidebar Navigation
-        'extra-menu' => __('Extra Menu', 'cooltech') // Extra Navigation if needed (duplicate as many as you need!)
+        'top-menu' => __('Top Menu', 'cooltech'), // Sidebar Navigation
+        'footer-menu' => __('Footer Menu', 'cooltech'), // Extra Navigation if needed (duplicate as many as you need!)
     ));
 }
 
@@ -510,6 +510,37 @@ function create_post_type_cooltech()
 						'technology-type'
         ) // Add Category and Post Tags support
     ));
+
+		register_post_type('glossary', // Register Custom Post Type
+		    array(
+		    'labels' => array(
+		        'name' => __('Glossary Terms', 'cooltech'), // Rename these to suit
+		        'singular_name' => __('Glossary Term', 'cooltech'),
+		        'add_new' => __('Add New', 'cooltech'),
+		        'add_new_item' => __('Add New Glossary Term', 'cooltech'),
+		        'edit' => __('Edit', 'cooltech'),
+		        'edit_item' => __('Edit Glossary Term', 'cooltech'),
+		        'new_item' => __('New Glossary Term', 'cooltech'),
+		        'view' => __('View Glossary Term', 'cooltech'),
+		        'view_item' => __('View Glossary Term', 'cooltech'),
+		        'search_items' => __('Search Glossary Term', 'cooltech'),
+		        'not_found' => __('No Case Glossary Term', 'cooltech'),
+		        'not_found_in_trash' => __('No Glossary Term found in Trash', 'cooltech')
+		    ),
+		    'public' => true,
+		    'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+		    'has_archive' => true,
+		    'supports' => array(
+		        'title',
+		        'editor',
+		        'excerpt',
+		        'thumbnail',
+		        'custom-fields'
+		    ), // Go to Dashboard Custom cooltech Blank post for supports
+		    'can_export' => true, // Allows export in Tools > Export
+		    'taxonomies' => array(
+		    ) // Add Category and Post Tags support
+		));
 }
 
 add_action( 'init', 'create_cooltech_taxonomies', 0 );
@@ -704,20 +735,23 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 	$terms=get_sector_from_slug($slug);
 	ob_start();
 	?>
-	<section class="category">
-		<div class="container">
+	</div>
+	<section class="category-list <?php echo $slug; ?>">
+		<?php	global $page_layout; ?>
+		<div class="<?php echo $page_layout ?>">
 				<div class="row">
-			<?php  foreach ( $terms  as $t ) { ?>
-						<div class="col-md-3">
+			<?php foreach ( $terms  as $t ) { ?>
+						<div class="col-md-3 col-sm-6">
 								<div><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc"> <?php echo get_term_meta( $t->term_id, 'intro', true );  ?> </div>
-								<div> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark"> Enter Database  </a>
+								<div class="cat_desc align-items-stretch"> <?php echo get_term_meta( $t->term_id, 'intro', true );  ?> </div>
+								<div> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
 								</div>
 						</div>
 		<?php } ?>
 			</div>
 		</div>
 		</section>
+		<div class="<?php echo $page_layout; ?>">
 		<?php
 			$out = ob_get_contents();
 			ob_end_clean();
@@ -736,7 +770,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 	),
       'posts_per_page' => -1 // All posts from that category
     ));
-	// 	print_r($my_posts);
+	//	print_r($my_posts);
 		$all_tags=array();
 		$x=0;
 
@@ -801,7 +835,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 		}
 	}
 
-print_r($items);
+// print_r($items);
 	$terms = get_terms( array(
 	    'taxonomy' => array('country','manufacturer','application','refrigerant'),
 	    'hide_empty' => false,'s' => stripslashes( $_POST['search'] ),
@@ -836,117 +870,6 @@ function unique_multidim_array($array, $key) {
 function get_tax_level($id, $tax){
     $ancestors = get_ancestors($id, $tax);
     return count($ancestors)+1;
-}
-
-function cooltech_block_init() {
-register_block_type( 'cooltech/block-tabs', array(
-	/** Define the attributes used in your block */
-		'attributes'  => array(
-				'mb_url' => array(
-						'type' => 'string'
-				)
-		),
-		'category' => 'widgets',
-		'editor_script'   => 'mb-simple-block',
-		'render_callback' => 'ct_block_tab_render2',
-) );
-}
-
-add_action( 'init', 'cooltech_block_init' );
-
-
-
-function ct_block_tab_render2( $attributes )
-{
-
-$is_in_edit_mode = strrpos($_SERVER ['REQUEST_URI'], 'context=edit');
-
-	$content = $attributes['mb_url'];
-	$pagine = explode(",",$content);
-// $tabs=array(126,128,132);
-$args = array(
-'numberposts' => 3,
-'post_type'   => 'page',
-'post__in' => $pagine );
-
-
-$pages = get_posts( $args );
-
-
-
-
-
-if ($is_in_edit_mode) {
-		$out = '	<h2> Tabs Block </h2>';
-
-		foreach($pages as $page) {
-			$testo.=$page->post_title."<br/>";
-		}
-
-		$out .= $testo;
-
-
-} else {
-	$out="";
-	ob_start();
-	?>
-	<section>
- 	 <div class="container">
-
- 	 <div class="tab-content" id="pills-tabContent">
- 		<?php
-		$x=0;
- 			foreach($pages as $page) {
-
- 		?>
- 		<div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
- 			<div class="row">
- 				<div class="col">
- 			<?php echo get_the_post_thumbnail($page->ID); ?>
- 				</div>
- 				<div class="col">
- 					<h2><?php echo $page->post_title;  ?></h2>
- 			<?php echo $page->post_content; ?>
- 			<div>
- 			<a class="btn btn-rounded btn-outline-dark" href="<?php echo get_permalink($page->ID); ?>"> More information <i class="i-arrow-left"></i></a>
- 			</div>
- 				</div>
- 			</div>
- 		</div>
- 		<?php
- 			$x++;
- 				}
- 		?>
- 		</div>
-
-
- 	<div class="row">
- 		<div class="col-md-12">
- 	 <ul id="cooling-tab" class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
- 		 <?php
- 				$x=0;
- 			 foreach($pages as $page) {
- 		 ?>
- 		 <li class="nav-item nav-fill">
- 			<a class="btn btn-rounded btn-outline-dark nav-link <?php echo '',($x == 0 ? 'active' : ''); ?>" id="pills-<?php echo $page->ID; ?>-tab" data-toggle="pill" href="#pills-<?php echo $page->ID; ?>" role="tab" aria-controls="<?php echo $page->ID; ?>" aria-selected="true"><?php echo $page->post_title; ?></a>
- 		</li>
- 		 <?php
- 				$x++;
- 			 }
- 			?>
- 	 </ul>
-  </div>
-  </div>
-  </div>
- </section>
-
-	<?php
-	$out = ob_get_contents();
-	ob_end_clean();
-
-}
-return $out;
 }
 
 $countrycodes = array(
@@ -1200,5 +1123,68 @@ $countrycodes = array(
 "Zambia"=>"ZM",
 "Zimbabwe"=>"ZW"
 );
+
+add_theme_support( 'editor-color-palette', array(
+	array(
+		'name'  => __( 'Turquoise', 'cooltech' ),
+		'slug'  => 'turquoise',
+		'color'	=> '#2EDBC0',
+	),
+	array(
+		'name'  => __( 'Chathams Blue 1', 'cooltech' ),
+		'slug'  => 'chathams-1',
+		'color' => '#165774',
+	),
+	array(
+		'name'  => __( 'Picton Blue', 'cooltech' ),
+		'slug'  => 'picton',
+		'color' => '#4DAEEF',
+	),
+	array(
+		'name'	=> __( 'Eastern Blue', 'cooltech' ),
+		'slug'	=> 'eastern-blue',
+		'color'	=> '#2290BE',
+	),
+	array(
+		'name'	=> __( 'Chathams Blue 2', 'cooltech' ),
+		'slug'	=> 'chathams-2',
+		'color'	=> '#12316A',
+	),
+	array(
+		'name'	=> __( 'Seashell', 'cooltech' ),
+		'slug'	=> 'seashell',
+		'color'	=> '#F1F1F1',
+	),
+	array(
+			'name'	=> __( 'Polar', 'cooltech' ),
+			'slug'	=> 'polar',
+			'color'	=> '#D5F2F6',
+		),
+		array(
+				'name'	=> __( 'Geyser', 'cooltech' ),
+				'slug'	=> 'geyser',
+				'color'	=> '#D0DDE3',
+			),
+		array(
+					'name'	=> __( 'Hawkes Blue', 'cooltech' ),
+					'slug'	=> 'hawkes-blue',
+					'color'	=> '#DBEFFC',
+		),
+		array(
+					'name'	=> __( 'Link Water', 'cooltech' ),
+					'slug'	=> 'link-water',
+					'color'	=> '#D3E9F2',
+		),
+		array(
+					'name'	=> __( 'Mischka', 'cooltech' ),
+					'slug'	=> 'mischka',
+					'color'	=> '#D0D6E1',
+		),
+		array(
+					'name'	=> __( 'Iceberg', 'cooltech' ),
+					'slug'	=> 'iceberg',
+					'color'	=> '#D4EBF1',
+		),
+) );
 
 ?>
