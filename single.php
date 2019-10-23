@@ -2,8 +2,10 @@
 
 	<main role="main">
 	<!-- section -->
-	<section>
-	<div class="container"> 
+
+	<div class="container">
+		<div class="row">
+		<div class="col-sm-8">
 
 	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
@@ -43,6 +45,7 @@
 			<?php // comments_template(); ?>
 
 		</article>
+
 		<!-- /article -->
 
 	<?php endwhile; ?>
@@ -58,11 +61,14 @@
 		<!-- /article -->
 
 	<?php endif; ?>
-		</div>
-	</section>
+
+
 	<!-- /section -->
-	</main>
 
-<?php // get_sidebar(); ?>
-
+		</div>
+		<div class="col-sm-4">
+<?php  get_sidebar(); ?>
+</div>
+</div></div>
+</main>
 <?php get_footer(); ?>

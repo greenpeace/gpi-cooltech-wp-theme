@@ -137,7 +137,7 @@ function ct_block_tab_render2( $attributes ) {
        				</div>
        				<div class="col">
        					<h2><?php echo $page->post_title;  ?></h2>
-       			<?php echo $page->post_content; ?>
+       			<?php echo $page->post_excerpt; ?>
        			<div>
        			<a class="btn btn-rounded btn-outline-dark" href="<?php echo get_permalink($page->ID); ?>"> More information <i class="i-arrow-right" style="vertical-align: middle"></i></a>
        			</div>

@@ -3,7 +3,7 @@
 // Colors
 
 // rgba(46, 188, 208, 1) 20 => D5F2F6 Turqouise
-$first-color: #2EDBC0;
+$fourth-color: #2EDBC0;
 
 // 22 87 116 dark blue (al 20 diventa D0DDE3) Chatham Blue
 $second-color:#165774;
@@ -12,7 +12,7 @@ $second-color:#165774;
 $third-color: #4DAEEF;
 
 //34 144 190 (al 20 diventa D3E9F2) Eastern Blue
-$fourth-color: #2290BE;
+$first-color: #2290BE;
 
 // 18 49 106 (al 20 diventa D0D6E1) Chatham Blue
 $fifth-color: #12316A;
@@ -36,6 +36,11 @@ $background4: rgba(34,144,190, 0.2);
 $background5: rgba(18,49,106, 0.2);
 
 $margin-bottom:1rem;
+
+.navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
+    background-color: $second-color;
+}
+
 
 div.div-home {
   background-color: $background1;
@@ -93,8 +98,28 @@ article.element {
   margin-bottom:$margin-bottom;
 }
 .result_meta_title, .result_title {
-  color:$fourth-color;
+  color:$first-color;
 }
 .result_meta_content {
   font-family: $second-font;
+}
+
+/* PAGE CASE STUDY */
+.col-card {
+  margin-bottom:$margin-bottom;
+}
+
+/* SINGLE PAGE STUDY */
+.sidebar-application {
+  border-top:2px solid $first-color;
+}
+.sidebar-term {
+  color:$first-color;
+  border-bottom:2px solid $first-color;
+  padding: $margin-bottom 0;
+}
+
+/* GENERIC PAGE */
+article.generic-page h2 {
+  color:$first-color;
 }

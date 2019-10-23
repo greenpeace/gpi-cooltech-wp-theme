@@ -1,3 +1,6 @@
+.navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
+  background-color: #165774; }
+
 div.div-home {
   background-color: rgba(33, 154, 185, 0.2);
   color: #0a1321; }
@@ -18,20 +21,20 @@ section.category-list.air-conditioning, section.category-list.refrigeration {
   background-color: rgba(33, 154, 185, 0.2); }
 
 section.category-list.air-conditioning h3 {
-  color: #2EDBC0;
+  color: #2290BE;
   font-family: "SwissAntique"; }
 
 .btn-outline-dark.air-conditioning {
-  border-color: #2EDBC0;
-  color: #2EDBC0; }
+  border-color: #2290BE;
+  color: #2290BE; }
 
 .btn-outline-dark.air-conditioning:hover {
   color: #fff;
-  background-color: #2EDBC0;
-  border-color: #2EDBC0; }
+  background-color: #2290BE;
+  border-color: #2290BE; }
 
 .air-conditioning .text-intro {
-  color: #2EDBC0; }
+  color: #2290BE; }
 
 header.masthead.second-taxonomy {
   background-color: #F1F1F1;
@@ -53,3 +56,20 @@ article.element {
 
 .result_meta_content {
   font-family: "SwissAntique"; }
+
+/* PAGE CASE STUDY */
+.col-card {
+  margin-bottom: 1rem; }
+
+/* SINGLE PAGE STUDY */
+.sidebar-application {
+  border-top: 2px solid #2290BE; }
+
+.sidebar-term {
+  color: #2290BE;
+  border-bottom: 2px solid #2290BE;
+  padding: 1rem 0; }
+
+/* GENERIC PAGE */
+article.generic-page h2 {
+  color: #2290BE; }

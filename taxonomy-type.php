@@ -167,22 +167,21 @@ $slug=get_queried_object()->slug;
 					<article class="element <?php showClassTags($terms);?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
-						<div class="col-md-3">
-						<?php if(get_the_post_thumbnail_url( $post, $size = 'full' )) {
-							?>
-							<img class="card-img-top" src="<?php echo get_the_post_thumbnail_url( $post, $size = 'full' ); ?>">
-							<?php
-						}; ?>
-						</div>
+				<!--		<div class="col-md-3">
+
+					</div> -->
 
 
 						<?php
 						$se=wp_get_post_terms( $post->ID, "type", $args );
+						// print_r($se);
 						$ap=wp_get_post_terms( $post->ID, "application", $args );
 						$tt=wp_get_post_terms( $post->ID, "technology-type", $args );
 						$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
 						$re=wp_get_post_terms( $post->ID, "refrigerant", $args );
-						 ?>
+
+						$ee=get_post_meta($post->ID,"energy-efficency",true);
+						?>
 
 						<div class="col-md-3">
 
@@ -214,20 +213,31 @@ $slug=get_queried_object()->slug;
 								<?php foreach ($re as $r ) { ?>
 								<?php echo $r->name ?><br/>
 							<?php	} ?></div>
-								<div class="result_meta_title">Energy Efficency</div>
+
 								<div class="result_meta_title">Manufacturer</div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
-								<?php echo $m->name ?><br/>
+								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
 							<?php	} ?>
 								</div>
+							</div>
+							<div class="col-sm-3">
+									<div class="result_meta_title">Energy Efficency</div>
+									<div class="result_meta_content"><?php echo $ee; ?></div>
 							</div>
 						</div>
 
 						<?php  // the_content(); ?>
 						<div class="equipment_full_text">
 							<div class="row">
-							<div class="col-sm-12">
+							<div class="col-sm-3">
+								<?php if(get_the_post_thumbnail_url( $post, $size = 'full' )) {
+									?>
+									<img class="img-fluid" src="<?php echo get_the_post_thumbnail_url( $post, $size = 'full' ); ?>">
+									<?php
+								}; ?>
+							</div>
+							<div class="col-sm-9">
 								<?php the_content(); ?>
 							</div>
 						</div>

@@ -7,11 +7,11 @@
  */
  get_header(); ?>
 
-	<main role="main">
+	<main role="main" style="background-color:#D2E9F1">
 		<!-- section -->
 		<!-- <section> -->
 
-		<header class="masthead" style="background-color:white">
+		<header class="masthead" style="background-color:#D2E9F1">
 	    <div id="chartdiv" class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 
@@ -19,6 +19,13 @@
 	      </div>
 
 	  </header>
+		<section>
+<div class="container">
+	<div class="row">
+			<div class="col-sm-12"><h1 style="text-align:center"><?php _e("Case Study","cooltech"); ?> </h1> </div>
+	</div>
+</div>
+</section>
 <div class="container">
 <div class="row">
 
@@ -29,56 +36,25 @@ $the_query = new WP_Query( $args );
 $x=0;
 // Il Loop
 	while ( $the_query->have_posts() ) :
-		$the_query->the_post(); ?>
-		<div class="col-sm-4 d-flex pb-3">
-			<div class="card card-block element w-100">
-        <article class="element" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		$the_query->the_post();
 
-          <?php
-          $se=wp_get_post_terms( $the_query->post->ID, "type", $args );
-          $ap=wp_get_post_terms( $the_query->post->ID, "application", $args );
-          $tt=wp_get_post_terms( $the_query->post->ID, "technology-type", $args );
-          $ma=wp_get_post_terms( $the_query->post->ID, "manufacturer", $args );
-          $re=wp_get_post_terms( $the_query->post->ID, "refrigerant", $args );
-           ?>
-
-          <h2><?php the_title(); ?></h2>
-
-          <div class="d-table w-100">
-            <div class="d-table-cell w-50">
-              <div>Sector</div>
-              <?php foreach ($se as $s ) { ?>
-              <b><?php echo $s->name ?></b><br/>
-            <?php	} ?>
-              <div>Application</div>		<?php foreach ($ap as $a ) { ?>
-                  <b><?php	echo $a->name ?></b><br/>
-                <?php	}?>
-              <div>Technology Type </div>
-              <?php foreach ($tt as $t ) { ?>
-              <b><?php echo $t->name ?></b><br/>
-            <?php	} ?>
-             </div>
-            <div class="d-table-cell w-50">
-              <div>Refrigerant</div>
-              <?php foreach ($re as $r ) { ?>
-              <b><?php echo $r->name ?></b><br/>
-            <?php	} ?>
-              <div>Energy Efficency</div>
-              <div>Manufacturer</div>
-              <?php foreach ($ma as $m ) { ?>
-              <b><?php echo $m->name ?></b><br/>
-            <?php	} ?>
-            </div>
-          </div>
-
-          <?php  // the_content(); ?>
-
-          <br class="clear">
-          <div class="d-table-cell w-100"><button class="expand_text btn btn-rounded btn-outline-dark"> More Information </a> </button>
-          <div class="equipment_full_text"><?php the_content(); ?> </div>
-
-           </div>
-
+		?>
+		<div class="col-sm-4 col-card">
+	  <div class="card">
+			<a href="<?php the_permalink(); ?>">
+			<?php if(get_the_post_thumbnail_url($post, $size = 'full' )) { ?>
+	    <img src="<?php echo get_the_post_thumbnail_url($post, $size = 'medium' ); ?>" class="card-img-top" alt="...">
+		<?php } else { ?>
+			<img class="card-img-top" src="<?php echo get_template_directory_uri(); ?>/img/image-empty-medium.jpg">
+		<?php } ?>
+	</a>
+	    <div class="card-body">
+	      <h5 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
+	      <p class="card-text"><?php echo wp_trim_words( $post->post_content, 55, $more = "...") ?></p>
+	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	    </div>
+	  </div>
+</div>
 
 
           <?php // edit_post_link(); ?>
@@ -87,24 +63,21 @@ $x=0;
 <?php
 	$country=wp_get_post_terms( $the_query->post->ID, "country", $args );
 	if($country) {
-
 		if($countrycodes[$country[0]->name]) {
 			if($x>0) {
 				$iso.=",";
 			}
 		// $iso.='{id:"'.$countrycodes[$country[0]->name].'", url:"../?country='.$country[0]->slug.'"}';
-		$iso.='{"id":"'.$countrycodes[$country[0]->name].'","name": "'.$country[0]->name.'", "fill": am4core.color("#F05C5C")}';
+		$iso.='{"id":"'.$countrycodes[$country[0]->name].'","name": "'.$country[0]->name.'", "fill": am4core.color("#165773")}';
 		$x++;
 		}
 	}
+	?>
 
-	?></div>
-</div>
 		<?php
-
 endwhile; ?>
 
-</div>
+
 </div>
 	</main>
 
@@ -114,36 +87,39 @@ endwhile; ?>
 <script>
 // Create map instance
 var chart = am4core.create("chartdiv", am4maps.MapChart);
-
 // Set map definition
 chart.geodata = am4geodata_worldLow;
-
+chart.background.fill = am4core.color("#D2E9F1");
+chart.background.fillOpacity = 1;
 // Set projection
 chart.projection = new am4maps.projections.Miller();
-
+chart.chartContainer.wheelable = false;
 // Create map polygon series
 var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-
 // Make map load polygon (like country names) data from GeoJSON
 polygonSeries.useGeodata = true;
-
 // Configure series
 var polygonTemplate = polygonSeries.mapPolygons.template;
-// polygonTemplate.tooltipText = "{name}";
-polygonTemplate.fill = am4core.color("#2EBCD0");
- polygonTemplate.tooltipText = "{name}: {value}";
 
+
+polygonTemplate.events.on("hit", function(ev) {
+  // zoom to an object
+//  ev.target.series.chart.zoomToMapObject(ev.target);
+
+  // get object info
+  console.log(ev.target.dataItem.dataContext.name);
+});
+
+// polygonTemplate.tooltipText = "{name}";
+polygonTemplate.fill = am4core.color("#FFF");
+ polygonTemplate.tooltipText = "{name}: gnegne {value}";
 // Create hover state and set alternative fill color
 var hs = polygonTemplate.states.create("hover");
-hs.properties.fill = am4core.color("#367B25");
-
+hs.properties.fill = am4core.color("#2290BE");
 // Remove Antarctica
 polygonSeries.exclude = ["AQ"];
-
-
 // Add some data
 polygonSeries.data = [<?php echo $iso; ?>];
-
 // Bind "fill" property to "fill" key in data
 polygonTemplate.propertyFields.fill = "fill";
 </script>
