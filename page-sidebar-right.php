@@ -1,4 +1,13 @@
-<?php get_header();
+<?php
+/**
+ * Template Name: Page with Right Sidebar
+ *
+ * Template for displaying case studies
+ *
+ * @package understrap
+ */
+
+get_header();
 
 $image_id=get_post_thumbnail_id( $post->ID );
 $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
@@ -27,7 +36,8 @@ $classes=array("generic-page");
 		<section>
 		<div class="container">
 
-
+			<div class="row">
+			<div class="col-sm-8">
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 			<!-- article -->
@@ -55,6 +65,8 @@ $classes=array("generic-page");
 			<!-- /article -->
 
 		<?php endif; ?>
+	</div>
+	<div class="col-sm-4"> <?php  get_sidebar(); ?> </div>
 
 	</div>
 </section>
@@ -62,6 +74,6 @@ $classes=array("generic-page");
 		<!-- /section -->
 	</main>
 
-<?php // get_sidebar(); ?>
+
 
 <?php get_footer(); ?>
