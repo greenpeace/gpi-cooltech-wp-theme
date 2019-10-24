@@ -131,6 +131,9 @@ function cooltech_header_scripts()
 				wp_register_script('animate', get_template_directory_uri()  . '/js/jquery.animateNumber.min.js', array( 'jquery' ));
 				wp_enqueue_script('animate');
 
+		//		wp_register_script('jquery-ui', get_template_directory_uri()  . '/js/jquery-ui.min.js', array( 'jquery' ));
+		//		wp_enqueue_script('jquery-ui');
+
 wp_localize_script(
 		'global',
 		'global',
@@ -168,7 +171,8 @@ function cooltech_styles()
 		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
 		wp_enqueue_style('sidr-css');
 
-
+	//	wp_register_style('jquery-ui-css', get_template_directory_uri() . '/css/jquery-ui.css');
+	//	wp_enqueue_style('jquery-ui-css');
 
 }
 
@@ -386,6 +390,9 @@ remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altoget
 
 // Shortcodes
 add_shortcode('cooltech_cat', 'cooltech_shortcode_cat'); // You can place [cooltech_shortcode_demo] in Pages, Posts now.
+
+add_shortcode('g','find_glossary');
+
 add_shortcode('cooltech_shortcode_demo_2', 'cooltech_shortcode_demo_2'); // Place [cooltech_shortcode_demo_2] in Pages, Posts now.
 
 // Shortcodes above would be nested like this -
@@ -682,6 +689,17 @@ function cooltech_shortcode_demo_2($atts, $content = null)
     return '<div class="shortcode-demo">' . do_shortcode($content) . '</div>'; // do_shortcode allows for nested Shortcodes
 }
 
+function find_glossary($atts, $content) {
+	$g=get_page_by_title($content, '', 'glossary' );
+	ob_start();?>
+	<a class="glossary_suggestion" href="<?php echo home_url(); ?>/glossary#<?php echo $g->post_name; ?>" title="<?php echo $g->post_content ?>"><?php echo $content; ?></a>
+	<?php
+		$out = ob_get_contents();
+		ob_end_clean();
+	return $out;
+
+}
+
 // Shortcode Demo with simple <h2> tag
 function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 {
@@ -698,10 +716,10 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 		<div class="<?php echo $page_layout ?>">
 				<div class="row">
 			<?php foreach ( $terms  as $t ) { ?>
-						<div class="col-md-3 col-sm-6">
+						<div class="col-md-3 col-sm-6 cat_col">
 								<div><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc align-items-stretch"> <?php echo get_term_meta( $t->term_id, 'intro', true );  ?> </div>
-								<div> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
+								<div class="cat_desc align-items-stretch"> <?php echo $t->description;  ?> </div>
+								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
 								</div>
 						</div>
 		<?php } ?>
@@ -1064,7 +1082,7 @@ $countrycodes = array(
 "Uganda"=>"UG",
 "Ukraine"=>"UA",
 "United Arab Emirates"=>"AE",
-"United Kingdom of Great Britain and Northern Ireland"=>"GB",
+"United Kingdom"=>"GB",
 "United States of America"=>"US",
 "United States Minor Outlying Islands"=>"UM",
 "Uruguay"=>"UY",

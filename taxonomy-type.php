@@ -135,8 +135,10 @@ $slug=get_queried_object()->slug;
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-10 offset-sm-1">
-						<div class="text-intro"><?php echo get_term_meta( get_queried_object()->term_id, 'intro', true ); ?> </div>
-						<?php echo get_queried_object()->description; ?>
+						<div class="text-intro">	<?php echo do_shortcode(get_queried_object()->description); ?> </div>
+						<?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
+							// echo jqFootnotes(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
+						?>
 				</div>
 			</div>
 		</div>
@@ -186,7 +188,11 @@ $slug=get_queried_object()->slug;
 						<div class="col-md-3">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
+						<?php  if($post->post_type=="equipment") { ?>
 						<button class="expand_text btn btn-rounded btn-outline-dark"> More Information </button>
+					<?php  } else { ?>
+						<a class="btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
+					<?php } ?>
 					</div>
 						<div class="col-md-3">
 								<div class="result_meta_title"><?php _e( 'Sector', 'cooltech' ); ?></div>

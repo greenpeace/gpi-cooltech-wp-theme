@@ -20,6 +20,7 @@
 	$the_query->the_post();
 	$titolo=get_the_title();
 	$initial=$titolo[0];
+//	print_r($post);
 	?>
 	<?php if($last_initial!=$initial && $x%3>0) {
 	//	for($i=0;$i<=$x%3;$i++) {
@@ -38,14 +39,14 @@
 <?php
 	if($x%3==0) {
 	?>	<div class="col-sm-4"><?php // echo $x."/"; ?><?php // echo $x%3 ?>
-		<h2 style="color:red"><?php if($initial!=$last_initial) { echo $initial; } ?> </h2></div>
+		<h2 class="glossary_letter"><?php if($initial!=$last_initial) { echo $initial; } ?> </h2></div>
 	<?php
 
 	$x++;
 	}
 	?>
 
-	<div class="col-sm-4"><?php // echo $x."/"; ?><?php //echo $x%3 ?><h2><?php	echo  get_the_title() ;?></h2>
+	<div class="col-sm-4"><?php // echo $x."/"; ?><?php //echo $x%3 ?><h2 id="<?php echo $post->post_name; ?>"><?php	echo  get_the_title() ;?></h2>
 		<?php the_content(); ?>
 	</div>
 	<?php

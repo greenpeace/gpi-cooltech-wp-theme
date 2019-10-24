@@ -126,7 +126,7 @@ function ct_block_tab_render2( $attributes ) {
       	<section>
        	 <div class="<?php echo $page_layout; ?>">
    	        <div class="tab-content" id="pills-tabContent">
-<?php
+      <?php
       	$x=0;
         foreach($pages as $page) {
         ?>
@@ -158,7 +158,7 @@ function ct_block_tab_render2( $attributes ) {
        			 foreach($pages as $page) {
        		 ?>
        		 <li class="nav-item nav-fill">
-       			<a class="btn btn-rounded btn-outline-dark nav-link <?php echo '',($x == 0 ? 'active' : ''); ?>" id="pills-<?php echo $page->ID; ?>-tab" data-toggle="pill" href="#pills-<?php echo $page->ID; ?>" role="tab" aria-controls="<?php echo $page->ID; ?>" aria-selected="true"><?php echo $page->post_title; ?></a>
+       			<a class="btn btn-rounded nav-link <?php echo '',($x == 0 ? 'active' : ''); ?>" id="pills-<?php echo $page->ID; ?>-tab" data-toggle="pill" href="#pills-<?php echo $page->ID; ?>" role="tab" aria-controls="<?php echo $page->ID; ?>" aria-selected="true"><?php echo $page->post_title; ?></a>
        		</li>
        		 <?php
        				$x++;

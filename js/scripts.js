@@ -6,6 +6,8 @@
 
         $(document).ready(function() {
 
+					//	 $( document ).tooltip({ items: 'a.glossary_suggestion',tooltipClass: "tooltip_glossary",});
+
 				/* MOBILE MENU */
             $('#responsive-menu-button').sidr();
             $(".close_menu").click(function() {
@@ -83,6 +85,9 @@
                 $(this).parent().removeClass("show");
                 console.log("mouseleave ul");
             }); */
+
+						/* page case study */
+				
 
 
             var indirizzo = "http://127.0.0.1/wp-greenpeace/wordpress/wp-admin/admin-ajax.php";

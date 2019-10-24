@@ -23,6 +23,9 @@ $black-cooling: #0a1321;
 
 
 $air-conditioning-color:$first-color;
+$refrigeration-color:$second-color;
+$heat-pumps-color:$fifth-color;
+$components-color:$third-color;
 //font
 $second-font:'SwissAntique';
 
@@ -63,22 +66,79 @@ section.sector-first {
 section.category-list.air-conditioning, section.category-list.refrigeration {
   background-color: $background1;
 }
+
+/* H3 titles */
+
 section.category-list.air-conditioning h3 {
   color:$air-conditioning-color;
   font-family: $second-font;
 }
+section.category-list.heat-pumps h3 {
+  color:$heat-pumps-color;
+  font-family: $second-font;
+}
+section.category-list.components h3 {
+  color:$components-color;
+  font-family: $second-font;
+}
+
+section.category-list h3, section.category-list.refrigeration h3 {
+  color:$refrigeration-color;
+  font-family: $second-font;
+}
+/* BUTTON */
 .btn-outline-dark.air-conditioning {
   border-color:$air-conditioning-color;
   color:$air-conditioning-color;
 }
+.btn-outline-dark.refrigeration {
+  border-color:$refrigeration-color;
+  color:$refrigeration-color;
+}
+.btn-outline-dark.heat-pumps {
+  border-color:$heat-pumps-color;
+  color:$heat-pumps-color;
+}
+.btn-outline-dark.components {
+  border-color:$components-color;
+  color:$components-color;
+}
+
+/* BUTTON HOVER */
 .btn-outline-dark.air-conditioning:hover {
     color: #fff;
     background-color: $air-conditioning-color;
     border-color: $air-conditioning-color;
 }
+.btn-outline-dark.refrigeration:hover {
+    color: #fff;
+    background-color: $refrigeration-color;
+    border-color: $refrigeration-color;
+}
+.btn-outline-dark.heat-pumps:hover {
+    color: #fff;
+    background-color: $heat-pumps-color;
+    border-color: $heat-pumps-color;
+}
+.btn-outline-dark.components:hover {
+    color: #fff;
+    background-color: $components-color;
+    border-color: $components-color;
+}
 
+/* TEXT_INTROS */
+
+.components .text-intro {
+  color:$components-color;
+}
 .air-conditioning .text-intro {
   color:$air-conditioning-color;
+}
+.refrigeration .text-intro {
+  color:$refrigeration-color;
+}
+.heat-pumps .text-intro {
+  color:$heat-pumps-color;
 }
 
 header.masthead.second-taxonomy {
@@ -94,8 +154,13 @@ section.results {
   background-color: $background1;
 }
 article.element {
-  background-color: white;
   margin-bottom:$margin-bottom;
+}
+article.element.equipment {
+  background-color: white;
+}
+article.element.case-study {
+  background-color: $background-grey;
 }
 .result_meta_title, .result_title {
   color:$first-color;
@@ -121,5 +186,10 @@ article.element {
 
 /* GENERIC PAGE */
 article.generic-page h2 {
+  color:$first-color;
+}
+
+/* GLOSSARY PAGE */
+h2.glossary_letter {
   color:$first-color;
 }
