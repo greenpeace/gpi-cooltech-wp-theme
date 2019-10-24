@@ -5,7 +5,43 @@
  *
  * @package understrap
  */
- get_header(); ?>
+ get_header();
+
+ global $countrycodes;
+
+ $terms = get_terms( array(
+   "taxonomy" => "country",
+ ) );
+
+ foreach ($terms as $term) {
+	 $args = array(
+	'post_type' => 'case-study',
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'country',
+			'field' => 'id',
+			'terms' => $term->term_id
+		)
+	)
+);
+	 	$posts = get_posts($args);
+	//	print_r($posts);
+				if($posts) {
+				$titles="";
+				$x=0;
+				foreach($posts as $p) {
+				//	print_r($p);
+					$titles.=addslashes($p->post_title." ");
+					if(next($posts)) {
+						$titles.=" / ";
+					}
+					$x++;
+				}
+				if($x==1) { $link=get_permalink($p); }
+				$iso.='{"id":"'.$countrycodes[$term->name].'","name": "'.$term->name.'","description":"'.$titles.'","fill": am4core.color("#165773"),"value":'.$x.',"link":"'.$link.'"},';
+				}
+ }
+?>
 
 	<main role="main" style="background-color:#D2E9F1">
 		<!-- section -->
@@ -19,28 +55,28 @@
 	      </div>
 
 	  </header>
-		<section>
+<section id="case-study-results-title">
 <div class="container">
 	<div class="row">
 			<div class="col-sm-12"><h1 style="text-align:center"><?php _e("Case Study","cooltech"); ?> </h1> </div>
 	</div>
 </div>
 </section>
-<div class="container">
+<div id="case-study-results" class="container">
 <div class="row">
 
 	<?php // La Query
-	global $countrycodes;
+
 	$args=array("post_type"=>"case-study");
 $the_query = new WP_Query( $args );
 $x=0;
 // Il Loop
 	while ( $the_query->have_posts() ) :
 		$the_query->the_post();
-
+		$co=wp_get_post_terms( $post->ID, "country", $args);
 		?>
 		<div class="col-sm-4 col-card">
-	  <div class="card">
+	  <div class="card <?php echo $co[0]->name; ?>">
 			<a href="<?php the_permalink(); ?>">
 			<?php if(get_the_post_thumbnail_url($post, $size = 'full' )) { ?>
 	    <img src="<?php echo get_the_post_thumbnail_url($post, $size = 'medium' ); ?>" class="card-img-top" alt="...">
@@ -51,7 +87,11 @@ $x=0;
 	    <div class="card-body">
 	      <h5 class="card-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h5>
 	      <p class="card-text"><?php echo wp_trim_words( $post->post_content, 55, $more = "...") ?></p>
-	      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	      <p class="card-text"><small class="text-muted">
+					<?php
+						echo $co[0]->name;
+					?>
+				</small></p>
 	    </div>
 	  </div>
 </div>
@@ -60,19 +100,7 @@ $x=0;
           <?php // edit_post_link(); ?>
 
         </article>
-<?php
-	$country=wp_get_post_terms( $the_query->post->ID, "country", $args );
-	if($country) {
-		if($countrycodes[$country[0]->name]) {
-			if($x>0) {
-				$iso.=",";
-			}
-		// $iso.='{id:"'.$countrycodes[$country[0]->name].'", url:"../?country='.$country[0]->slug.'"}';
-		$iso.='{"id":"'.$countrycodes[$country[0]->name].'","name": "'.$country[0]->name.'", "fill": am4core.color("#165773")}';
-		$x++;
-		}
-	}
-	?>
+
 
 		<?php
 endwhile; ?>
@@ -81,7 +109,6 @@ endwhile; ?>
 </div>
 	</main>
 
-<?php // get_sidebar(); ?>
 
 <?php get_footer(); ?>
 <script>
@@ -105,14 +132,23 @@ var polygonTemplate = polygonSeries.mapPolygons.template;
 polygonTemplate.events.on("hit", function(ev) {
   // zoom to an object
 //  ev.target.series.chart.zoomToMapObject(ev.target);
+	console.log(ev.target.dataItem.dataContext.value);
 
+	if(ev.target.dataItem.dataContext.value==1) {
+			document.location.href=ev.target.dataItem.dataContext.link;
+	} else {
+				jQuery(".card:not(." + ev.target.dataItem.dataContext.name + ")").parent().css("display", "none");
+				jQuery('html, body').stop().animate({
+			scrollTop: jQuery("#case-study-results-title").offset().top
+	}, 1000, 'linear');
+	}
   // get object info
   console.log(ev.target.dataItem.dataContext.name);
 });
 
 // polygonTemplate.tooltipText = "{name}";
 polygonTemplate.fill = am4core.color("#FFF");
- polygonTemplate.tooltipText = "{name}: gnegne {value}";
+ polygonTemplate.tooltipText = "{name}: {description}";
 // Create hover state and set alternative fill color
 var hs = polygonTemplate.states.create("hover");
 hs.properties.fill = am4core.color("#2290BE");

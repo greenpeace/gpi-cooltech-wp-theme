@@ -20,21 +20,73 @@ section.sector-first {
 section.category-list.air-conditioning, section.category-list.refrigeration {
   background-color: rgba(33, 154, 185, 0.2); }
 
+/* H3 titles */
 section.category-list.air-conditioning h3 {
   color: #2290BE;
   font-family: "SwissAntique"; }
 
+section.category-list.heat-pumps h3 {
+  color: #12316A;
+  font-family: "SwissAntique"; }
+
+section.category-list.components h3 {
+  color: #4DAEEF;
+  font-family: "SwissAntique"; }
+
+section.category-list h3, section.category-list.refrigeration h3 {
+  color: #165774;
+  font-family: "SwissAntique"; }
+
+/* BUTTON */
 .btn-outline-dark.air-conditioning {
   border-color: #2290BE;
   color: #2290BE; }
 
+.btn-outline-dark.refrigeration {
+  border-color: #165774;
+  color: #165774; }
+
+.btn-outline-dark.heat-pumps {
+  border-color: #12316A;
+  color: #12316A; }
+
+.btn-outline-dark.components {
+  border-color: #4DAEEF;
+  color: #4DAEEF; }
+
+/* BUTTON HOVER */
 .btn-outline-dark.air-conditioning:hover {
   color: #fff;
   background-color: #2290BE;
   border-color: #2290BE; }
 
+.btn-outline-dark.refrigeration:hover {
+  color: #fff;
+  background-color: #165774;
+  border-color: #165774; }
+
+.btn-outline-dark.heat-pumps:hover {
+  color: #fff;
+  background-color: #12316A;
+  border-color: #12316A; }
+
+.btn-outline-dark.components:hover {
+  color: #fff;
+  background-color: #4DAEEF;
+  border-color: #4DAEEF; }
+
+/* TEXT_INTROS */
+.components .text-intro {
+  color: #4DAEEF; }
+
 .air-conditioning .text-intro {
   color: #2290BE; }
+
+.refrigeration .text-intro {
+  color: #165774; }
+
+.heat-pumps .text-intro {
+  color: #12316A; }
 
 header.masthead.second-taxonomy {
   background-color: #F1F1F1;
@@ -48,8 +100,13 @@ section.results {
   background-color: rgba(33, 154, 185, 0.2); }
 
 article.element {
-  background-color: white;
   margin-bottom: 1rem; }
+
+article.element.equipment {
+  background-color: white; }
+
+article.element.case-study {
+  background-color: #F1F1F1; }
 
 .result_meta_title, .result_title {
   color: #2290BE; }
@@ -72,4 +129,8 @@ article.element {
 
 /* GENERIC PAGE */
 article.generic-page h2 {
+  color: #2290BE; }
+
+/* GLOSSARY PAGE */
+h2.glossary_letter {
   color: #2290BE; }

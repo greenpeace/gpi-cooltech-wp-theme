@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page Home;
+ * Template Name: Page Home
  *
  * Template for displaying case studies
  *
@@ -8,6 +8,8 @@
  */
  get_header();
 
+ $image_id=get_post_thumbnail_id( $post->ID );
+ $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 
 $page_layout="cr";
 
@@ -19,11 +21,11 @@ $page_layout="cr";
 		<!-- section -->
 		<!-- <section> -->
 
-		<header class="masthead">
+		<header class="masthead" style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h2 class="text-black font-weight-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</h2>
+	          <h1 class="text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
 	        </div>
 	        <div class="col-lg-6 align-self-baseline">
 	          <p class="text-white-75 font-weight-light mb-5"></p>
