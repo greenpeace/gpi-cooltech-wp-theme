@@ -70,10 +70,6 @@ input:focus {
 
 
 
-#main-menu2 {
-	padding-left:200px;
-}
-
 /* wrapper */
 .wrapper {
 	max-width:1280px;
@@ -85,14 +81,22 @@ input:focus {
 .header {
 
 }
+
 /* logo */
 #logo {
 z-index:10;
-position:absolute;
-border:0px solid red;
-height:96px;
-padding:0px 1.5rem;
-line-height: 96px;
+padding-right:20px;
+
+/* line-height: 96px; */
+}
+#logo {
+	font-family: "Industrial";
+	font-size:2.375rem;
+}
+div#logo-subtitle {
+	font-family:"SuisseRegular";
+	font-size:1rem;
+	line-height: normal;
 }
 .logo-img {
 
@@ -287,7 +291,27 @@ header.masthead {
     background-size: cover;
 		background-color:grey;
 }
+/* PROVVISORI */
+.text-full {
+	margin-top:2rem;
+	font-size:1.875rem;
+	line-height:1.2;
+}
+.text-full-second {
+	margin-top:2rem;
+	font-size:1.3125rem;
+}
+.wp-block-coolech-innerblock {
+	font-size:1.875rem;
+	line-height: 1.2;
+}
 
+h1.industrial {
+	font-family: "Industrial";
+	font-size:4rem;
+	letter-spacing: 3px;
+	font-weight: normal;
+}
 
 
 section {
@@ -327,7 +351,13 @@ section.category-list {
 }
 @font-face {
   font-family: 'SwissRegular';
-  src: url('fonts/SuisseBPIntRegular.ttf') format('truetype');
+  src: url('fonts/SuisseBPIntRegular.ttf') format('truetype'),
+	url('fonts/SuisseBPIntRegular.woff') format('woff'),
+}
+
+@font-face {
+  font-family: 'Industrial';
+  src: url('fonts/industrial.ttf') format('truetype')
 }
 
 @font-face {
@@ -448,6 +478,10 @@ font-size: 0.8rem;
 
 }
 @media only screen and (min-width:1024px) {
+
+	#main-menu2 {
+		align-items: center;
+	}
 
 	.navbar-main.navbar-expand-md {
 		justify-content: space-between;

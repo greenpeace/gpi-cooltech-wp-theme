@@ -1,6 +1,12 @@
 <?php get_header();
 $current_term_level = get_tax_level(get_queried_object()->term_id, get_queried_object()->taxonomy);
 $slug=get_queried_object()->slug;
+
+if($current_term_level==1) {
+	$font="industrial";
+} else {
+	$font="font-weight-bold";
+}
 ?>
 
 <main role="main">
@@ -10,11 +16,11 @@ $slug=get_queried_object()->slug;
 	$image_id = get_term_meta( get_queried_object()->term_id, 'image', true );
 	$post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 	?>
-	<header class="masthead" style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
+	<header class="masthead" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(<?php echo $post_thumbnail_img[0]; ?>)">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-center text-center">
 				<div class="col-lg-10 align-self-end">
-					<h1 class="text-white font-weight-bold"><?php single_cat_title(); ?>
+					<h1 class="text-white <?php echo $font; ?>"><?php single_cat_title(); ?>
 
 					</h1>
 				</div>
@@ -30,28 +36,26 @@ $slug=get_queried_object()->slug;
 		</div>
 	</header>
 <?php
-} else { ?>
+} else {
+	$id=get_queried_object()->parent;
+	$parent=	get_term($id,"type");
+	?>
 		<header class="masthead second-taxonomy">
 	    <div class="container">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="text-black font-weight-bold"><?php single_cat_title(); ?>
+	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?>
 						<?php  $id=get_queried_object()->parent;
-						$parent=	get_term($id,"type");
-						echo $parent->name;
-
-							 ?>
+						$parent=	get_term($id,"type"); ?>
 						</h1>
 	        </div>
 	        <div class="col-lg-8 align-self-baseline">
-						<?php
+						<div><h3 class="<?php echo $parent->slug; ?>"><?php echo get_queried_object()->description; ?></h3></div>
+						<div class="text-full-second"><?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
+						?> </div>
 
-						echo "<h3>".get_queried_object()->description."</h3>";
-						?>
-
-	        </div>
+				  </div>
 	      </div>
-
 				<?php $term = $wp_query->queried_object; ?>
 				<div id="selectblock" class="row">
 					<div class="col-sm-12">
@@ -104,7 +108,7 @@ $slug=get_queried_object()->slug;
 					<?php
 					// print_r($term);
 					$tags=get_tags_in_use($term->term_id,"technology-type");
-			; ?>
+			 ?>
 <div class="selectdiv">
 					<select id="technology-type" class="select-filter" name="technology-type">
 						<option value="0"> Technology Type </option>
@@ -136,9 +140,10 @@ $slug=get_queried_object()->slug;
 			<div class="row">
 				<div class="col-sm-10 offset-sm-1">
 						<div class="text-intro">	<?php echo do_shortcode(get_queried_object()->description); ?> </div>
+						<div class="text-full">
 						<?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 							// echo jqFootnotes(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
-						?>
+						?></div>
 				</div>
 			</div>
 		</div>
@@ -155,7 +160,7 @@ $slug=get_queried_object()->slug;
 			if($term->parent) {
 				?>
 
-				<section class="results">
+				<section class="results <?php echo $parent->slug; ?>">
 
 				<?php
 				$x=0;
@@ -189,9 +194,9 @@ $slug=get_queried_object()->slug;
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
 						<?php  if($post->post_type=="equipment") { ?>
-						<button class="expand_text btn btn-rounded btn-outline-dark"> More Information </button>
+						<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> More Information </button>
 					<?php  } else { ?>
-						<a class="btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
+						<a class="<?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
 					<?php } ?>
 					</div>
 						<div class="col-md-3">

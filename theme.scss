@@ -1,5 +1,7 @@
 // Variables
 
+
+
 // Colors
 
 // rgba(46, 188, 208, 1) 20 => D5F2F6 Turqouise
@@ -21,6 +23,11 @@ $fifth-color: #12316A;
 $background-grey: #F1F1F1;
 $black-cooling: #0a1321;
 
+// name color background
+$sector-colors: air-conditioning #2290BE #D3E9F2,
+         refrigeration #165774 #D0DDE3,
+         heat-pumps #12316A #D0D6E1,
+         components #4DAEEF #DBEFFC;
 
 $air-conditioning-color:$first-color;
 $refrigeration-color:$second-color;
@@ -44,6 +51,15 @@ $margin-bottom:1rem;
     background-color: $second-color;
 }
 
+#logo span.cool {
+	color:$first-color;
+}
+#logo span.tech {
+  color:$second-color;
+}
+#logo-subtitle {
+  color:$second-color;
+}
 
 div.div-home {
   background-color: $background1;
@@ -67,64 +83,35 @@ section.category-list.air-conditioning, section.category-list.refrigeration {
   background-color: $background1;
 }
 
+
+
 /* H3 titles */
-
-section.category-list.air-conditioning h3 {
-  color:$air-conditioning-color;
-  font-family: $second-font;
-}
-section.category-list.heat-pumps h3 {
-  color:$heat-pumps-color;
-  font-family: $second-font;
-}
-section.category-list.components h3 {
-  color:$components-color;
-  font-family: $second-font;
-}
-
-section.category-list h3, section.category-list.refrigeration h3 {
-  color:$refrigeration-color;
-  font-family: $second-font;
-}
-/* BUTTON */
-.btn-outline-dark.air-conditioning {
-  border-color:$air-conditioning-color;
-  color:$air-conditioning-color;
-}
-.btn-outline-dark.refrigeration {
-  border-color:$refrigeration-color;
-  color:$refrigeration-color;
-}
-.btn-outline-dark.heat-pumps {
-  border-color:$heat-pumps-color;
-  color:$heat-pumps-color;
-}
-.btn-outline-dark.components {
-  border-color:$components-color;
-  color:$components-color;
+@each $s in $sector-colors {
+    section.category-list.#{nth($s, 1)} h3 {
+        color: #{nth($s, 2)};
+        font-family: $second-font;
+    }
+    .btn-outline-dark.#{nth($s, 1)} {
+      border-color:#{nth($s, 2)};
+      color:#{nth($s, 2)};
+    }
+    .btn-outline-dark.#{nth($s, 1)}:hover {
+        color: #fff;
+        background-color: #{nth($s, 2)};
+        border-color: #{nth($s, 2)};
+    }
+    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title {
+      color:#{nth($s, 2)}
+    }
+    section.category-list.#{nth($s, 1)}, section.results.#{nth($s, 1)} {
+      background-color:#{nth($s, 3)}
+    }
 }
 
-/* BUTTON HOVER */
-.btn-outline-dark.air-conditioning:hover {
-    color: #fff;
-    background-color: $air-conditioning-color;
-    border-color: $air-conditioning-color;
-}
-.btn-outline-dark.refrigeration:hover {
-    color: #fff;
-    background-color: $refrigeration-color;
-    border-color: $refrigeration-color;
-}
-.btn-outline-dark.heat-pumps:hover {
-    color: #fff;
-    background-color: $heat-pumps-color;
-    border-color: $heat-pumps-color;
-}
-.btn-outline-dark.components:hover {
-    color: #fff;
-    background-color: $components-color;
-    border-color: $components-color;
-}
+  section.category-list h3 {
+    color:$refrigeration-color;
+    font-family: $second-font;
+  }
 
 /* TEXT_INTROS */
 
@@ -143,10 +130,9 @@ section.category-list h3, section.category-list.refrigeration h3 {
 
 header.masthead.second-taxonomy {
 	background-color: $background-grey;
-  color:$second-color;
 }
 header.masthead.second-taxonomy h1 {
-	color: $second-color;
+
 }
 
 /* RESULTS */
