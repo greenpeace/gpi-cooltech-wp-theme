@@ -41,9 +41,9 @@ if (function_exists('add_theme_support'))
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('large', 700, '', true); // Large Thumbnail
-    add_image_size('medium', 250, '', true); // Medium Thumbnail
-    add_image_size('small', 120, '', true); // Small Thumbnail
+  //  add_image_size('large', 700, '', true); // Large Thumbnail
+    add_image_size('medium', 600, 400, true); // Medium Thumbnail
+  //  add_image_size('small', 120, '', true); // Small Thumbnail
   //  add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
@@ -456,6 +456,7 @@ function create_post_type_cooltech()
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
+				'rewrite'           => array( 'slug' => 'case-studies' ),
         'supports' => array(
             'title',
             'editor',
@@ -1162,4 +1163,71 @@ add_theme_support( 'editor-color-palette', array(
 		),
 ) );
 
+//add new menu for theme-options page with page callback theme-options-page.
+
+
+
+function theme_option_page() {
+?>
+<div class="wrap">
+<h1>Cooltech Theme Options Page</h1>
+<form method="post" action="options.php">
+<?php
+// display settings field on theme-option page
+settings_fields("theme-options-grp");
+// display all sections for theme-options page
+do_settings_sections("theme-options");
+submit_button();
+?>
+</form>
+</div>
+<?php }
+function add_theme_menu_item() {
+	add_theme_page("Theme Customization", "Cooltech Theme Customization", "manage_options", "theme-options", "theme_option_page", null, 99);
+}
+ add_action("admin_menu", "add_theme_menu_item");
+function theme_section_description(){
+		echo '<p>Theme Option Section</p>';
+}
+function options_callback() {
+		$options = get_option( 'top_menu_option' );
+		echo '<input name="top_menu_option" id="first_field_option" type="checkbox" value="1" class="code" ' . checked( 1, $options, false ) . ' /> Check for enabling top menu';
+}
+function test_theme_settings(){
+		add_option('top_menu_option',0);// add theme option to database
+		add_settings_section( 'first_section', 'New Theme Options Section',
+		'theme_section_description','theme-options');
+		add_settings_field('top_menu_option','Top Menu','options_callback',
+		'theme-options','first_section');//add settings field to the “first_section”
+		register_setting( 'theme-options-grp', 'top_menu_option');
+}
+ add_action('admin_init','test_theme_settings');
+
+ class NestedMenu
+{
+    private $flat_menu;
+    public $items;
+
+    function __construct($name)
+    {
+        $this->flat_menu = wp_get_nav_menu_items($name);
+        $this->items = array();
+        foreach ($this->flat_menu as $item) {
+            if (!$item->menu_item_parent) {
+                array_push($this->items, $item);
+            }
+        }
+    }
+
+    public function get_submenu($item)
+    {
+        $submenu = array();
+        foreach ($this->flat_menu as $subitem) {
+            if ($subitem->menu_item_parent == $item->ID) {
+                array_push($submenu, $subitem);
+            }
+        }
+        return $submenu;
+    }
+}
 ?>

@@ -1,3 +1,4 @@
+/* margins padding */
 .navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
   background-color: #165774; }
 
@@ -7,13 +8,16 @@
 #logo span.tech {
   color: #165774; }
 
+#logo-subtitle {
+  color: #165774; }
+
 div.div-home {
   background-color: rgba(33, 154, 185, 0.2);
   color: #0a1321; }
 
 div.text-intro {
   font-size: 2.5rem;
-  font-family: "SwissAntique";
+  font-family: "SuisseAntique";
   line-height: 1.2; }
 
 div.div-home div.text-intro {
@@ -23,13 +27,22 @@ div.div-home div.text-intro {
 section.sector-first {
   background-color: #F1F1F1; }
 
-section.category-list.air-conditioning, section.category-list.refrigeration {
-  background-color: rgba(33, 154, 185, 0.2); }
+.btn-outline-dark {
+  color: #165774;
+  border-color: #165774; }
+  .btn-outline-dark:hover {
+    background-color: #165774; }
+
+h1.case-study {
+  color: #2290BE; }
+
+h1.glossary {
+  color: #2290BE; }
 
 /* H3 titles */
 section.category-list.air-conditioning h3 {
   color: #2290BE;
-  font-family: "SwissAntique"; }
+  font-family: "SuisseAntique"; }
 
 .btn-outline-dark.air-conditioning {
   border-color: #2290BE;
@@ -46,9 +59,12 @@ h1.last-sector.air-conditioning, h3.air-conditioning, section.results.air-condit
 section.category-list.air-conditioning, section.results.air-conditioning {
   background-color: #D3E9F2; }
 
+.air-conditioning .text-intro {
+  color: #2290BE; }
+
 section.category-list.refrigeration h3 {
   color: #165774;
-  font-family: "SwissAntique"; }
+  font-family: "SuisseAntique"; }
 
 .btn-outline-dark.refrigeration {
   border-color: #165774;
@@ -65,9 +81,12 @@ h1.last-sector.refrigeration, h3.refrigeration, section.results.refrigeration h2
 section.category-list.refrigeration, section.results.refrigeration {
   background-color: #D0DDE3; }
 
+.refrigeration .text-intro {
+  color: #165774; }
+
 section.category-list.heat-pumps h3 {
   color: #12316A;
-  font-family: "SwissAntique"; }
+  font-family: "SuisseAntique"; }
 
 .btn-outline-dark.heat-pumps {
   border-color: #12316A;
@@ -84,9 +103,12 @@ h1.last-sector.heat-pumps, h3.heat-pumps, section.results.heat-pumps h2.result_t
 section.category-list.heat-pumps, section.results.heat-pumps {
   background-color: #D0D6E1; }
 
+.heat-pumps .text-intro {
+  color: #12316A; }
+
 section.category-list.components h3 {
   color: #4DAEEF;
-  font-family: "SwissAntique"; }
+  font-family: "SuisseAntique"; }
 
 .btn-outline-dark.components {
   border-color: #4DAEEF;
@@ -103,22 +125,12 @@ h1.last-sector.components, h3.components, section.results.components h2.result_t
 section.category-list.components, section.results.components {
   background-color: #DBEFFC; }
 
-section.category-list h3 {
-  color: #165774;
-  font-family: "SwissAntique"; }
-
-/* TEXT_INTROS */
 .components .text-intro {
   color: #4DAEEF; }
 
-.air-conditioning .text-intro {
-  color: #2290BE; }
-
-.refrigeration .text-intro {
-  color: #165774; }
-
-.heat-pumps .text-intro {
-  color: #12316A; }
+section.category-list h3 {
+  color: #165774;
+  font-family: "SuisseAntique"; }
 
 header.masthead.second-taxonomy {
   background-color: #F1F1F1; }
@@ -140,7 +152,7 @@ article.element.case-study {
   color: #2290BE; }
 
 .result_meta_content {
-  font-family: "SwissAntique"; }
+  font-family: "SuisseAntique"; }
 
 /* PAGE CASE STUDY */
 .col-card {
@@ -160,5 +172,26 @@ article.generic-page h2 {
   color: #2290BE; }
 
 /* GLOSSARY PAGE */
-h2.glossary_letter {
+h2.glossary_letter, h2.glossary_term {
   color: #2290BE; }
+
+h1.glossary, h1.case-study {
+  font-family: "SuisseAntique";
+  padding-bottom: 4rem; }
+
+.selectable {
+  cursor: pointer;
+  color: #2290BE; }
+
+.menu-item-letter {
+  padding: 0.2rem; }
+
+/* MOBILE */
+ul.mobile-menu-first li {
+  background-color: #165774;
+  color: white;
+  font-family: "SuisseRegular"; }
+
+.sidr, #sidr {
+  background-color: #165774;
+  font-family: "SuisseRegular"; }

@@ -1,4 +1,7 @@
 <?php get_header(); ?>
+<?php
+$letters = range('A', 'Z');
+?>
 
 	<main role="main">
 		<!-- section -->
@@ -6,9 +9,15 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">
-					<h1><?php _e( 'Glossary', 'cooltech' ); ?></h1>
+				<div class="col-sm-4">
+					<h1 class="glossary"><?php _e( 'Glossary', 'cooltech' ); ?></h1>
 				</div>
+				<div class="col-sm-8">
+					<?php  foreach ($letters as $l) {
+						?>
+						<span class="menu-item-letter" id="<?php echo $l; ?>" href="#<?php echo $l ?>"><?php echo $l ?></span>
+					<?php
+					} ?></div>
 			</div>
 			<div class="row">
 <?php
@@ -39,14 +48,17 @@
 <?php
 	if($x%3==0) {
 	?>	<div class="col-sm-4"><?php // echo $x."/"; ?><?php // echo $x%3 ?>
-		<h2 class="glossary_letter"><?php if($initial!=$last_initial) { echo $initial; } ?> </h2></div>
+		<?php if($initial!=$last_initial) { ?>
+		<h2 id="list-<?php echo $initial; ?>" class="glossary_letter"> <?php echo $initial;  ?> </h2>
+	<?php } ?>
+		</div>
 	<?php
 
 	$x++;
 	}
 	?>
 
-	<div class="col-sm-4"><?php // echo $x."/"; ?><?php //echo $x%3 ?><h2 id="<?php echo $post->post_name; ?>"><?php	echo  get_the_title() ;?></h2>
+	<div class="col-sm-4"><h2 class="glossary_term" id="<?php echo $post->post_name; ?>"><?php	echo  get_the_title() ;?></h2>
 		<?php the_content(); ?>
 	</div>
 	<?php
@@ -64,5 +76,21 @@
 	</main>
 
 <?php // get_sidebar(); ?>
-
+<script>
+  jQuery(document).ready(function() {
+var alfabeto=new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 65 + i ) );
+// console.log(alfabeto);
+for(x=0;x<alfabeto.length;x++) {
+	if (document.getElementById("list-"+alfabeto[x])) {
+	//	console.log(alfabeto[x]);
+		jQuery("#"+alfabeto[x]).addClass("selectable");
+		jQuery(".selectable").click(function() {
+				jQuery('html, body').stop().animate({
+			scrollTop: jQuery("#list-"+this.id).offset().top}, 500, 'linear');
+		//			console.log(">>>"+this.id);
+		});
+	}
+}
+});
+</script>
 <?php get_footer(); ?>

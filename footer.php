@@ -1,6 +1,7 @@
 			<!-- footer -->
 			<footer class="footer" role="contentinfo">
-				<section>
+				<section id="footer-form">
+
 				<div class="container">
 					<div class="row">
 							<div class="col-md-7 offset-md-2">
@@ -8,10 +9,13 @@
 								<a href="" class="btn-300 btn btn-outline-light btn-arrow">Go to the form<i class="i-arrow-right-w"></i></a>
 							</div>
 					</div>
-				</div>
-				</section>
-				<section>
-					<div class="container">
+
+
+
+
+						<div class="row">
+							<div class="col-sm-12 line"> </div>
+						</div>
 					<div class="row">
 						<div class="col-md-8"><h2> COOL TECHNOLOGIES </h2></div>
 						<div class="col-md-4">
@@ -22,8 +26,8 @@
 				</div>
 				<div class="row">
 					<div class="col-md-8 align-self-end">
-						<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png">
-						<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png">
+					<a href="https://eia-international.org/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png"></a>
+					<a href="https://www.greenpeace.org/global/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png"></a>
 					</div>
 					<div class="col-md-4">
 						<span class="note-font">
@@ -38,23 +42,64 @@ The website does not have a commercial purpose and we do not accept payments for
 				</div>
 				</section>
 
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+				<nav class="navbar navbar-last navbar-dark navbar-expand-md">	<?php wp_nav_menu(
+						array(
+							'theme_location'  => 'footer-menu',
+							'container'       => 'div',
+							'container_class' => 'collapse navbar-collapse',
+							'container_id'    => 'navbarNavDropdown',
+							'menu_class'      => 'navbar-nav navbar-top m-auto',
+							'fallback_cb'     => '',
+							'menu_id'         => 'main-menu',
+							'depth'           => 1,
+							'walker'          => new WP_Bootstrap_Navwalker(),
+						)
+					); ?></nav>
+				</div>
+				</div>
+				</div>
 
 			</footer>
 			<!-- /footer -->
 
 		</div>
+<?php
+$menu = new NestedMenu('Menu 1');
 
+//	print_r($menu);
+//	echo "-------------------------------";
+//	print_r($res);
+
+ ?>
 		<div id="sidr">
-			<div class="close_menu"> X </div>
-			<ul class="">
+			<div class="close_menu"> <img src="<?php echo get_template_directory_uri() ?>/img/x-close-icon-white.png" width="30"/> </div>
+			<ul class="mobile-menu-first">
   <!-- Your content -->
 	<?php
 
- $menu=wp_get_nav_menu_items("Menu 1");
-		foreach($menu as $m) {
+	foreach ($menu->items as $item) {
 			if($m->post_parent==0) {
-		?>
-		<li> <?php echo $m->title; ?></li>
+				$submenu = $menu->get_submenu($item); ?>
+				<li><a href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
+					<?php if ($submenu) { ?>
+				<button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#submenu-<?php echo $item->ID ?>" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="i-arrow-down-w"></i></button>
+				<?php } ?>
+				</li>
+
+				<?php if($submenu) { ?>
+					<ul id="submenu-<?php echo $item->ID ?>" class="submenu collapse">
+					<?php
+					foreach($submenu as $s) {
+					?>
+				<li><a href="<?php echo $s->url ?>"><?php echo $s->title; ?></a> <li>
+					<?php
+				} ?> </ul>
+				<?php
+				} ?>
+				</li>
 		<?php
 			}
 		}

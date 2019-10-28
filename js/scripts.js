@@ -64,12 +64,17 @@
 
 						/* MENU */
             $('li.dropdown').on('hover', function() {
-							console.log("mouseenter");
-               $(this).children("ul").css("display","table");
-
+						//	$("#submenu-bar").children().remove();
+						//	console.log("mouseenter");
+          //     $(this).children("ul").css("display","table");
+					//	var sub=$(this).children("ul").children("li").children("a");
+					//		$("#submenu-bar").append(sub.clone());
+					//		$(this).append($("#submenu-bar"));
             });
-						$('.navbar').on('mouseleave', function() {
-							console.log("mouseleave");
+						$('li.dropdown').on('mouseout', function() {
+							//	console.log("mouseout dropdwon");
+							//	$(".submenu").children().remove();
+							//	$(".submenu").remove();
 							 $("ul.dropdown-menu").css("display","none");
 						});
 				/*		$('li.dropdown a').on('mouseout', function() {
@@ -87,7 +92,7 @@
             }); */
 
 						/* page case study */
-				
+
 
 
             var indirizzo = "http://127.0.0.1/wp-greenpeace/wordpress/wp-admin/admin-ajax.php";
@@ -141,6 +146,15 @@
             $(".expand_text").click(function() {
                 $(this).parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
             });
+
+						$(".selectable").click(function() {
+							//	jQuery('html, body').stop().animate({
+						//	scrollTop: jQuery("#case-study-results-title").offset().top
+					//}, 1000, 'linear');
+									console.log(this.id);
+						});
+
+
 
             /* display the selected elements in categories */
             $(".select-filter").change(function() {

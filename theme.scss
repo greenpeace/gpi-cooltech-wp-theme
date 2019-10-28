@@ -23,6 +23,9 @@ $fifth-color: #12316A;
 $background-grey: #F1F1F1;
 $black-cooling: #0a1321;
 
+$pages-colors: case-study #2290BE,
+                glossary #2290BE;
+
 // name color background
 $sector-colors: air-conditioning #2290BE #D3E9F2,
          refrigeration #165774 #D0DDE3,
@@ -34,7 +37,7 @@ $refrigeration-color:$second-color;
 $heat-pumps-color:$fifth-color;
 $components-color:$third-color;
 //font
-$second-font:'SwissAntique';
+$second-font:'SuisseAntique';
 
 // the same as h1 bootstrap
 $font-big:2.5rem;
@@ -45,7 +48,9 @@ $background3: rgba(77, 174, 239, 0.2);
 $background4: rgba(34,144,190, 0.2);
 $background5: rgba(18,49,106, 0.2);
 
+/* margins padding */
 $margin-bottom:1rem;
+$padding-bottom-title:4rem;
 
 .navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
     background-color: $second-color;
@@ -78,12 +83,20 @@ div.div-home div.text-intro {
 section.sector-first {
   background-color:$background-grey;
 }
-
-section.category-list.air-conditioning, section.category-list.refrigeration {
-  background-color: $background1;
+.btn-outline-dark {
+  color:$second-color;
+  border-color:$second-color;
+  &:hover {
+        background-color: $second-color;
+  }
 }
 
+@each $p in $pages-colors {
+  h1.#{nth($p, 1)} {
+    color:#{nth($p, 2)}
+  }
 
+}
 
 /* H3 titles */
 @each $s in $sector-colors {
@@ -106,27 +119,19 @@ section.category-list.air-conditioning, section.category-list.refrigeration {
     section.category-list.#{nth($s, 1)}, section.results.#{nth($s, 1)} {
       background-color:#{nth($s, 3)}
     }
+    .#{nth($s, 1)} .text-intro {
+      color:#{nth($s, 2)}
+    }
 }
 
-  section.category-list h3 {
-    color:$refrigeration-color;
-    font-family: $second-font;
+  section.category-list  {
+    h3 {
+      color:$refrigeration-color;
+      font-family: $second-font;
+    }
+
   }
 
-/* TEXT_INTROS */
-
-.components .text-intro {
-  color:$components-color;
-}
-.air-conditioning .text-intro {
-  color:$air-conditioning-color;
-}
-.refrigeration .text-intro {
-  color:$refrigeration-color;
-}
-.heat-pumps .text-intro {
-  color:$heat-pumps-color;
-}
 
 header.masthead.second-taxonomy {
 	background-color: $background-grey;
@@ -176,6 +181,29 @@ article.generic-page h2 {
 }
 
 /* GLOSSARY PAGE */
-h2.glossary_letter {
+h2.glossary_letter, h2.glossary_term {
   color:$first-color;
+}
+h1.glossary, h1.case-study {
+  font-family:$second-font;
+  padding-bottom:$padding-bottom-title;
+}
+.selectable {
+  cursor:pointer;
+  color:$first-color;
+}
+.menu-item-letter {
+  padding:0.2rem;
+}
+
+/* MOBILE */
+ul.mobile-menu-first li {
+	background-color: $second-color;
+	color:white;
+  font-family:"SuisseRegular";
+}
+
+.sidr, #sidr {
+  background-color: $second-color;
+  font-family:"SuisseRegular";
 }

@@ -2,8 +2,8 @@ $link-color:                 black;
 $link-hover-color:           black;
 $link-hover-decoration:  none;
 
-$font-family-sans-serif:  'SwissRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
-$font-family-base:   'SwissRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  'SuisseRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
+$font-family-base:   'SuisseRegular','Helvetica Neue',Helvetica, Arial, sans-serif;
 
 /* $enable-rounded:   false; */
 
@@ -32,5 +32,6 @@ $border-radius:30px;
 
 $nav-pills-link-active-bg: white;
 $nav-pills-link-active-color:#165774;
+$navbar-toggler-border-radius:0;
 
 @import "bootstrap/scss/bootstrap";

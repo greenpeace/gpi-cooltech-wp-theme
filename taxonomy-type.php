@@ -44,7 +44,7 @@ if($current_term_level==1) {
 	    <div class="container">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?>
+	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?>&nbsp;<?php echo $parent->name ?>
 						<?php  $id=get_queried_object()->parent;
 						$parent=	get_term($id,"type"); ?>
 						</h1>
@@ -180,6 +180,7 @@ if($current_term_level==1) {
 
 
 						<?php
+						$args=array("childless"=>true);
 						$se=wp_get_post_terms( $post->ID, "type", $args );
 						// print_r($se);
 						$ap=wp_get_post_terms( $post->ID, "application", $args );
@@ -202,16 +203,17 @@ if($current_term_level==1) {
 						<div class="col-md-3">
 								<div class="result_meta_title"><?php _e( 'Sector', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
-								<?php foreach ($se as $s ) { ?>
-								<?php echo $s->name ?><br/>
+								<?php foreach ($se as $s ) {
+									$p=get_term($s->parent); ?>
+								<?php echo $p->name." ".$s->name ?><br/>
 							<?php	} ?></div>
-								<div class="result_meta_title">Application</div>
+								<div class="result_meta_title"><?php _e( 'Application', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ap as $a ) { ?>
 										<?php	echo $a->name ?><br/>
 									<?php	}?>
 								</div>
-								<div class="result_meta_title">Technology Type </div>
+								<div class="result_meta_title"><?php _e( 'Technology Type', 'cooltech' ); ?> </div>
 								<div class="result_meta_content">
 								<?php foreach ($tt as $t ) { ?>
 									<?php echo $t->name ?><br/>
@@ -219,13 +221,13 @@ if($current_term_level==1) {
 							</div>
 							 </div>
 						<div class="col-md-3">
-								<div class="result_meta_title">Refrigerant</div>
+								<div class="result_meta_title"><?php _e( 'Refrigerant', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($re as $r ) { ?>
 								<?php echo $r->name ?><br/>
 							<?php	} ?></div>
 
-								<div class="result_meta_title">Manufacturer</div>
+								<div class="result_meta_title"><?php _e( 'Manufacturer', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
 								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
@@ -233,7 +235,7 @@ if($current_term_level==1) {
 								</div>
 							</div>
 							<div class="col-sm-3">
-									<div class="result_meta_title">Energy Efficency</div>
+									<div class="result_meta_title"><?php _e( 'Energy Efficency', 'cooltech' ); ?></div>
 									<div class="result_meta_content"><?php echo $ee; ?></div>
 							</div>
 						</div>

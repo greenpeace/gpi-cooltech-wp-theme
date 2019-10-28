@@ -19,16 +19,9 @@
 
 <body id="page-top">
 
-<div style="background-color:white;">
-	<a href="#sidr" class="btn-responsive-menu" id="responsive-menu-button">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-	</a>
-<!--	<div id="logo"><div id="logo-main"><a href="<?php echo site_url(); ?>"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></div>
-		<div id="logo-subtitle"> WORKING WITHOUT HFC </div> -->
-		<!-- <img height="50" src="<?php echo get_template_directory_uri() ?>/img/logo.png">--><!--</a></div> -->
-	<div> <nav class="navbar navbar-first navbar-expand-md navbar-light bg-light">	<?php wp_nav_menu(
+	<?php if(get_option( 'top_menu_option' )) { ?>
+	<div class="">
+		<nav class="navbar navbar-first navbar-expand-md navbar-light bg-light">	<?php wp_nav_menu(
 			array(
 				'theme_location'  => 'top-menu',
 				'container'       => 'div',
@@ -41,27 +34,55 @@
 				'walker'          => new WP_Bootstrap_Navwalker(),
 			)
 		); ?></nav></div>
-	<div class="menu2">
-		<nav class="navbar navbar-main navbar-expand-md navbar-light bg-light"><?php wp_nav_menu(
-		array(
-			'theme_location'  => 'header-menu',
-			'container'       => 'div',
-			'container_class' => 'collapse navbar-collapse',
-			'container_id'    => 'navbarNavDropdown',
-			'menu_class'      => 'navbar-nav',
-			'fallback_cb'     => '',
-			'menu_id'         => 'main-menu2',
-			'depth'           => 2,
-			'items_wrap' => '<ul id="%1$s" class="%2$s"><li><div id="logo"><a href="'.site_url().'"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></div></a></li>%3$s</ul>',
-			'walker'          => new WP_Bootstrap_Navwalker(),
-		)
-	); ?>
-	<div id="partners">
-	<img class="logo_partner" src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png">
-	<img class="logo_partner" src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png">
+	<?php } ?>
+<div id="menus">
 
-	</div>
-</nav>
 
-	</div>
+	<div id="logo"><div id="logo-main"><a href="<?php echo site_url(); ?>"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></div>
+		<div id="logo-subtitle"> <?php echo get_bloginfo("description"); ?> </div></div>
+
+
+		<div class="menu-finale">
+
+
+			<?php $menu = new NestedMenu('Menu 1');
+
+
+			foreach ($menu->items as $item) {
+					if($m->post_parent==0) {
+				?>
+						<div class="ddown" style="float:left">
+								<a class="dropbtn" href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
+						<?php	$submenu = $menu->get_submenu($item); ?>
+						<?php if($submenu) { ?>
+
+							<div class="ddown-content">
+							<?php
+							foreach($submenu as $s) {
+							?>
+					<a href="<?php echo $s->url ?>"><?php echo $s->title; ?></a>
+							<?php
+						} ?> </div>
+						<?php
+						} ?>
+					</div>
+				<?php
+					}
+				}
+
+		  ?>
+
+
+
+</div>
+<div id="partners">
+	<a href="https://eia-international.org/" target="_blank"><img class="logo_partner" src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png"></a>
+<a href="https://www.greenpeace.org/global/" target="_blank">	<img class="logo_partner" src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png"></a>
+<a href="#sidr" class="btn-responsive-menu" id="responsive-menu-button">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+</a>
+</div>
+
 </div>

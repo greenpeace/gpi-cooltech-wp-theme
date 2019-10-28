@@ -132,14 +132,15 @@ function ct_block_tab_render2( $attributes ) {
         ?>
       <div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
        			<div class="row">
-       				<div class="col">
+       				<div id="tab-img" class="col-sm-5 offset-sm-1">
        			<?php echo get_the_post_thumbnail($page->ID); ?>
        				</div>
-       				<div class="col">
+              <div class="col-sm-1"></div>
+       				<div id="tab-text" class="col-sm-4">
        					<h2><?php echo $page->post_title;  ?></h2>
        			<?php echo $page->post_excerpt; ?>
-       			<div>
-       			<a class="btn btn-rounded btn-outline-dark" href="<?php echo get_permalink($page->ID); ?>"> More information <i class="i-arrow-right" style="vertical-align: middle"></i></a>
+       			<div id="tab-button">
+       			<a class="btn btn-rounded btn-outline-dark btn-arrow" href="<?php echo get_permalink($page->ID); ?>"> More information <i class="i-arrow-right arrow-blue" style="vertical-align: middle"></i></a>
        			</div>
        				</div>
        			</div>
