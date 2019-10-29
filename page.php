@@ -15,7 +15,7 @@ $classes=array("generic-page");
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="text-black font-weight-bold"><?php the_title(); ?></h1>
+	          <h1 class="text-white font-weight-bold"><?php the_title(); ?></h1>
 	        </div>
 	        <div class="col-lg-8 align-self-baseline">
 

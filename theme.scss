@@ -100,6 +100,14 @@ section.sector-first {
 
 /* H3 titles */
 @each $s in $sector-colors {
+
+    section.#{nth($s, 1)}-numbers {
+      background-color: white;
+      .magic-up {
+        color:#{nth($s, 2)};
+      }
+    }
+
     section.category-list.#{nth($s, 1)} h3 {
         color: #{nth($s, 2)};
         font-family: $second-font;
@@ -146,6 +154,7 @@ section.results {
 }
 article.element {
   margin-bottom:$margin-bottom;
+  min-height: 200px;
 }
 article.element.equipment {
   background-color: white;
@@ -166,12 +175,11 @@ article.element.case-study {
 }
 
 /* SINGLE PAGE STUDY */
-.sidebar-term:first-of-type {
+.sidebar-term {
   border-top:2px solid $first-color;
 }
 .sidebar-term {
   color:$first-color;
-  border-bottom:2px solid $first-color;
   padding: $margin-bottom 0;
 }
 

@@ -135,7 +135,7 @@ if($current_term_level==1) {
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-10 offset-sm-1">
-						<div class="text-intro">	<?php echo do_shortcode(get_queried_object()->description); ?> </div>
+						<div class="text-intro">	<?php echo nl2br(do_shortcode(get_queried_object()->description)); ?> </div>
 						<div class="text-full">
 						<?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 							// echo jqFootnotes(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
@@ -156,8 +156,9 @@ if($current_term_level==1) {
 	$n1=preg_split ('/\d+\K/' ,$n1 );
 	$n2=preg_split ('/\d+\K/' ,$n2 );
 	$n3=preg_split ('/\d+\K/' ,$n3 );
+
 	?>
-	<section id="magic-tax" class="magic-numbers wp-block-cooltech-block-magic-numbers">
+	<section id="magic-tax" class="<?php echo $slug ?>-numbers magic-numbers wp-block-cooltech-block-magic-numbers">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
@@ -165,21 +166,21 @@ if($current_term_level==1) {
 					 	 <div class="magic-number"><?php echo $n1[0]; ?></div>
 					 	 <div class="magic-value"><?php echo $n1[1]; ?></div>
 				 	</div>
-					<div class="magic-text"><?php echo $t1; ?></div>
+					<div class="magic-text"><?php echo do_shortcode($t1) ?></div>
 				</div>
 				<div class="col-md-4">
 					<div class="magic-up">
 						 <div class="magic-number"><?php echo $n2[0]; ?></div>
 						 <div class="magic-value"><?php echo $n2[1]; ?></div>
 					</div>
-					<div class="magic-text"><?php echo $t2; ?></div>
+					<div class="magic-text"><?php echo do_shortcode($t2) ?></div>
 				</div>
 				<div class="col-md-4">
 					<div class="magic-up">
 						 <div class="magic-number"><?php echo $n3[0]; ?></div>
 						 <div class="magic-value"><?php echo $n3[1]; ?></div>
 					</div>
-					<div class="magic-text"><?php echo $t3; ?></div>
+					<div class="magic-text"><?php echo do_shortcode($t3); ?></div>
 				</div>
 			</div>
 		</div>
@@ -224,16 +225,18 @@ if($current_term_level==1) {
 						$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
 						$re=wp_get_post_terms( $post->ID, "refrigerant", $args );
 
-						$ee=get_post_meta($post->ID,"energy-efficency",true);
+						$ee=get_post_meta($post->ID,"energy_efficency",true);
+						$source=get_post_meta($post->ID,"source",true);
+						$web=get_post_meta($post->ID,"website",true);
 						?>
 
-						<div class="col-md-3">
+						<div class="col-md-3 col-title-element">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
 						<?php  if($post->post_type=="equipment") { ?>
 						<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> More Information </button>
 					<?php  } else { ?>
-						<a class="<?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
+						<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
 					<?php } ?>
 					</div>
 						<div class="col-md-3">
@@ -287,9 +290,14 @@ if($current_term_level==1) {
 								}; ?>
 							</div>
 							<div class="col-sm-9">
-								<?php the_content(); ?>
+								<div><?php the_content(); ?></div>
+								<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
+								<div class="result_meta_content"><?php  echo $web; ?></div>
+								<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
+								<div class="result_meta_content"><?php  echo $source; ?></div>
 							</div>
 						</div>
+
 						</div>
 					</article>
 

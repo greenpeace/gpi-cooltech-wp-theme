@@ -1,11 +1,10 @@
 # [Cooltech Theme]
 
-Powerful shell for rapidly deploying your WordPress projects.
-
-* Project: [github.com/toddmotto/cooltech](https://github.com/toddmotto/cooltech)
 
 
-## Contributors (in order of pull request)
+* Project: [github.com/greenpeace/gpi-cooltech-wp-theme](https://github.com/greenpeace/gpi-cooltech-wp-theme/)
+
+
 
 
 ## Getting Started with cooltech Blank
@@ -27,6 +26,7 @@ Powerful shell for rapidly deploying your WordPress projects.
 
 
 ### CSS3
+* Bootstrap 4
 
 
 ### Preloaded Functions (functions.php)

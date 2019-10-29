@@ -729,7 +729,7 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="col-md-3 col-sm-6 cat_col">
 								<div><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc align-items-stretch"> <?php echo $t->description;  ?> </div>
+								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
 								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
 								</div>
 						</div>

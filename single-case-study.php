@@ -9,7 +9,7 @@ $ex=get_post_meta($post->ID, "expand", true);
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 <main role="main">
 	<?php if($ex) { ?>
-	<header class="masthead"  style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
+	<header class="masthead"  style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
@@ -45,7 +45,9 @@ $ex=get_post_meta($post->ID, "expand", true);
 
 				<?php the_content();
 
-				$ee=get_post_meta($post->ID,"energy-efficency",true);
+				$ee=get_post_meta($post->ID,"energy_efficency",true);
+				$source=get_post_meta($post->ID,"source",true);
+				$web=get_post_meta($post->ID,"website",true);
 
 				if($ee) {
 					?>
@@ -55,6 +57,11 @@ $ex=get_post_meta($post->ID, "expand", true);
 				}
 
 				?>
+
+				<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
+				<div class="result_meta_content"><?php  echo $web; ?></div>
+				<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
+				<div class="result_meta_content"><?php  echo $source; ?></div>
 
 				<br class="clear">
 

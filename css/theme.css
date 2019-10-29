@@ -40,6 +40,11 @@ h1.glossary {
   color: #2290BE; }
 
 /* H3 titles */
+section.air-conditioning-numbers {
+  background-color: white; }
+  section.air-conditioning-numbers .magic-up {
+    color: #2290BE; }
+
 section.category-list.air-conditioning h3 {
   color: #2290BE;
   font-family: "SuisseAntique"; }
@@ -61,6 +66,11 @@ section.category-list.air-conditioning, section.results.air-conditioning {
 
 .air-conditioning .text-intro {
   color: #2290BE; }
+
+section.refrigeration-numbers {
+  background-color: white; }
+  section.refrigeration-numbers .magic-up {
+    color: #165774; }
 
 section.category-list.refrigeration h3 {
   color: #165774;
@@ -84,6 +94,11 @@ section.category-list.refrigeration, section.results.refrigeration {
 .refrigeration .text-intro {
   color: #165774; }
 
+section.heat-pumps-numbers {
+  background-color: white; }
+  section.heat-pumps-numbers .magic-up {
+    color: #12316A; }
+
 section.category-list.heat-pumps h3 {
   color: #12316A;
   font-family: "SuisseAntique"; }
@@ -105,6 +120,11 @@ section.category-list.heat-pumps, section.results.heat-pumps {
 
 .heat-pumps .text-intro {
   color: #12316A; }
+
+section.components-numbers {
+  background-color: white; }
+  section.components-numbers .magic-up {
+    color: #4DAEEF; }
 
 section.category-list.components h3 {
   color: #4DAEEF;
@@ -140,7 +160,8 @@ section.results {
   background-color: rgba(33, 154, 185, 0.2); }
 
 article.element {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  min-height: 200px; }
 
 article.element.equipment {
   background-color: white; }
@@ -159,12 +180,11 @@ article.element.case-study {
   margin-bottom: 1rem; }
 
 /* SINGLE PAGE STUDY */
-.sidebar-term:first-of-type {
+.sidebar-term {
   border-top: 2px solid #2290BE; }
 
 .sidebar-term {
   color: #2290BE;
-  border-bottom: 2px solid #2290BE;
   padding: 1rem 0; }
 
 /* GENERIC PAGE */

@@ -26,7 +26,9 @@ $classes=array("generic-page");
 
 				<?php the_content();
 
-				$ee=get_post_meta($post->ID,"energy-efficency",true);
+				$ee=get_post_meta($post->ID,"energy_efficency",true);
+				$source=get_post_meta($post->ID,"source",true);
+				$web=get_post_meta($post->ID,"website",true);
 
 				if($ee) {
 					?>
@@ -35,7 +37,12 @@ $classes=array("generic-page");
 					echo $ee;
 				}
 
+
 				?>
+				<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
+				<div class="result_meta_content"><?php  echo $web; ?></div>
+				<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
+				<div class="result_meta_content"><?php  echo $source; ?></div>
 
 				<br class="clear">
 
