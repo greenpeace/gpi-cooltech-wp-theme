@@ -1,7 +1,7 @@
 /*
 	Theme Name: Cooltech
 	Description: Cooltech Theme
-	Version: 1.0.0
+	Version: 1.0.2
 	Author: Fabrizio Giannone
 	Tags: CSS3
 
@@ -26,8 +26,15 @@ html {
 	/* font-size:62.5%; */
 }
 body {
-	font:300 1.4rem 'SwissRegular','Helvetica Neue', Helvetica, Arial, sans-serif;
+	font:300 1.4rem 'SuisseRegular','Helvetica Neue', Helvetica, Arial, sans-serif;
 	color:#444;
+	counter-reset: fn-counter;
+}
+a.footnote:before {
+  counter-increment: fn-counter;
+  content: '[' counter(fn-counter) ']';
+	vertical-align: super; /* 2 */
+  font-size: 0.8rem
 }
 /* clear */
 .clear:before,
@@ -68,6 +75,8 @@ input:focus {
     STRUCTURE
 \*------------------------------------*/
 
+
+
 /* wrapper */
 .wrapper {
 	max-width:1280px;
@@ -79,47 +88,237 @@ input:focus {
 .header {
 
 }
-/* logo */
-.logo {
 
+/* logo */
+#logo {
+z-index:10;
+
+font-family: "Industrial";
+font-size:2.25rem;
+line-height:1;
+
+}
+#partners {
+	padding:0px 10px;
+	display:flex;
+	align-items: center;
+}
+div#logo-subtitle {
+	font-family:"SuisseRegular";
+	font-size:0.8rem;
+	line-height: normal;
 }
 .logo-img {
 
 }
-/* nav */
-.navbar-nav > li.dropdown.show{
-  position: static;
+.menu2 {
+	display: flex;
+}
+
+
+.navbar {
+	padding: 0.25rem 1rem !important;
+}
+/* nav top */
+.navbar-first {
+	height:40px;
+}
+
+.navbar-nav, .menu-finale {
+	display: none !important;
+}
+
+.navbar-nav.navbar-top > li.dropdown .dropdown-menu {
+    display: inline-block;
+    border-radius: 0px;
+    width: auto;
+    text-align: center;
+    top:50px;
+    right: 0;
+    background-color: #165774;
+}
+
+.navbar-nav.navbar-top .dropdown-menu {
+	left:auto !important;
+	right:0px;
+	width:auto;
+}
+
+.navbar-nav.navbar-top .dropdown-menu > li {
+  display: block;
+  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+/* nav  normal */
+
+	img.logo_partner {
+		max-height: 50px;
+	}
+
+	.btn-responsive-menu {
+			z-index:10;
+	}
+
+	.navbar-main.navbar-expand-md {
+		justify-content: flex-end;
+	}
+
+.navbar-nav > li.dropdown {
+ /* position: static; */
+ position:relative;
+}
+
+.menu-finale {
+	background-color: white;
+
+}
+
+li.dropdown:hover ul.dropdown-menu {
+	display:flex !important;
+	flex-direction: column;
 }
 
 .navbar-brand a {
 	color:black;
 }
-.navbar-nav > li.dropdown.show .dropdown-menu {
-  display: table;
+.navbar-nav > li.dropdown .dropdown-menu {
+  display: none;
   border-radius: 0px;
   width: 100%;
   text-align: center;
   left: 0;
   right: 0;
-	background-color:black;
+	background-color:#165774;
 }
 a.dropdown-item {
 	display:inline;
 }
-a.dropdown-item:before {
-  content: "";
-  position: absolute;
-  width: auto!important;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #000;
-  visibility: hidden;
-  -webkit-transform: scaleX(0);
-  transform: scaleX(0);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+a.dropbtn {
+	position:relative;
 }
+a.dropbtn:before {
+	content: "";
+position: absolute;
+width: 100%;
+height: 2px;
+bottom: 10px;
+left: 0;
+background-color:#165774;
+visibility: hidden;
+-webkit-transform: scaleX(0);
+transform: scaleX(0);
+-webkit-transition: all 0.3s ease-in-out 0s;
+transition: all 0.3s ease-in-out 0s;
+}
+a.dropbtn:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+#menus {
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.ddown {
+  position: relative;
+  display: inline-block;
+	white-space: nowrap;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.ddown-content {
+  display: none;
+  position: absolute;
+  background-color: #165774;
+  min-width: 160px;
+	/* width:100vw; */
+  color:white;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.ddown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropbtn {
+  background-color: white;
+	display: block;
+  color: black;
+
+  font-size: 16px;
+  border: none;
+}
+
+/* Change color of dropdown links on hover */
+.ddown-content a:hover {background-color: #D0DDE3;}
+
+/* Show the dropdown menu on hover */
+.ddown:hover .ddown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.ddown:hover .dropbtn {background-color: white;}
+
+/* menu-responsive */
+
+ li.dropodown:hover > ul{
+     display: block;
+}
+
+.icon-bar {
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin: 5px;
+    background-color: #000000;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.close_menu {
+	text-align: right;
+	cursor:pointer;
+	padding-right:1.5rem;
+}
+.btn-responsive-menu {
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    background: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+	}
+	#sidr {
+		box-shadow: none !important;
+    background: #165774 !important;
+	}
+	.sidr ul li.active>a, .sidr ul li.active>span, .sidr ul li.sidr-class-active>a, .sidr ul li.sidr-class-active>span, .sidr ul li:hover>a, .sidr ul li:hover>span {
+		box-shadow: none !important;
+	}
+	.mobile-menu-first li {
+		box-shadow: none !important;
+		background: #165774 !important;
+		display: flex !important;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.icon-bar {
+		display: block !important;
+	}
+
+
 a:hover:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
@@ -165,24 +364,26 @@ a {
 	background-repeat: no-repeat;
 	background-size: 0.1;
 	text-align: left;
-	font-weight: bold;
+	display: flex;
+	flex-direction: row;
+	align-items:center;
+	justify-content: space-between;
 }
-.btn.btn-arrow.btn-outline-dark {
-		background-image: url("img/combined-shape.png");
-}
-.btn.btn-arrow.btn-outline-light {
-		background-image: url("img/combined-shape2.png");
-}
+
 .btn-300 {
-	min-width: 300px;
+	width: 300px;
 }
 
 /* footer */
 .footer {
-	background-color: #272727;
+	background-color: #165773;
 	color:white;
 }
-
+.line {
+	height:2px;
+	background-color: white;
+	margin:100px 15px;
+}
 /*------------------------------------*\
     PAGES
 \*------------------------------------*/
@@ -195,19 +396,58 @@ header.masthead {
     background-size: cover;
 		background-color:grey;
 }
+/* PROVVISORI */
+.text-full {
+	margin-top:2rem;
+	font-size:1.875rem;
+	line-height:1.2;
+}
+.text-full-second {
+	margin-top:2rem;
+	font-size:1.3125rem;
+}
+.wp-block-coolech-innerblock {
+	font-size:1.875rem;
+	line-height: 1.2;
+}
+
+h1.industrial {
+	font-family: "Industrial";
+	font-size:4rem;
+	letter-spacing: 3px;
+	font-weight: normal;
+}
+
+
 section {
-	display: flex;
+			display: flex;
 	    flex-direction: column;
 	    align-items: center;
-	    padding: 125px 100px;
+
 }
 
-section.category:nth-child(2n+0) {
-  background: #ddd;
+section.category-list {
+  background: white;
 }
 
+.wp-block-cgb-block-magic-numbers {
+	background: #f1f1f1;
+}
 
+.cat_desc {
+	padding-bottom:0.8rem;
+}
 
+/* CASE STUDY */
+.col-card {
+	display: flex;
+}
+.card-body {
+	margin-top:auto;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
 /*------------------------------------*\
     IMAGES
 \*------------------------------------*/
@@ -219,14 +459,19 @@ section.category:nth-child(2n+0) {
 \*------------------------------------*/
 
 @font-face {
-  font-family: 'SwissAntique';
-  src: url('fonts/SuisseBPIntAntique.ttf') format('truetype');
+  font-family: 'SuisseAntique';
+  src: url('fonts/SuisseBPIntAntique.ttf') format('truetype'),
+		url('fonts/SuisseBPIntAntique.woff') format('woff');
 }
 @font-face {
-  font-family: 'SwissRegular';
-  src: url('fonts/SuisseBPIntRegular.ttf') format('truetype');
+  font-family: 'SuisseRegular';
+  src: url('fonts/SuisseBPIntRegular.woff') format('woff')
 }
 
+@font-face {
+  font-family: 'Industrial';
+  src: url('fonts/industrial.ttf') format('truetype')
+}
 
 @font-face {
 	font-family:'Font-Name';
@@ -241,6 +486,118 @@ section.category:nth-child(2n+0) {
 .note-font {
 font-size: 0.8rem;
 }
+
+.i-arrow-right {
+	background-image: url("img/arrow-right.svg");
+	background-repeat: no-repeat;
+	background-position: right 20px center;
+	background-size:contain;
+	width:60px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	float:right;
+}
+.i-arrow-right.arrow-blue
+{
+		background-image: url("img/arrow-right-blue.svg");
+}
+.btn-outline-dark:hover .i-arrow-right.arrow-blue {
+	background-image: url("img/arrow-right-white.svg");
+}
+.btn-outline-light:hover .i-arrow-right-w {
+	background-image: url("img/arrow-right-blue.svg");
+}
+.navbar-toggler[aria-expanded="true"] .i-arrow-down-w  {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+	background-position: right 20px center;
+}
+.navbar-toggler[aria-expanded="false"] .i-arrow-down-w  {
+
+}
+.i-arrow-down-w {
+	background-image: url("img/arrow-down-white.png");
+	background-repeat: no-repeat;
+	background-position: right 20px center;
+	background-size:20%;
+	width:60px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	float:right;
+}
+
+.i-arrow-right-w {
+	background-image: url("img/arrow-right-white.svg");
+	background-repeat: no-repeat;
+	background-position: right 20px center;
+	background-size:contain;
+	width:60px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	float:right;
+}
+
+[class*="icon"] {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  color: #666;
+  box-sizing: border-box;
+}
+[class*="icon"]:after, [class*="icon"]:before {
+    content: "";
+    box-sizing: border-box;
+  }
+
+[class*="icon-arrow1"]{
+  width: 20px;
+  height: 20px;
+  border-width: 4px 4px 0 0;
+  border-style: solid;
+  margin: 10px;
+}
+
+[class*="icon-arrow1"]:before{
+    right: 0;
+    top: -3px;
+    position: absolute;
+    height: 4px;
+    box-shadow: inset 0 0 0 32px;
+    transform: rotate(-45deg);
+    width: 23px;
+    transform-origin: right top;
+  }
+  [class*="icon-arrow1-left"]{
+    transform: rotate(45deg);
+	}
+
+#tab-text {
+	display: flex;
+	flex-direction:column;
+}
+#tab-button {
+	margin-top:auto;
+}
+
+#cooling-tab {
+	justify-content: center;
+	padding:1rem;
+}
+
+
+/*------------------------------------*\
+	    BUTTON
+\*------------------------------------*/
+
+
+
+
 
 /*------------------------------------*\
     RESPONSIVE
@@ -259,20 +616,200 @@ font-size: 0.8rem;
 	    padding-top: 72px;
 	    padding-bottom: 0;
 		}
+		header.masthead.second-taxonomy {
+	    height: auto;
+	    min-height: auto;
+	    padding-top: 72px;
+	    padding-bottom: 72px;
+		}
+
+
+		section {
+			padding: 100px 100px;
+		}
+
 }
 @media only screen and (min-width:1024px) {
 
+	.dropbtn {
+		padding: 20px 3px;
+	}
+
+	#main-menu2 {
+		align-items: center;
+	}
+
+	.navbar-main.navbar-expand-md {
+		justify-content: space-between;
+	}
+
+ 	.navbar-nav, .menu-finale {
+	 display:flex !important;
+ }
+ .btn-responsive-menu {
+	 display:none;
+ }
 }
 @media only screen and (min-width:1140px) {
-
+	.dropbtn {
+		padding: 20px 5px;
+	}
+	#logo {
+		padding:0px 5px 0px 20px;
+	}
 }
 @media only screen and (min-width:1280px) {
+	.dropbtn {
+		padding: 20px 12px;
+	}
+	#logo {
+		padding:0px 20px;
+	}
 
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),
 	   only screen and (min-resolution:144dpi) {
 
 }
+
+
+/* TABS */
+
+#cooling-tab a {
+	outline-style:none;
+	box-shadow:none;
+	border-color:transparent;
+	font-weight: bold;
+}
+
+/*------------------------------------*\
+    GLOSSARY
+\*------------------------------------*/
+
+.glossary_letter {
+	font-family:"Industrial";
+font-size:4rem;
+}
+
+/*------------------------------------*\
+    SECTOR SHORTCODE
+\*------------------------------------*/
+
+.cat_col {
+	display: flex;
+	flex-direction: column;
+}
+.cat_button {
+	margin-top:auto;
+}
+
+/*------------------------------------*\
+    ELEMENTS
+\*------------------------------------*/
+
+.element {
+	padding:0.5rem;
+}
+
+.col-title-element {
+	display: flex;
+	flex-direction: column;
+}
+.expand_text, .more_text {
+	margin-top:auto;
+}
+
+.equipment_full_text {
+	display:none;
+	padding:0.5rem 0;
+}
+
+.equipment_full_text.expanded {
+	display:block;
+}
+.magic-up {
+	text-align: center;
+}
+
+.magic-number {
+  font-size:4rem;
+  font-weight: bold;
+  text-align: center;
+	display:inline;
+}
+.magic-value {
+	font-size:4rem;
+	font-weight: bold;
+	text-align: center;
+	display: inline;
+}
+.magic-text {
+	clear:both;
+	text-align: center;
+}
+
+#selectblock {
+	margin:50px 0px 0px 0px;
+}
+
+.selectdiv {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+
+  float: left;
+  width: 165px;
+  margin: 0px 2px;
+}
+
+/*To remove button from IE11, thank you Matt */
+select::-ms-expand {
+     display: none;
+}
+
+.selectdiv.active:after {
+	content:"-";
+}
+
+.selectdiv:after {
+  content: '+';
+
+  color: #333;
+
+  right: 11px;
+  /*Adjust for position however you want*/
+
+  top: 18px;
+  padding: 0 0 2px;
+
+  /*left line */
+
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
 
 /*------------------------------------*\
     MISC
@@ -421,3 +958,20 @@ a img.aligncenter {
 		page-break-after:avoid;
 	}
 }
+
+/*subemenu */
+#submenu-bar {
+	position: absolute;
+	    width: 100%;
+	    height: 60px;
+display:none;
+	/*		display:flex; */
+			background-color: #165774;
+			align-items:center;
+}
+#submenu a {
+	text-align: center;
+}
+
+
+@import url("css/theme.css");

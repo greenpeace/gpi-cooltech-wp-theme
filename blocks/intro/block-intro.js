@@ -1,4 +1,3 @@
-
 /**
  * Editable Block Example
  *
@@ -8,7 +7,7 @@
 	var __                = wp.i18n.__; // The __() function for internationalization.
 	var createElement     = wp.element.createElement; // The wp.element.createElement() function to create elements.
 	var registerBlockType = wp.blocks.registerBlockType; // The registerBlockType() function to register blocks.
-	var Editable          = wp.blocks.Editable; // For creating editable elements.
+	var RichText          = wp.editor.RichText; // For creating editable elements.
 
 	/**
 	 * Register block
@@ -19,15 +18,15 @@
 	 *                             otherwise "undefined".
 	 */
 	registerBlockType(
-		'mdlr/editable-block-example', // Block name. Must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
+		'cooltech/block-intro', // Block name. Must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 		{
-			title: __( 'Editable Block Example' ), // Block title. __() function allows for internationalization.
-			icon: 'unlock', // Block icon from Dashicons. https://developer.wordpress.org/resource/dashicons/.
+			title: __( 'Intro' ), // Block title. __() function allows for internationalization.
+			icon: 'megaphone', // Block icon from Dashicons. https://developer.wordpress.org/resource/dashicons/.
 			category: 'common', // Block category. Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 			attributes: {
 				content: {
 					type: 'string',
-					default: 'Editable block content...',
+					default: 'Big intro text...',
 				},
 			},
 
@@ -41,14 +40,14 @@
 				}
 
 				return createElement(
-					Editable,
+					RichText,
 					{
 						tagName: 'p',
 						className: props.className,
 						value: content,
 						onChange: onChangeContent,
 						focus: focus,
-             			onFocus: props.setFocus
+						onFocus: props.setFocus
 					},
 				);
 			},
@@ -57,12 +56,12 @@
 			save: function( props ) {
 				var content = props.attributes.content;
 
-				return createElement(
-					'p',
+				return createElement( RichText.Content,
 					{
-						className: props.className,
-					},
-					content
+						'tagName': 'div',
+            'className': 'text-intro',
+						'value': content
+					}
 				);
 			},
 		}

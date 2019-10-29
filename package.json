@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss bootstrap-ct.scss css/bootstrap-ct.css",
+    "build-css": "node-sass --include-path scss theme.scss css/theme.css",
+    "build-boot": "node-sass --include-path scss bootstrap-ct.scss css/bootstrap-ct.css",
     "scss": "node-sass --watch scss -o css"
   },
   "author": "",
