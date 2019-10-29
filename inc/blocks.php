@@ -68,7 +68,7 @@ register_block_type( 'cooltech/block-tabs', array(
 		),
 		'category' => 'widgets',
 		'editor_script'   => 'mb-simple-block',
-		'render_callback' => 'ct_block_tab_render2',
+		'render_callback' => 'ct_block_tab_render',
 ) );
 
 register_block_type(
@@ -99,7 +99,7 @@ add_action( 'init', 'cooltech_block_init' );
 
 /* BLOCK TABS */
 
-function ct_block_tab_render2( $attributes ) {
+function ct_block_tab_render( $attributes ) {
       $is_in_edit_mode = strrpos($_SERVER ['REQUEST_URI'], 'context=edit');
       $content = $attributes['mb_url'];
       $pagine = explode(",",$content);
@@ -133,7 +133,7 @@ function ct_block_tab_render2( $attributes ) {
       <div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
        			<div class="row">
        				<div id="tab-img" class="col-sm-5 offset-sm-1">
-       			<?php echo get_the_post_thumbnail($page->ID); ?>
+       			<?php echo get_the_post_thumbnail($page->ID, "wide"); ?>
        				</div>
               <div class="col-sm-1"></div>
        				<div id="tab-text" class="col-sm-4">

@@ -159,7 +159,7 @@ article.element.case-study {
   margin-bottom: 1rem; }
 
 /* SINGLE PAGE STUDY */
-.sidebar-application {
+.sidebar-term:first-of-type {
   border-top: 2px solid #2290BE; }
 
 .sidebar-term {

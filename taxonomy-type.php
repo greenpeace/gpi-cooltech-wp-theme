@@ -25,11 +25,7 @@ if($current_term_level==1) {
 					</h1>
 				</div>
 				<div class="col-lg-8 align-self-baseline">
-					<?php
-					//echo $current_term_level;
-					if ($current_term_level == 2) {
-					echo "<h3>".get_queried_object()->description."</h3>";
-					} ?>
+
 
 				</div>
 			</div>
@@ -144,6 +140,46 @@ if($current_term_level==1) {
 						<?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 							// echo jqFootnotes(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 						?></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+	$n1=get_term_meta(get_queried_object()->term_id, 'magic_numbers_number_1', true );
+	$n2=get_term_meta(get_queried_object()->term_id, 'magic_numbers_number_2', true );
+	$n3=get_term_meta(get_queried_object()->term_id, 'magic_numbers_number_3', true );
+	$t1=get_term_meta(get_queried_object()->term_id, 'magic_numbers_text_1', true );
+	$t2=get_term_meta(get_queried_object()->term_id, 'magic_numbers_text_2', true );
+	$t3=get_term_meta(get_queried_object()->term_id, 'magic_numbers_text_3', true );
+
+
+	$n1=preg_split ('/\d+\K/' ,$n1 );
+	$n2=preg_split ('/\d+\K/' ,$n2 );
+	$n3=preg_split ('/\d+\K/' ,$n3 );
+	?>
+	<section id="magic-tax" class="magic-numbers wp-block-cooltech-block-magic-numbers">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="magic-up">
+					 	 <div class="magic-number"><?php echo $n1[0]; ?></div>
+					 	 <div class="magic-value"><?php echo $n1[1]; ?></div>
+				 	</div>
+					<div class="magic-text"><?php echo $t1; ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="magic-up">
+						 <div class="magic-number"><?php echo $n2[0]; ?></div>
+						 <div class="magic-value"><?php echo $n2[1]; ?></div>
+					</div>
+					<div class="magic-text"><?php echo $t2; ?></div>
+				</div>
+				<div class="col-md-4">
+					<div class="magic-up">
+						 <div class="magic-number"><?php echo $n3[0]; ?></div>
+						 <div class="magic-value"><?php echo $n3[1]; ?></div>
+					</div>
+					<div class="magic-text"><?php echo $t3; ?></div>
 				</div>
 			</div>
 		</div>

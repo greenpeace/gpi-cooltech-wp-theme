@@ -41,10 +41,10 @@ if (function_exists('add_theme_support'))
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-  //  add_image_size('large', 700, '', true); // Large Thumbnail
-    add_image_size('medium', 600, 400, true); // Medium Thumbnail
-  //  add_image_size('small', 120, '', true); // Small Thumbnail
-  //  add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+		// 16:9
+		add_image_size('wide',800,500,true);
+		// 3:2
+    add_image_size('medium', 600, 400, true);
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(
@@ -392,6 +392,7 @@ remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altoget
 add_shortcode('cooltech_cat', 'cooltech_shortcode_cat'); // You can place [cooltech_shortcode_demo] in Pages, Posts now.
 
 add_shortcode('g','find_glossary');
+add_shortcode('fn','add_footnote');
 
 add_shortcode('cooltech_shortcode_demo_2', 'cooltech_shortcode_demo_2'); // Place [cooltech_shortcode_demo_2] in Pages, Posts now.
 
@@ -699,6 +700,15 @@ function find_glossary($atts, $content) {
 		ob_end_clean();
 	return $out;
 
+}
+
+function add_footnote($atts, $content) {
+	ob_start();?>
+	<a class="footnote" href="<?php echo $content; ?>" title="<?php echo $content ?>"></a>
+	<?php
+		$out = ob_get_contents();
+		ob_end_clean();
+	return $out;
 }
 
 // Shortcode Demo with simple <h2> tag

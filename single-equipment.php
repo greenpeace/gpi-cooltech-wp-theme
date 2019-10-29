@@ -6,22 +6,19 @@ $classes=array("generic-page");
 ?>
 
 <main role="main">
-	<header class="masthead"  style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
-	    <div class="container h-100">
-	      <div class="row h-100 align-items-center justify-content-center text-center">
-	        <div class="col-lg-10 align-self-end">
-	          <h1 class="text-black font-weight-bold"><?php the_title(); ?></h1>
-	        </div>
-	        <div class="col-lg-8 align-self-baseline">
 
-	        </div>
-	      </div>
-	    </div>
-	 </header>
-
-		<section>
-	<div class="container">
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12"><h1><?php the_title(); ?> </h1></div>
+
+				</div>
+
+			</div>
+		</section>
+	<div class="container">
+
 			<div class="row">
 				<div class="col-sm-8">
 			<!-- article -->
@@ -47,16 +44,30 @@ $classes=array("generic-page");
 			</article>
 			</div>
 			<div class="col-sm-4">
+
+				<div style="padding-bottom:15px"><?php if(has_post_thumbnail( $post->ID )) {
+					?> <?php ?>
+					<?php
+					the_post_thumbnail("full");
+				} ?> </div>
+
+				<div class="sidebar-manufacturer sidebar-term">
+			<?php	$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
+			echo $ma[0]->name;
+			?>
+		</div>
 				<div class="sidebar-application sidebar-term">
 			<?php	$ap=wp_get_post_terms( $post->ID, "application", $args );
 			echo $ap[0]->name;
 			?>
 		</div>
-					<div class="country-application sidebar-term">
+				<div class="sidebar-country sidebar-term">
 				<?php	$co=wp_get_post_terms( $post->ID, "country", $args );
 				echo $co[0]->name;
 				?>
 					<div>
+
+
 
 				<?php  get_sidebar(); ?>
 			</div>

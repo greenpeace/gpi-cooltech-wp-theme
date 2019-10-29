@@ -18,10 +18,30 @@
                 jQuery.sidr("close", "sidr");
             });
 
+
+						function isElementVisible($elementToBeChecked) {
+						    var TopView = $(window).scrollTop();
+						    var BotView = TopView + $(window).height();
+						    var TopElement = $elementToBeChecked.offset().top;
+						    var BotElement = TopElement + $elementToBeChecked.height();
+						    return ((BotElement <= BotView) && (TopElement >= TopView));
+								}
+
+								$(window).scroll(function () {
+								    $( ".magic-number" ).each(function() {
+								    let isOnView = isElementVisible($(this));
+								        if(isOnView && !$(this).hasClass('Starting')){
+								           $(this).addClass('Starting');
+													 	console.log("visibile");
+								          	startCounter($(this));
+								        }
+								    });
+								});
+
 						/* MAGIC NUMBERS */
             function startCounter(counterElement) {
                 var inizio = counterElement.text();
-                console.log(counterElement.text());
+              //  console.log(counterElement.text());
                 // Check if it has only just become visible on this scroll
                 //if (counterElement.hasClass("notVisible")) {
 
@@ -38,7 +58,7 @@
                     duration: 400,
                     easing: 'swing',
                     step: function(now) {
-                        console.log(inizio);
+                      //  console.log(inizio);
                         // console.log("%"+z%1);
                         if (inizio % 1 == 0) {
                             counterElement.text(Math.ceil(now));
@@ -51,16 +71,16 @@
                 });
             }
 
-            var waypoints = $('.wp-block-cooltech-block-magic-numbers').waypoint({
+      /*      var waypoints = $('.wp-block-cooltech-block-magic-numbers').waypoint({
                 handler: function(direction) {
                     //notify(this.element.id + ' hit');
-                    console.log("RAGGIUNTO");
+                  //  console.log("RAGGIUNTO");
                     $('.magic-number').each(function() {
                         startCounter($(this));
                     });
                 },
                 offset: 100
-            })
+            }) */
 
 						/* MENU */
             $('li.dropdown').on('hover', function() {

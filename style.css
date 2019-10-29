@@ -28,6 +28,13 @@ html {
 body {
 	font:300 1.4rem 'SuisseRegular','Helvetica Neue', Helvetica, Arial, sans-serif;
 	color:#444;
+	counter-reset: fn-counter;
+}
+a.footnote:before {
+  counter-increment: fn-counter;
+  content: '[' counter(fn-counter) ']';
+	vertical-align: super; /* 2 */
+  font-size: 0.8rem
 }
 /* clear */
 .clear:before,
@@ -496,7 +503,7 @@ font-size: 0.8rem;
 	background-image: url("img/arrow-up-white.svg");
 }
 .navbar-toggler[aria-expanded="false"] .i-arrow-down-w  {
-	background-image: url("img/arrow-down-white.svg");
+	background-image: url("img/arrow-down-white.png");
 }
 .i-arrow-down-w {
 
