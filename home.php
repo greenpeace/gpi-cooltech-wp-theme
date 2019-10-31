@@ -21,7 +21,7 @@ $page_layout="cr";
 		<!-- section -->
 		<!-- <section> -->
 
-		<header class="masthead" style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
+		<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">

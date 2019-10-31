@@ -5,8 +5,9 @@
 				<div class="container">
 					<div class="row">
 							<div class="col-md-7 offset-md-2">
-								<h1> We welcome information on news technologies and products as they come to market</h1>
-								<a href="" class="btn-300 btn btn-outline-light btn-arrow">Go to the form<i class="i-arrow-right-w"></i></a>
+								<h1> <?php echo get_option('footer_textbig'); ?></h1>
+								<p> <?php echo get_option('footer_subtitle'); ?></p>
+								<a href="<?php echo get_option('footer_button_url'); ?>" class="btn-300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
 							</div>
 					</div>
 
@@ -31,8 +32,7 @@
 					</div>
 					<div class="col-md-4">
 						<span class="note-font">
-						The Cool Technologies Database Editorial Committee comprises Greenpeace and EIA. The survey is not meant to be all-inclusive, nor is the inclusion of any enterprise an endorsement of any company and its products.
-The website does not have a commercial purpose and we do not accept payments for any information featured.
+					<?php echo get_option('footer_small_text'); ?>
 </span>
 
 

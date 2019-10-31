@@ -435,7 +435,7 @@ function create_post_type_cooltech()
         ), // Go to Dashboard Custom cooltech Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-            'country','type','manufacturer','refrigerant','application','technology-type'
+            'country','type','manufacturer','refrigerant','application','technology-type','post_tag'
         ) // Add Category and Post Tags support
     ));
 		register_post_type('case-study', // Register Custom Post Type
@@ -473,7 +473,8 @@ function create_post_type_cooltech()
 						'manufacturer',
 						'refrigerant',
 						'application',
-						'technology-type'
+						'technology-type',
+						'post_tag'
         ) // Add Category and Post Tags support
     ));
 
@@ -692,7 +693,14 @@ function cooltech_shortcode_demo_2($atts, $content = null)
 }
 
 function find_glossary($atts, $content) {
-	$g=get_page_by_title($content, '', 'glossary' );
+
+	if($atts["url"]) {
+		$g=get_page_by_path($atts["url"],'','glossary');
+	} else if ($atts["id"]) {
+		$g=get_post($atts["id"]);
+	} else {
+		$g=get_page_by_title($content, '', 'glossary' );
+	}
 	ob_start();?>
 	<a class="glossary_suggestion" href="<?php echo home_url(); ?>/glossary#<?php echo $g->post_name; ?>" title="<?php echo $g->post_content ?>"><?php echo $content; ?></a>
 	<?php
@@ -704,7 +712,7 @@ function find_glossary($atts, $content) {
 
 function add_footnote($atts, $content) {
 	ob_start();?>
-	<a class="footnote" href="<?php echo $content; ?>" title="<?php echo $content ?>"></a>
+	<a class="footnote" href="<?php echo $content; ?>" target="_blank" title="<?php echo $content ?>"></a>
 	<?php
 		$out = ob_get_contents();
 		ob_end_clean();
@@ -1208,9 +1216,54 @@ function test_theme_settings(){
 		add_settings_section( 'first_section', 'New Theme Options Section',
 		'theme_section_description','theme-options');
 		add_settings_field('top_menu_option','Top Menu','options_callback',
-		'theme-options','first_section');//add settings field to the “first_section”
+		'theme-options','first_section');
+		add_settings_field('footer_button_url','Button Url','button_url_callback',
+		'theme-options','first_section');
+		add_settings_field('footer_button_text','Button Text','button_text_callback',
+		'theme-options','first_section');
+		add_settings_field('footer_small_text','Small Text','small_text_callback',
+		'theme-options','first_section');
+		//add settings field to the “first_section”
+		//add settings filed with callback display_test_twitter_element.
+		add_settings_field('footer_textbig', 'Main Text Footer', 'display_footer_main_text', 'theme-options', 'first_section');
+		add_settings_field('footer_subtitle', 'Second Text Footer', 'display_footer_subtitle', 'theme-options', 'first_section');
+		register_setting( 'theme-options-grp', 'footer_textbig');
+		register_setting( 'theme-options-grp', 'footer_subtitle');
+		register_setting( 'theme-options-grp', 'footer_button_url');
+		register_setting( 'theme-options-grp', 'footer_button_text');
 		register_setting( 'theme-options-grp', 'top_menu_option');
+		register_setting( 'theme-options-grp', 'footer_small_text');
 }
+function button_text_callback() { ?>
+	<input type="text" name="footer_button_text" value="<?php echo get_option('footer_button_text'); ?>"/>
+<?php
+}
+function button_url_callback() { ?>
+	<input type="text" name="footer_button_url" value="<?php echo get_option('footer_button_url'); ?>" />
+<?php
+}
+function small_text_callback(){
+//php code to take input from text field for twitter URL.
+?>
+<textarea rows="5" cols="50" name="footer_small_text"><?php echo get_option('footer_small_text'); ?> </textarea>
+<?php
+}
+function display_footer_main_text(){
+//php code to take input from text field for twitter URL.
+?>
+<textarea rows="5" cols="50" name="footer_textbig"><?php echo get_option('footer_textbig'); ?> </textarea>
+
+<?php
+}
+function display_footer_subtitle(){
+//php code to take input from text field for twitter URL.
+?>
+<textarea rows="5" cols="50" name="footer_subtitle"><?php echo get_option('footer_subtitle'); ?> </textarea>
+
+<?php
+}
+
+
  add_action('admin_init','test_theme_settings');
 
  class NestedMenu

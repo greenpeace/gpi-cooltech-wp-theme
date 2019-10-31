@@ -30,6 +30,9 @@ body {
 	color:#444;
 	counter-reset: fn-counter;
 }
+a.footnotes {
+	color:inherit;
+}
 a.footnote:before {
   counter-increment: fn-counter;
   content: '[' counter(fn-counter) ']';
@@ -687,8 +690,16 @@ font-size: 0.8rem;
 \*------------------------------------*/
 
 .glossary_letter {
-	font-family:"Industrial";
+font-family:"Industrial";
 font-size:4rem;
+}
+a.glossary_suggestion {
+text-decoration: underline;
+color:inherit;
+}
+a.glossary_suggestion:hover {
+text-decoration: underline;
+color:inherit;
 }
 
 /*------------------------------------*\

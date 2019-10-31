@@ -153,9 +153,12 @@ if($current_term_level==1) {
 	$t3=get_term_meta(get_queried_object()->term_id, 'magic_numbers_text_3', true );
 
 
+if($n1 && $n2 && $n3) {
+
 	$n1=preg_split ('/\d+\K/' ,$n1 );
 	$n2=preg_split ('/\d+\K/' ,$n2 );
 	$n3=preg_split ('/\d+\K/' ,$n3 );
+
 
 	?>
 	<section id="magic-tax" class="<?php echo $slug ?>-numbers magic-numbers wp-block-cooltech-block-magic-numbers">
@@ -186,6 +189,7 @@ if($current_term_level==1) {
 		</div>
 	</section>
 		<?php
+		}
 			echo do_shortcode('[cooltech_cat]');
 			} else {
 			    // show third drop-down

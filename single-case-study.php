@@ -59,9 +59,9 @@ $ex=get_post_meta($post->ID, "expand", true);
 				?>
 
 				<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
-				<div class="result_meta_content"><?php  echo $web; ?></div>
+				<div class="result_meta_content"><a href="<?php  echo $web; ?>" target="_blank"><?php  echo $web; ?></a></div>
 				<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
-				<div class="result_meta_content"><?php  echo $source; ?></div>
+				<div class="result_meta_content"><a href="<?php  echo $source; ?>" target="_blank">Link</a></div>
 
 				<br class="clear">
 
