@@ -5,6 +5,11 @@ $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 $classes=array("generic-page");
 $ex=get_post_meta($post->ID, "expand", true);
 
+$args=array("childless"=>true);
+$se=wp_get_post_terms( $post->ID, "type", $args );
+//print_r($se);
+
+$p=get_term($se[0]->parent);
 ?>
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 <main role="main">
@@ -12,31 +17,26 @@ $ex=get_post_meta($post->ID, "expand", true);
 	<header class="masthead"  style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
-	        <div class="col-lg-10 align-self-end">
+	        <div class="col-lg-10 align-self-center">
 	          <h1 class="text-white font-weight-bold"><?php the_title(); ?></h1>
-	        </div>
-	        <div class="col-lg-8 align-self-baseline">
-
 	        </div>
 	      </div>
 	    </div>
 	 </header>
-<?php } else { ?>
-	<section>
-		<div class="container">
+<?php }  ?>
+
+<section class="category-list <?php echo $p->slug; ?>">
+		<div class="container bg-white">
 			<div class="row">
-				<div class="col-sm-12"><h1><?php the_title(); ?> </h1></div>
+				<div class="single-case-study-title col-sm-12">
+
+					<h1><?php the_title(); ?> </h1>
+				<a href="../../sector/<?php echo $p->slug;  ?>"><?php echo $p->name; ?></a> / <a href="../../sector/<?php echo $se[0]->slug; ?>"><?php echo $se[0]->name; ?></a>
+
+				</div>
 
 			</div>
 
-		</div>
-	</section>
-
-<?php } ?>
-
-
-		<section>
-	<div class="container">
 
 			<div class="row">
 				<div class="col-sm-8">
@@ -82,11 +82,17 @@ $ex=get_post_meta($post->ID, "expand", true);
 			echo $ap[0]->name;
 			?>
 		</div>
-					<div class="country-application sidebar-term">
+					<div class="sidebar-country sidebar-term">
 				<?php	$co=wp_get_post_terms( $post->ID, "country", $args );
 				echo $co[0]->name;
 				?>
-					<div>
+			</div>
+
+						<div class="sidebar-manufacturer sidebar-term">
+					<?php	$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
+					echo $ma[0]->name;
+					?>
+				</div>
 
 				<?php  get_sidebar(); ?>
 			</div>
@@ -108,8 +114,9 @@ $ex=get_post_meta($post->ID, "expand", true);
 
 		<?php endif; ?>
 	</div>
-
 </section>
+
+
 		<!-- </section> -->
 		<!-- /section -->
 	</main>

@@ -78,7 +78,9 @@ input:focus {
     STRUCTURE
 \*------------------------------------*/
 
-
+section {
+	padding:20px 10px;
+}
 
 /* wrapper */
 .wrapper {
@@ -97,7 +99,7 @@ input:focus {
 z-index:10;
 
 font-family: "Industrial";
-font-size:2.25rem;
+font-size:1.75rem;
 line-height:1;
 
 }
@@ -426,7 +428,6 @@ section {
 			display: flex;
 	    flex-direction: column;
 	    align-items: center;
-
 }
 
 section.category-list {
@@ -610,9 +611,13 @@ font-size: 0.8rem;
 
 }
 @media only screen and (min-width:480px) {
+	#logo {
+		font-size: 2.5rem;
+	}
 
 }
 @media only screen and (min-width:768px) {
+
 		header.masthead {
 	    height: 100vh;
 	    min-height: 40rem;
