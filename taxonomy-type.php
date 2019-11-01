@@ -208,11 +208,15 @@ if($n1 && $n2 && $n3) {
 				if (have_posts()): while (have_posts()) : the_post(); ?>
 					<?php
 					$terms=get_the_terms($post,array("application","country","refrigerant","manufacturer","technology-type"));
-
 					?>
+					<div style="display:none">
+					<?php
+					print_r($terms);
+
+					?></div>
 
 					<!-- article -->
-					<article class="element <?php showClassTags($terms);?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<article class="element <?php foreach($terms as $term) { echo $term->slug." "; }?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
 				<!--		<div class="col-md-3">
