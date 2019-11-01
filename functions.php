@@ -162,7 +162,7 @@ function cooltech_styles()
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), '1.0.3', 'all');
     wp_enqueue_style('cooltech'); // Enqueue it!
 
 		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), '1.0', 'all');
@@ -1204,7 +1204,7 @@ submit_button();
 </div>
 <?php }
 function add_theme_menu_item() {
-	add_theme_page("Theme Customization", "Cooltech Theme Customization", "manage_options", "theme-options", "theme_option_page", null, 99);
+	add_theme_page("Theme Customization", "Cooltech Theme Customization", "edit_pages", "theme-options", "theme_option_page", null, 99);
 }
  add_action("admin_menu", "add_theme_menu_item");
 function theme_section_description(){
@@ -1220,6 +1220,9 @@ function test_theme_settings(){
 		'theme_section_description','theme-options');
 		add_settings_field('top_menu_option','Top Menu','options_callback',
 		'theme-options','first_section');
+		add_settings_field('time_slide','Time Slide','time_slide_callback',
+		'theme-options','first_section');
+
 		add_settings_field('footer_button_url','Button Url','button_url_callback',
 		'theme-options','first_section');
 		add_settings_field('footer_button_text','Button Text','button_text_callback',
@@ -1236,9 +1239,14 @@ function test_theme_settings(){
 		register_setting( 'theme-options-grp', 'footer_button_text');
 		register_setting( 'theme-options-grp', 'top_menu_option');
 		register_setting( 'theme-options-grp', 'footer_small_text');
+		register_setting( 'theme-options-grp', 'time_slide');
 }
 function button_text_callback() { ?>
 	<input type="text" name="footer_button_text" value="<?php echo get_option('footer_button_text'); ?>"/>
+<?php
+}
+function time_slide_callback() { ?>
+	<input type="text" name="time_slide" value="<?php echo get_option('time_slide'); ?>" />
 <?php
 }
 function button_url_callback() { ?>

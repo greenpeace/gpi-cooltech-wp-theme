@@ -105,9 +105,9 @@ var current=0;
      "background-image", // Use background-image instead of `background`
       "url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
    );
-   setTimeout(nextBackground, 5000);
+   setTimeout(nextBackground, <?php echo get_option("time_slide"); ?>);
  }
- setTimeout(nextBackground, 5000);
+ setTimeout(nextBackground, <?php echo get_option("time_slide"); ?>);
  body.css("background-image", "url("+backgrounds[0]+")").fadeIn();
 
 </script>

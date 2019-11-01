@@ -107,7 +107,7 @@ function ct_block_tab_render( $attributes ) {
       $args = array(
       'numberposts' => 3,
       'post_type'   => 'page',
-      'post__in' => $pagine );
+      'post__in' => $pagine, 'orderby' => 'post__in'  );
 
       $pages = get_posts( $args );
 
