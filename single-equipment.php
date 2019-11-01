@@ -15,7 +15,7 @@ $p=get_term($se[0]->parent);
 
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 			<section class="category-list <?php echo $p->slug; ?>">
-					<div class="container">
+					<div class="container bg-white">
 						<div class="row">
 							<div class="single-case-study-title col-sm-12">
 
