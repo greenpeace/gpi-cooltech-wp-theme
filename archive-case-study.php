@@ -17,7 +17,9 @@
 			'field' => 'id',
 			'terms' => $term->term_id
 		)
-	)
+	),
+  'meta_key'   => 'expand',
+  'meta_value' => true
 );
 	 	$posts = get_posts($args);
 	//	print_r($posts);
@@ -62,7 +64,8 @@
 
 	<?php // La Query
 
-	$args=array("post_type"=>"case-study");
+	$args=array("post_type"=>"case-study",'meta_key'   => 'expand',
+    'meta_value' => true);
 $the_query = new WP_Query( $args );
 $x=0;
 // Il Loop

@@ -90,7 +90,6 @@ section.sector-first {
         background-color: $second-color;
   }
 }
-
 @each $p in $pages-colors {
   h1.#{nth($p, 1)} {
     color:#{nth($p, 2)}

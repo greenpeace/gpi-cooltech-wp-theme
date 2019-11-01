@@ -19,15 +19,15 @@ if($current_term_level==1) {
 	<header class="masthead" style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(<?php echo $post_thumbnail_img[0]; ?>)">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-center text-center">
-				<div class="col-lg-10 align-self-end">
+				<div class="col-lg-10 align-self-center">
 					<h1 class="text-white <?php echo $font; ?>"><?php single_cat_title(); ?>
 
 					</h1>
 				</div>
-				<div class="col-lg-8 align-self-baseline">
+			<!--	<div class="col-lg-8 align-self-baseline">
 
 
-				</div>
+			</div> -->
 			</div>
 		</div>
 	</header>

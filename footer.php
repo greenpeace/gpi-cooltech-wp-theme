@@ -21,7 +21,7 @@
 						<div class="col-md-8"><h2> COOL TECHNOLOGIES </h2></div>
 						<div class="col-md-4">
 							<h4>	CONTACT US </h4>
-							<h5>	info@cooltechnologies@org</h5>
+							<h5>	<a class="text-white" href="mailto:info@cooltechnologies.org">info@cooltechnologies.org</a></h5>
 
 											</div>
 				</div>

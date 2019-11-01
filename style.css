@@ -1,7 +1,7 @@
 /*
 	Theme Name: Cooltech
 	Description: Cooltech Theme
-	Version: 1.0.2
+	Version: 1.0.3
 	Author: Fabrizio Giannone
 	Tags: CSS3
 
@@ -399,7 +399,7 @@ header.masthead {
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-size: cover;
-		background-color:grey;
+		background-color:black;
 }
 /* PROVVISORI */
 .text-full {
