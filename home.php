@@ -21,7 +21,10 @@ $page_layout="cr";
 		<!-- section -->
 		<!-- <section> -->
 
-		<header class="masthead" style="background-image:url('<?php echo $post_thumbnail_img[0]; ?>')">
+
+
+
+		<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
@@ -77,3 +80,40 @@ $page_layout="cr";
 <?php // get_sidebar(); ?>
 
 <?php get_footer(); ?>
+
+<script>
+
+<?php
+$attimages = get_attached_media('image', $post->ID);
+
+
+ ?>
+body=jQuery(".masthead");
+
+var backgrounds = [<?php foreach ($attimages as $image) {
+    echo "'".wp_get_attachment_url($image->ID)."',";
+} ?>];
+var current=0;
+// Preload all images // Prevent (if possible) white gaps between image load
+ for(var i=0; i<backgrounds.length; i++){
+   var img = new Image();
+   img.src= backgrounds[i];
+ }
+
+ function nextBackground() {
+   body.css(
+     "background-image", // Use background-image instead of `background`
+      "url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
+   );
+   setTimeout(nextBackground, 5000);
+ }
+ setTimeout(nextBackground, 5000);
+ body.css("background-image", "url("+backgrounds[0]+")").fadeIn();
+
+</script>
+
+<style>
+.masthead {
+  transition: background-image 1s ease-in;
+}
+</style>

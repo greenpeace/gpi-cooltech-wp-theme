@@ -183,6 +183,12 @@ article.element.case-study {
   padding: $margin-bottom 0;
 }
 
+/* SINGLE PAGE */
+div.single-case-study-title, div.single-equipment {
+  padding-bottom: 50px;
+}
+
+
 /* GENERIC PAGE */
 article.generic-page h2 {
   color:$first-color;

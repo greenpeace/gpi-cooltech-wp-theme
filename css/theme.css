@@ -187,6 +187,10 @@ article.element.case-study {
   color: #2290BE;
   padding: 1rem 0; }
 
+/* SINGLE PAGE */
+div.single-case-study-title, div.single-equipment {
+  padding-bottom: 50px; }
+
 /* GENERIC PAGE */
 article.generic-page h2 {
   color: #2290BE; }

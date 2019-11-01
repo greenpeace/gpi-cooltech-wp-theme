@@ -132,8 +132,8 @@ var polygonTemplate = polygonSeries.mapPolygons.template;
 polygonTemplate.events.on("hit", function(ev) {
   // zoom to an object
 //  ev.target.series.chart.zoomToMapObject(ev.target);
-	console.log(ev.target.dataItem.dataContext.value);
-
+//	console.log(ev.target.dataItem.dataContext.value);
+  jQuery(".col-card").css("display","flex");
 	if(ev.target.dataItem.dataContext.value==1) {
 			document.location.href=ev.target.dataItem.dataContext.link;
 	} else {
