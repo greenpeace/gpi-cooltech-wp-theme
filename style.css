@@ -698,10 +698,12 @@ font-size: 0.8rem;
 font-family:"Industrial";
 font-size:4rem;
 }
-a.glossary_suggestion {
-text-decoration: underline;
+.text-intro a.glossary_suggestion, a.glossary_suggestion {
+opacity:0.6;
 color:inherit;
 }
+
+
 a.glossary_suggestion:hover {
 text-decoration: underline;
 color:inherit;

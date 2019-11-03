@@ -19,7 +19,7 @@ $classes=array("generic-page");
 	        </div>
 	       <!-- <div class="col-lg-8 align-self-baseline">
 
-	        </div>
+				 </div> -->
 	      </div>
 	    </div>
 	  </header>
