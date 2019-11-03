@@ -205,26 +205,8 @@ if($n1 && $n2 && $n3) {
 
 				<?php
 				$x=0;
-				if (have_posts()): while (have_posts()) : the_post(); ?>
-					<?php
-					$terms=get_the_terms($post,array("application","country","refrigerant","manufacturer","technology-type"));
-					?>
-					<div style="display:none">
-					<?php
-					print_r($terms);
+				if (have_posts()): while (have_posts()) : the_post();
 
-					?></div>
-
-					<!-- article -->
-					<article class="element <?php foreach($terms as $term) { echo $term->slug." "; }?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
-					<div class="row">
-				<!--		<div class="col-md-3">
-
-					</div> -->
-
-
-						<?php
 						$args=array("childless"=>true);
 						$se=wp_get_post_terms( $post->ID, "type", $args );
 						// print_r($se);
@@ -236,7 +218,19 @@ if($n1 && $n2 && $n3) {
 						$ee=get_post_meta($post->ID,"energy_efficency",true);
 						$source=get_post_meta($post->ID,"source",true);
 						$web=get_post_meta($post->ID,"website",true);
-						?>
+				?>
+
+
+					<!-- article -->
+					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
+					<div class="row">
+				<!--		<div class="col-md-3">
+
+					</div> -->
+
+
+
 
 						<div class="col-md-3 col-title-element">
 

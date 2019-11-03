@@ -730,7 +730,16 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 		$slug=$q->slug;
 	}
 	$terms=get_sector_from_slug($slug);
+
 	ob_start();
+switch(count($terms)) {
+	case 3:
+	$cols="col-md-4 col-sm-12";
+	break;
+	default:
+	$cols="col-md-3 col-sm-6";
+	break;
+}
 	?>
 	</div>
 	<section class="category-list <?php echo $slug; ?>">
@@ -738,7 +747,7 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 		<div class="<?php echo $page_layout ?>">
 				<div class="row">
 			<?php foreach ( $terms  as $t ) { ?>
-						<div class="col-md-3 col-sm-6 cat_col">
+						<div class="<?php echo $cols;?> cat_col">
 								<div><h3><?php echo $t->name; ?></h3> </div>
 								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
 								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
@@ -808,10 +817,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 
 		}
 
-		function showClassTags($tags, $type="slug") {
+		function showClassTags($tags, $type="slug", $sep="&nbsp;") {
 			if($type=="slug") {
 				foreach($tags as $tag) {
-						echo $tag->slug." ";
+						echo $tag->slug.$sep;
 				}
 			}
 		}
