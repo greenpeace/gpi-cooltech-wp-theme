@@ -1,10 +1,10 @@
 <?php
 function cooltech_block_init() {
 
-  wp_register_script('gut-js', get_template_directory_uri()  . '/blocks/intro/block-intro.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ));
+  wp_register_script('gut-js', get_template_directory_uri()  . '/blocks/intro/block-intro.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ), null);
   wp_enqueue_script('gut-js');
 
-  wp_register_script('tab-js', get_template_directory_uri()  . '/blocks/block-tabs/block-tabs.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor'));
+  wp_register_script('tab-js', get_template_directory_uri()  . '/blocks/block-tabs/block-tabs.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor'),null);
   wp_enqueue_script('tab-js');
 
   wp_register_style('tab-css', get_template_directory_uri() . '/blocks/intro/block-intro.css', array( 'wp-edit-blocks' ));

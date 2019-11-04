@@ -116,7 +116,7 @@ function cooltech_header_scripts()
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
 
-        wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
+        wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), time()); // Custom scripts
         wp_enqueue_script('cooltechscripts'); // Enqueue it!
 
 				wp_register_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), '4.3.0'); // Conditionizr
@@ -162,10 +162,10 @@ function cooltech_styles()
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), '1.0.4', 'all');
+    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), time(), 'all');
     wp_enqueue_style('cooltech'); // Enqueue it!
 
-		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), '1.0', 'all');
+		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), time(), 'all');
 		wp_enqueue_style('bootstrap'); // Enqueue it!
 
 		wp_register_style('theme-css', get_template_directory_uri() . '/css/theme.css');
