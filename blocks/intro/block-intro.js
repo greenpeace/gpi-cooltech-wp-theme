@@ -48,8 +48,7 @@
 						onChange: onChangeContent,
 						focus: focus,
 						onFocus: props.setFocus
-					},
-				);
+					})
 			},
 
 			// Defines the saved block.

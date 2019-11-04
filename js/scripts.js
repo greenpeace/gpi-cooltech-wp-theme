@@ -29,7 +29,7 @@
 
 								$(window).scroll(function () {
 								    $( ".magic-number" ).each(function() {
-								    let isOnView = isElementVisible($(this));
+								    var isOnView = isElementVisible($(this));
 								        if(isOnView && !$(this).hasClass('Starting')){
 								           $(this).addClass('Starting');
 													 	console.log("visibile");
@@ -146,22 +146,12 @@
                 });
             });
 
-            $(".select-filter").on({
-                "change": function() {
-                    $(this).blur();
-                },
+      /*      $(".select-filter").on({
                 'click': function() {
                     console.log("displayed");
                     $(this).parent().toggleClass("active");
                 },
-                "blur": function() {
-                    console.log("not displayed");
-                },
-                "keyup": function(e) {
-                    if (e.keyCode == 27)
-                        console.log("displayed");
-                }
-            });
+            }); */
 
             $(".expand_text").click(function() {
                 $(this).parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
