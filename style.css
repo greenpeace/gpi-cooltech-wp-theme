@@ -1,7 +1,7 @@
 /*
 	Theme Name: Cooltech
 	Description: Cooltech Theme
-	Version: 1.0.3
+	Version: 1.0.4
 	Author: Fabrizio Giannone
 	Tags: CSS3
 
@@ -443,6 +443,20 @@ section.category-list {
 }
 
 /* CASE STUDY */
+.case-study-label {
+	font-family: "SuisseAntique";
+	font-size:1rem;
+	color:white;
+	padding-bottom:1rem;
+}
+.case-study-home-excerpt {
+	padding:1rem;
+}
+
+#case-study-homepage {
+	background-size:cover;
+}
+
 .col-card {
 	display: flex;
 }
@@ -783,7 +797,7 @@ color:inherit;
 select::-ms-expand {
      display: none;
 }
-
+/*
 .selectdiv.active:after {
 	content:"-";
 }
@@ -794,21 +808,19 @@ select::-ms-expand {
   color: #333;
 
   right: 11px;
-  /*Adjust for position however you want*/
+  /*Adjust for position however you want
 
   top: 18px;
   padding: 0 0 2px;
 
-  /*left line */
+
 
   position: absolute;
   pointer-events: none;
-}
+} */
 
 .selectdiv select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+
   /* Add some styling */
 
   display: block;
@@ -990,6 +1002,23 @@ display:none;
 #submenu a {
 	text-align: center;
 }
+
+.wpcf7-submit {
+    color: #165774;
+		display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid #165774;
+    padding: 0.375rem 0.75rem;
+		border-radius: 30px;
+		background-color:transparent;
+}
+.wpcf7-submit:hover {
+	    background-color:#165774;
+
+	}
 
 
 @import url("css/theme.css");

@@ -219,6 +219,9 @@ if($n1 && $n2 && $n3) {
 						$ee=get_post_meta($post->ID,"energy_efficency",true);
 						$source=get_post_meta($post->ID,"source",true);
 						$web=get_post_meta($post->ID,"website",true);
+
+						$expanded=get_post_meta($post->ID,"expand",true);
+
 				?>
 
 
@@ -236,10 +239,10 @@ if($n1 && $n2 && $n3) {
 						<div class="col-md-3 col-title-element">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
-						<?php  if($post->post_type=="equipment") { ?>
-						<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> More Information </button>
+						<?php  if($expanded!=1) { ?>
+						<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?> </button>
 					<?php  } else { ?>
-						<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"> More Information </a>
+						<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
 					<?php } ?>
 					</div>
 						<div class="col-md-3">

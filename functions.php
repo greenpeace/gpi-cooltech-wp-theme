@@ -162,7 +162,7 @@ function cooltech_styles()
     wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), '1.0.3', 'all');
+    wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), '1.0.4', 'all');
     wp_enqueue_style('cooltech'); // Enqueue it!
 
 		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), '1.0', 'all');
@@ -393,6 +393,7 @@ remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altoget
 
 // Shortcodes
 add_shortcode('cooltech_cat', 'cooltech_shortcode_cat'); // You can place [cooltech_shortcode_demo] in Pages, Posts now.
+add_shortcode('case_study','show_last_case_study');
 
 add_shortcode('g','find_glossary');
 add_shortcode('fn','add_footnote');
@@ -764,6 +765,40 @@ switch(count($terms)) {
     return $out;
 }
 
+function show_last_case_study() {
+$args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
+'meta_value' => true);
+	$cs=get_posts($args);
+
+	$image_id=get_post_thumbnail_id( $cs[0]->ID );
+	$post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
+		ob_start();
+?>
+<section id="case-study-homepage" style="height: 100vh;background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
+<?php		// print_r($cs);
+		?>
+		<div class="container h-100">
+			<div class="row h-100 align-items-center justify-content-center text-center">
+	        <div class="col-lg-10 align-self-center">
+						<div class="case-study-label"> CASE STUDY </div>
+	          <h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/case-studies"><?php echo $cs[0]->post_title; ?></a></h1>
+						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div>
+						<a class="btn btn-primary" href="<?php echo site_url(); ?>/case-studies"> More Case Studies </a>
+	        </div>
+	       <!-- <div class="col-lg-8 align-self-baseline">
+
+				 </div> -->
+	      </div>
+
+	  </div>
+
+</section>
+		<?php
+		$out = ob_get_contents();
+		ob_end_clean();
+	return $out;
+}
+
 function get_tags_in_use($category_ID, $taxonomy){
     // Set up the query for our posts
     $my_posts = new WP_Query(array(
@@ -846,12 +881,12 @@ function get_tags_in_use($category_ID, $taxonomy){
 	    'taxonomy' => array('country','manufacturer','application','refrigerant'),
 	    'hide_empty' => false,'s' => stripslashes( $_POST['search'] ),
 	) );
-	print_r($terms);
+	// print_r($terms);
 	foreach ( $terms as $term ) {
 	//	$items[] = $term->name;
 	}
 
-	print_r($items);
+//	print_r($items);
 
 //	wp_send_json_success( $items );
 }
