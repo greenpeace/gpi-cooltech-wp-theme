@@ -817,7 +817,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 
 		}
 
-		function showClassTags($tags, $type="slug", $sep="&nbsp;") {
+		function showClassTags($tags, $type="slug", $sep=" ") {
 			if($type=="slug") {
 				foreach($tags as $tag) {
 						echo $tag->slug.$sep;
@@ -1117,6 +1117,7 @@ $countrycodes = array(
 "United States of America"=>"US",
 "United States Minor Outlying Islands"=>"UM",
 "Uruguay"=>"UY",
+"USA"=>"US",
 "Uzbekistan"=>"UZ",
 "Vanuatu"=>"VU",
 "Venezuela, Bolivarian Republic of"=>"VE",
