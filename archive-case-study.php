@@ -71,10 +71,10 @@ $x=0;
 // Il Loop
 	while ( $the_query->have_posts() ) :
 		$the_query->the_post();
-		$co=wp_get_post_terms( $post->ID, "country", $args);
-    $ap=wp_get_post_terms($post->ID, "application",$args)
+		$co=wp_get_post_terms( $post->ID, "country");
+    $ap=wp_get_post_terms($post->ID, "application");
 		?>
-		<div class="col-sm-4 col-card">
+		<div class="col-md-4 col-sm-6 col-card">
 	  <div class="card <?php echo $co[0]->name; ?>">
 			<a href="<?php the_permalink(); ?>">
 			<?php if(get_the_post_thumbnail_url($post, $size = 'full' )) { ?>

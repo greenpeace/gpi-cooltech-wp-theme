@@ -214,6 +214,7 @@ if($n1 && $n2 && $n3) {
 						$tt=wp_get_post_terms( $post->ID, "technology-type", $args );
 						$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
 						$re=wp_get_post_terms( $post->ID, "refrigerant", $args );
+						$co=wp_get_post_terms( $post->ID, "country", $args );
 
 						$ee=get_post_meta($post->ID,"energy_efficency",true);
 						$source=get_post_meta($post->ID,"source",true);
@@ -222,7 +223,7 @@ if($n1 && $n2 && $n3) {
 
 
 					<!-- article -->
-					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
 				<!--		<div class="col-md-3">
