@@ -75,7 +75,7 @@ $menu = new NestedMenu('Menu 1');
 
  ?>
 		<div id="sidr">
-			<div class="close_menu"> <img src="<?php echo get_template_directory_uri() ?>/img/x-close-icon-white.png" width="30"/> </div>
+			<div class="close_menu"> <ion-icon name="close"></ion-icon> </div>
 			<ul class="mobile-menu-first">
   <!-- Your content -->
 	<?php
@@ -85,7 +85,7 @@ $menu = new NestedMenu('Menu 1');
 				$submenu = $menu->get_submenu($item); ?>
 				<li><a href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
 					<?php if ($submenu) { ?>
-				<button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#submenu-<?php echo $item->ID ?>" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="i-arrow-down-w"></i></button>
+				<button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#submenu-<?php echo $item->ID ?>" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><ion-icon name="ios-arrow-down"></ion-icon><ion-icon name="ios-arrow-up"></ion-icon></button>
 				<?php } ?>
 				</li>
 
@@ -135,5 +135,6 @@ $menu = new NestedMenu('Menu 1');
 		ga('send', 'pageview');
 		</script>
 		<?php wp_footer(); ?>
+		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	</body>
 </html>

@@ -58,7 +58,7 @@ section.category-list.air-conditioning h3 {
   background-color: #2290BE;
   border-color: #2290BE; }
 
-h1.last-sector.air-conditioning, h3.air-conditioning, section.results.air-conditioning h2.result_title, section.results.air-conditioning .result_meta_title {
+h1.last-sector.air-conditioning, h3.air-conditioning, section.results.air-conditioning h2.result_title, section.results.air-conditioning .result_meta_title, section.results.air-conditioning ion-icon {
   color: #2290BE; }
 
 section.category-list.air-conditioning, section.results.air-conditioning {
@@ -85,7 +85,7 @@ section.category-list.refrigeration h3 {
   background-color: #165774;
   border-color: #165774; }
 
-h1.last-sector.refrigeration, h3.refrigeration, section.results.refrigeration h2.result_title, section.results.refrigeration .result_meta_title {
+h1.last-sector.refrigeration, h3.refrigeration, section.results.refrigeration h2.result_title, section.results.refrigeration .result_meta_title, section.results.refrigeration ion-icon {
   color: #165774; }
 
 section.category-list.refrigeration, section.results.refrigeration {
@@ -112,7 +112,7 @@ section.category-list.heat-pumps h3 {
   background-color: #12316A;
   border-color: #12316A; }
 
-h1.last-sector.heat-pumps, h3.heat-pumps, section.results.heat-pumps h2.result_title, section.results.heat-pumps .result_meta_title {
+h1.last-sector.heat-pumps, h3.heat-pumps, section.results.heat-pumps h2.result_title, section.results.heat-pumps .result_meta_title, section.results.heat-pumps ion-icon {
   color: #12316A; }
 
 section.category-list.heat-pumps, section.results.heat-pumps {
@@ -139,7 +139,7 @@ section.category-list.components h3 {
   background-color: #4DAEEF;
   border-color: #4DAEEF; }
 
-h1.last-sector.components, h3.components, section.results.components h2.result_title, section.results.components .result_meta_title {
+h1.last-sector.components, h3.components, section.results.components h2.result_title, section.results.components .result_meta_title, section.results.components ion-icon {
   color: #4DAEEF; }
 
 section.category-list.components, section.results.components {

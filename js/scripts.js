@@ -6,7 +6,6 @@
 
         $(document).ready(function() {
 
-					//	 $( document ).tooltip({ items: 'a.glossary_suggestion',tooltipClass: "tooltip_glossary",});
 
 				/* MOBILE MENU */
             $('#responsive-menu-button').sidr();
@@ -14,7 +13,7 @@
                 jQuery.sidr('close', 'sidr');
                 $('#responsive-menu-button').sidr("close");
             });
-            jQuery(window).resize(function() {
+            $(window).resize(function() {
                 jQuery.sidr("close", "sidr");
             });
 

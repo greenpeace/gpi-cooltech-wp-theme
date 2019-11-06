@@ -749,6 +749,14 @@ switch(count($terms)) {
 				<div class="row">
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
+							<?php if($atts["logo"]) { ?>
+								<div style=""> <img src="<?php echo get_template_directory_uri(); ?>/img/<?php echo $t->slug; ?>" width="120"> </div>
+							<?php
+							}
+							?>
+
+
+							<?php ?>
 								<div><h3><?php echo $t->name; ?></h3> </div>
 								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
 								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
@@ -782,8 +790,8 @@ $args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
 	        <div class="col-lg-10 align-self-center">
 						<div class="case-study-label"> CASE STUDY </div>
 	          <h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/case-studies"><?php echo $cs[0]->post_title; ?></a></h1>
-						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div>
-						<a class="btn btn-primary" href="<?php echo site_url(); ?>/case-studies"> More Case Studies </a>
+						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div><div>
+						<a class="btn btn-primary btn-arrow btn-300 m-auto" href="<?php echo site_url(); ?>/case-studies"> More Case Studies <i class="i-arrow-right-w"></i></a></div>
 	        </div>
 	       <!-- <div class="col-lg-8 align-self-baseline">
 

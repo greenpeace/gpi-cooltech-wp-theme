@@ -6,24 +6,15 @@
  *
  * @package understrap
  */
- get_header("2");
+ get_header();
 
  $image_id=get_post_thumbnail_id( $post->ID );
  $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 
-$page_layout="cr";
+ $page_layout="";
 
 ?>
-
-
-
 	<main role="main home">
-		<!-- section -->
-		<!-- <section> -->
-
-
-
-
 		<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">

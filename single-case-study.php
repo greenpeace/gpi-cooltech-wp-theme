@@ -31,7 +31,11 @@ $p=get_term($se[0]->parent);
 				<div class="single-case-study-title col-sm-12">
 
 					<h1><?php the_title(); ?> </h1>
+
+				<div>
 				<a href="../../sector/<?php echo $p->slug;  ?>"><?php echo $p->name; ?></a> / <a href="../../sector/<?php echo $se[0]->slug; ?>"><?php echo $se[0]->name; ?></a>
+				</div>
+					 <div class="print-icon">	<a href="javascript:window.print()"><ion-icon name="print"></ion-icon></a></div>
 
 				</div>
 
