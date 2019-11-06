@@ -7,6 +7,7 @@
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
     <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon-32x32.png" rel="shortcut icon">
     <link href="<?php echo get_template_directory_uri(); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed">
+		<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +39,7 @@
 <div id="menus">
 
 
-	<div id="logo"><div id="logo-main"><a href="<?php echo site_url(); ?>"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></div>
+	<div id="logo"><div id="logo-main"><a class="print-url" href="<?php echo site_url(); ?>"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></a></div>
 		<div id="logo-subtitle"> <?php echo get_bloginfo("description"); ?> </div></div>
 
 

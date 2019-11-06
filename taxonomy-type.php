@@ -53,7 +53,7 @@ if($current_term_level==1) {
 				  </div>
 	      </div>
 				<?php $term = $wp_query->queried_object; ?>
-				<div id="selectblock" class="row">
+				<div id="selectblock" class="row d-print-none">
 					<div class="col-sm-12">
 					<?php
 			//		print_r($term);
@@ -202,7 +202,7 @@ if($n1 && $n2 && $n3) {
 				?>
 
 				<section class="results <?php echo $parent->slug; ?>">
-
+				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<ion-icon name="print"></ion-icon> </a></div></div>
 				<?php
 				$x=0;
 				if (have_posts()): while (have_posts()) : the_post();

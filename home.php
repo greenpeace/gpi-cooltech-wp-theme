@@ -11,7 +11,7 @@
  $image_id=get_post_thumbnail_id( $post->ID );
  $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 
- $page_layout="cr";
+ $page_layout="";
 
 ?>
 	<main role="main home">

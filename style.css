@@ -74,6 +74,18 @@ input:focus {
 	border:1px solid #04A4CC;
 }
 
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+
+  a[href].print-url:after {
+    content: " (" attr(href) ")";
+		font-size:0.8rem;
+		color:#f1f1f1;
+  }
+}
+
 /*------------------------------------*\
     STRUCTURE
 \*------------------------------------*/
@@ -292,7 +304,8 @@ a.dropbtn:hover:before {
 .close_menu {
 	text-align: right;
 	cursor:pointer;
-	padding-right:1.5rem;
+	padding:0.25rem 0.75rem;
+	font-size:1.25rem;
 }
 .btn-responsive-menu {
     padding: 5px;
@@ -526,16 +539,15 @@ font-size: 0.8rem;
 .btn-outline-light:hover .i-arrow-right-w {
 	background-image: url("img/arrow-right-blue.svg");
 }
-.navbar-toggler[aria-expanded="true"] .i-arrow-down-w  {
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
-	background-position: right 20px center;
+.navbar-toggler ion-icon {
+	color:white;
 }
-.navbar-toggler[aria-expanded="false"] .i-arrow-down-w  {
 
+.navbar-toggler[aria-expanded="true"] ion-icon[name="ios-arrow-down"]  {
+		display: none;
+}
+.navbar-toggler[aria-expanded="false"] ion-icon[name="ios-arrow-up"]  {
+		display: none;
 }
 .i-arrow-down-w {
 	background-image: url("img/arrow-down-white.png");
@@ -631,6 +643,9 @@ font-size: 0.8rem;
 
 }
 @media only screen and (min-width:768px) {
+		#logo {
+			padding:0px 5px 0px 20px;
+		}
 
 		header.masthead {
 	    height: 100vh;
@@ -665,20 +680,19 @@ font-size: 0.8rem;
 		justify-content: space-between;
 	}
 
- 	.navbar-nav, .menu-finale {
+
+}
+@media only screen and (min-width:1140px) {
+	.navbar-nav, .menu-finale {
 	 display:flex !important;
  }
  .btn-responsive-menu {
 	 display:none;
  }
-}
-@media only screen and (min-width:1140px) {
 	.dropbtn {
 		padding: 20px 5px;
 	}
-	#logo {
-		padding:0px 5px 0px 20px;
-	}
+
 }
 @media only screen and (min-width:1280px) {
 	.dropbtn {
@@ -1019,6 +1033,9 @@ display:none;
 	    background-color:#165774;
 
 	}
+.print-icon {
+	font-size: 2rem;
+}
 
 
 @import url("css/theme.css");

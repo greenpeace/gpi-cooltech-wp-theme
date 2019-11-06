@@ -120,7 +120,7 @@ section.sector-first {
         background-color: #{nth($s, 2)};
         border-color: #{nth($s, 2)};
     }
-    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title {
+    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title, section.results.#{nth($s, 1)} ion-icon  {
       color:#{nth($s, 2)}
     }
     section.category-list.#{nth($s, 1)}, section.results.#{nth($s, 1)} {
