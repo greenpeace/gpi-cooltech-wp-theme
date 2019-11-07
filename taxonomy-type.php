@@ -202,6 +202,7 @@ if($n1 && $n2 && $n3) {
 				?>
 
 				<section class="results <?php echo $parent->slug; ?>">
+					<div class="container">
 				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<ion-icon name="print"></ion-icon> </a></div></div>
 				<?php
 				$x=0;
@@ -316,6 +317,7 @@ if($n1 && $n2 && $n3) {
 			?>
 
 			</div>
+		</div>
 		</section>
 
 			<?php // get_template_part('loop'); ?>
