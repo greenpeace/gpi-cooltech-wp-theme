@@ -75,7 +75,7 @@ $menu = new NestedMenu('Menu 1');
 
  ?>
 		<div id="sidr">
-			<div class="close_menu"> <ion-icon name="close"></ion-icon> </div>
+			<div class="close_menu"> <img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_ios-close.svg" width="60"></div>
 			<ul class="mobile-menu-first">
   <!-- Your content -->
 	<?php
@@ -85,7 +85,7 @@ $menu = new NestedMenu('Menu 1');
 				$submenu = $menu->get_submenu($item); ?>
 				<li><a href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
 					<?php if ($submenu) { ?>
-				<button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#submenu-<?php echo $item->ID ?>" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><ion-icon name="ios-arrow-down"></ion-icon><ion-icon name="ios-arrow-up"></ion-icon></button>
+				<button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#submenu-<?php echo $item->ID ?>" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="i-arrow-down-w"></i></button>
 				<?php } ?>
 				</li>
 
@@ -114,27 +114,26 @@ $menu = new NestedMenu('Menu 1');
   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
   integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
   crossorigin="anonymous"></script>
-		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 
-		</style>
 
-		<!-- Resources -->
-		<script src="https://www.amcharts.com/lib/4/core.js"></script>
-		<script src="https://www.amcharts.com/lib/4/maps.js"></script>
-		<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
-		<script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
-		<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
 
-		<!-- analytics -->
-		<script>
-		(function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
-		(f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
-		l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-XXXXXXXX-XX', 'yourdomain.com');
-		ga('send', 'pageview');
-		</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-16156241-4"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'UA-16156241-4');
+
+</script>
 		<?php wp_footer(); ?>
-		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
 	</body>
 </html>

@@ -122,9 +122,9 @@ function ct_block_tab_render( $attributes ) {
       	global $page_layout;
       	ob_start();
       ?>
-      </div>
+
       	<section>
-       	 <div class="<?php echo $page_layout; ?>">
+       	 <div class="container">
    	        <div class="tab-content" id="pills-tabContent">
       <?php
       	$x=0;
@@ -132,11 +132,11 @@ function ct_block_tab_render( $attributes ) {
         ?>
       <div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
        			<div class="row">
-       				<div id="tab-img" class="col-sm-5 offset-sm-1">
+       				<div id="tab-img" class="col-sm-6 col-md-5 offset-md-1">
        			<?php echo get_the_post_thumbnail($page->ID, "wide"); ?>
        				</div>
-              <div class="col-sm-1"></div>
-       				<div id="tab-text" class="col-sm-4">
+
+       				<div id="tab-text" class="col-md-4 offset-md-1 col-sm-6">
        					<h2><?php echo $page->post_title;  ?></h2>
        			<?php echo $page->post_excerpt; ?>
        			<div id="tab-button">
@@ -170,7 +170,7 @@ function ct_block_tab_render( $attributes ) {
         </div>
         </div>
        </section>
-       <div class="<?php echo $page_layout; ?>">
+
 
 <?php
       $out = ob_get_contents();

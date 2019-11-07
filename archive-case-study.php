@@ -114,6 +114,11 @@ endwhile; ?>
 
 
 <?php get_footer(); ?>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
 <script>
 // Create map instance
 var chart = am4core.create("chartdiv", am4maps.MapChart);

@@ -715,9 +715,15 @@ function find_glossary($atts, $content) {
 }
 
 function add_footnote($atts, $content) {
-	ob_start();?>
+	ob_start();
+	if($atts["nourl"]) {
+		?>
+	<a class="footnote" title="<?php echo $content ?>"></a>
+<?php	} else {
+	?>
 	<a class="footnote" href="<?php echo $content; ?>" target="_blank" title="<?php echo $content ?>"></a>
 	<?php
+		}
 		$out = ob_get_contents();
 		ob_end_clean();
 	return $out;
@@ -742,15 +748,14 @@ switch(count($terms)) {
 	break;
 }
 	?>
-	</div>
+
 	<section class="category-list <?php echo $slug; ?>">
-		<?php	global $page_layout; ?>
-		<div class="<?php echo $page_layout ?>">
+		<div class="container">
 				<div class="row">
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div style=""> <img src="<?php echo get_template_directory_uri(); ?>/img/<?php echo $t->slug; ?>" width="120"> </div>
+								<div style=""> <img src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
 							<?php
 							}
 							?>
@@ -766,7 +771,7 @@ switch(count($terms)) {
 			</div>
 		</div>
 		</section>
-		<div class="<?php echo $page_layout; ?>">
+
 		<?php
 			$out = ob_get_contents();
 			ob_end_clean();
