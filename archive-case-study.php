@@ -44,7 +44,7 @@
 		<!-- section -->
 		<!-- <section> -->
 
-		<header class="masthead" style="background-color:#D2E9F1">
+		<header class="masthead case-study" style="background-color:#D2E9F1">
 	    <div id="chartdiv" class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 
@@ -61,9 +61,7 @@
 </section>
 <div id="case-study-results" class="container">
 <div class="row">
-
-	<?php // La Query
-
+	<?php
 	$args=array("post_type"=>"case-study",'meta_key'   => 'expand',
     'meta_value' => true);
 $the_query = new WP_Query( $args );

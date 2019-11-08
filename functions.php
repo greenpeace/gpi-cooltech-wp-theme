@@ -671,18 +671,18 @@ function get_sector_from_slug($slug='') {
 	if($slug) {
 		$t=get_term_by('slug', $slug, 'type');
 
-		$terms = get_terms( array(
-				'taxonomy' => 'type',
-				'hide_empty' => false,
-				'parent'=>$t->term_id
-			) );
+		$parent=$t->term_id;
+
 		} else {
-			$terms = get_terms( array(
-				'taxonomy' => 'type',
-				'hide_empty' => false,
-				'parent'=>0
-				) );
+		$parent=0;
 		}
+
+		$terms = get_terms( array(
+			'taxonomy' => 'type',
+			'hide_empty' => false,
+			'parent'=>$parent,
+			'orderby'=>'term_order'
+			) );
 		return $terms;
 }
 

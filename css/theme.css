@@ -16,7 +16,6 @@ div.div-home {
   color: #0a1321; }
 
 div.text-intro {
-  font-size: 2.5rem;
   font-family: "SuisseAntique";
   line-height: 1.2; }
 
@@ -199,7 +198,7 @@ article.generic-page h2 {
 h2.glossary_letter, h2.glossary_term {
   color: #2290BE; }
 
-h1.glossary, h1.case-study {
+h1.glossary {
   font-family: "SuisseAntique";
   padding-bottom: 4rem; }
 
