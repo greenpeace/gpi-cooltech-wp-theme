@@ -71,7 +71,6 @@ div.div-home {
   color: $black-cooling;
 }
 div.text-intro {
-  font-size:$font-big;
   font-family:$second-font;
   line-height:1.2;
 }
@@ -197,7 +196,7 @@ article.generic-page h2 {
 h2.glossary_letter, h2.glossary_term {
   color:$first-color;
 }
-h1.glossary, h1.case-study {
+h1.glossary {
   font-family:$second-font;
   padding-bottom:$padding-bottom-title;
 }

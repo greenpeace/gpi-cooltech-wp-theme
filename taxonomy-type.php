@@ -40,7 +40,7 @@ if($current_term_level==1) {
 	    <div class="container">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?>&nbsp;<?php echo $parent->name ?>
+	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?> <?php echo $parent->name ?>
 						<?php  $id=get_queried_object()->parent;
 						$parent=	get_term($id,"type"); ?>
 						</h1>
@@ -72,7 +72,7 @@ if($current_term_level==1) {
 
 					//print_r($tags); ?>
 					<div class="selectdiv"><select id="country" class="select-filter" name="country">
-						<option value="0"> Country </option>
+						<option value="0"><?php _e("Country","cooltech"); ?> </option>
 						<?php foreach($tags as $tag) { ?>
 						<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
 						<?php }?>
@@ -83,7 +83,7 @@ if($current_term_level==1) {
 			; ?>
 			<div class="selectdiv">
 					<select id="refrigerant" class="select-filter" name="refrigerant">
-						<option value="0"> Refrigerant </option>
+						<option value="0"><?php _e("Refrigerant","cooltech"); ?>  </option>
 						<?php foreach($tags as $tag) { ?>
 						<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
 						<?php }?>
@@ -95,7 +95,7 @@ if($current_term_level==1) {
 					//print_r($tags); ?>
 					<div class="selectdiv">
 					<select id="manufacturer" class="select-filter" name="manufacturer">
-						<option value="0"> Manufacturer </option>
+						<option value="0"> <?php _e("Manufacturer","cooltech"); ?> </option>
 						<?php foreach($tags as $tag) { ?>
 						<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
 						<?php }?>
@@ -107,7 +107,7 @@ if($current_term_level==1) {
 			 ?>
 <div class="selectdiv">
 					<select id="technology-type" class="select-filter" name="technology-type">
-						<option value="0"> Technology Type </option>
+						<option value="0"> <?php _e("Technology Type","cooltech"); ?> </option>
 						<?php foreach($tags as $tag) { ?>
 						<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
 						<?php }?>
@@ -115,9 +115,9 @@ if($current_term_level==1) {
 </div>
 <div class="selectdiv">
 					<select class="select-filter" id="type">
-						<option value="0"> Type </option>
-						<option value="equipment"> Equipment </option>
-						<option value="case-study"> Case Study </option>
+						<option value="0"><?php _e("Type","cooltech"); ?></option>
+						<option value="equipment"><?php _e("Equipment","cooltech"); ?></option>
+						<option value="case-study"><?php _e("Case Study","cooltech"); ?></option>
 					</select>
 </div>
 					</div>
@@ -203,7 +203,7 @@ if($n1 && $n2 && $n3) {
 
 				<section class="results <?php echo $parent->slug; ?>">
 					<div class="container">
-				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<ion-icon name="print"></ion-icon> </a></div></div>
+				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_md-print.svg" width="40" /> </a></div></div>
 				<?php
 				$x=0;
 				if (have_posts()): while (have_posts()) : the_post();
@@ -222,21 +222,11 @@ if($n1 && $n2 && $n3) {
 						$web=get_post_meta($post->ID,"website",true);
 
 						$expanded=get_post_meta($post->ID,"expand",true);
-
 				?>
-
-
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
-				<!--		<div class="col-md-3">
-
-					</div> -->
-
-
-
-
 						<div class="col-md-3 col-title-element">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
@@ -273,7 +263,7 @@ if($n1 && $n2 && $n3) {
 								<?php echo $r->name ?><br/>
 							<?php	} ?></div>
 
-								<div class="result_meta_title"><?php _e( 'Manufacturer', 'cooltech' ); ?></div>
+								<div class="result_meta_title"><?php _e( 'Manufacturer Country', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
 								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>

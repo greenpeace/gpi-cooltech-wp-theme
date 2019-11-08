@@ -128,8 +128,8 @@ function cooltech_header_scripts()
 				wp_register_script('sidr', get_template_directory_uri()  . '/js/jquery.sidr.min.js', array( 'jquery' ));
 				wp_enqueue_script('sidr');
 
-				wp_register_script('animate', get_template_directory_uri()  . '/js/jquery.animateNumber.min.js', array( 'jquery' ));
-				wp_enqueue_script('animate');
+				wp_register_script('ionicon', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js',false,false,true);
+				wp_enqueue_script('ionicon');
 
 		//		wp_register_script('jquery-ui', get_template_directory_uri()  . '/js/jquery-ui.min.js', array( 'jquery' ));
 		//		wp_enqueue_script('jquery-ui');
@@ -174,8 +174,8 @@ function cooltech_styles()
 		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
 		wp_enqueue_style('sidr-css');
 
-	//	wp_register_style('jquery-ui-css', get_template_directory_uri() . '/css/jquery-ui.css');
-	//	wp_enqueue_style('jquery-ui-css');
+		wp_register_style('ionicon-css',  '//unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css');
+		wp_enqueue_style('ionicon-css');
 
 }
 
@@ -671,18 +671,18 @@ function get_sector_from_slug($slug='') {
 	if($slug) {
 		$t=get_term_by('slug', $slug, 'type');
 
-		$terms = get_terms( array(
-				'taxonomy' => 'type',
-				'hide_empty' => false,
-				'parent'=>$t->term_id
-			) );
+		$parent=$t->term_id;
+
 		} else {
-			$terms = get_terms( array(
-				'taxonomy' => 'type',
-				'hide_empty' => false,
-				'parent'=>0
-				) );
+		$parent=0;
 		}
+
+		$terms = get_terms( array(
+			'taxonomy' => 'type',
+			'hide_empty' => false,
+			'parent'=>$parent,
+			'orderby'=>'term_order'
+			) );
 		return $terms;
 }
 
@@ -759,9 +759,6 @@ switch(count($terms)) {
 							<?php
 							}
 							?>
-
-
-							<?php ?>
 								<div><h3><?php echo $t->name; ?></h3> </div>
 								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
 								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>

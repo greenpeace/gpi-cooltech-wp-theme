@@ -1,38 +1,51 @@
 <?php
 function cooltech_block_init() {
 
+  // intro block
   wp_register_script('gut-js', get_template_directory_uri()  . '/blocks/intro/block-intro.js', array( 'wp-blocks', 'wp-element', 'wp-editor' ), null);
   wp_enqueue_script('gut-js');
 
+  // TAB Block
   wp_register_script('tab-js', get_template_directory_uri()  . '/blocks/block-tabs/block-tabs.js', array( 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor'),null);
   wp_enqueue_script('tab-js');
 
   wp_register_style('tab-css', get_template_directory_uri() . '/blocks/intro/block-intro.css', array( 'wp-edit-blocks' ));
   wp_enqueue_style('tab-css');
 
-wp_register_script(
-    'innerblock-block-js',
-    get_template_directory_uri() . '/blocks/innerblock/blocks.build.js', // Handle.
-    array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-    null,
-    true // Enqueue the script in the footer.
-  );
+  register_block_type( 'cooltech/block-tabs', array(
+  	/** Define the attributes used in your block */
+  		'attributes'  => array(
+  				'mb_url' => array(
+  						'type' => 'string'
+  				)
+  		),
+  		'category' => 'widgets',
+  		'editor_script'   => 'mb-simple-block',
+  		'render_callback' => 'ct_block_tab_render',
+  ) );
+
+  /* INNERBLOCK */
+
+  wp_register_script('innerblock-block-js',get_template_directory_uri() . '/blocks/innerblock/blocks.build.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), null, true );
+
+  wp_register_style('innerblock-style-css', get_template_directory_uri() . '/blocks/innerblock/blocks.style.build.css',  array( 'wp-editor' ),null);
 
   wp_register_style(
-    'innerblock-style-css', get_template_directory_uri() . '/blocks/innerblock/blocks.style.build.css',  array( 'wp-editor' ),
-    null);
-  // wp_enqueue_style('testa-cgb-style-css');
+    'innerblock-block-editor-css', get_template_directory_uri() . '/blocks/innerblock/blocks.editor.build.css', array( 'wp-edit-blocks' ),null );
 
-  // Register block editor script for backend.
+    register_block_type(
+      'cooltech/innerblock', array(
+        // Enqueue blocks.style.build.css on both frontend & backend.
+        'style'         => 'innerblock-style-css',
+        // Enqueue blocks.build.js in the editor only.
+        'editor_script' => 'innerblock-block-js',
+        // Enqueue blocks.editor.build.css in the editor only.
+        'editor_style'  => 'innerblock-block-editor-css',
+      )
+    );
 
+    /* MAGIC NUMBERS */
 
-  // Register block editor styles for backend.
-  wp_register_style(
-    'innerblock-block-editor-css', // Handle.
-    get_template_directory_uri() . '/blocks/innerblock/blocks.editor.build.css', // Block editor CSS.
-    array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-    null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
-  );
   // wp_enqueue_style('testa-cgb-block-editor-css');
 
   wp_register_script(
@@ -59,17 +72,7 @@ wp_register_script(
       null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
     );
 
-register_block_type( 'cooltech/block-tabs', array(
-	/** Define the attributes used in your block */
-		'attributes'  => array(
-				'mb_url' => array(
-						'type' => 'string'
-				)
-		),
-		'category' => 'widgets',
-		'editor_script'   => 'mb-simple-block',
-		'render_callback' => 'ct_block_tab_render',
-) );
+
 
 register_block_type(
   'cooltech/magic-numbers', array(
@@ -83,16 +86,7 @@ register_block_type(
   )
 );
 
-register_block_type(
-  'cooltech/innerblock', array(
-    // Enqueue blocks.style.build.css on both frontend & backend.
-    'style'         => 'innerblock-style-css',
-    // Enqueue blocks.build.js in the editor only.
-    'editor_script' => 'innerblock-block-js',
-    // Enqueue blocks.editor.build.css in the editor only.
-    'editor_style'  => 'innerblock-block-editor-css',
-  )
-);
+
 
 }
 add_action( 'init', 'cooltech_block_init' );
@@ -132,11 +126,11 @@ function ct_block_tab_render( $attributes ) {
         ?>
       <div class="tab-pane fade <?php echo '',($x == 0 ? 'show active' : ''); ?>" id="pills-<?php echo $page->ID; ?>" role="tabpanel" aria-labelledby="pills-<?php echo $page->ID ?>-tab">
        			<div class="row">
-       				<div id="tab-img" class="col-sm-6 col-md-5 offset-md-1">
+       				<div id="tab-img" class="col-sm-6 col-md-6 col-lg-5 offset-lg-1">
        			<?php echo get_the_post_thumbnail($page->ID, "wide"); ?>
        				</div>
 
-       				<div id="tab-text" class="col-md-4 offset-md-1 col-sm-6">
+       				<div id="tab-text" class="col-sm-6 col-md-6  col-lg-5 offset-lg-1">
        					<h2><?php echo $page->post_title;  ?></h2>
        			<?php echo $page->post_excerpt; ?>
        			<div id="tab-button">

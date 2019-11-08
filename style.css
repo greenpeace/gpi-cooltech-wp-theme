@@ -376,6 +376,9 @@ a {
 
 /* buttons */
 
+a.btn {
+	margin:0.5rem 0;
+}
 
 .btn.btn-arrow {
 	background-position: right 20px center;
@@ -413,6 +416,9 @@ header.masthead {
     background-attachment: scroll;
     background-size: cover;
 		background-color:black;
+}
+header.masthead.case-study {
+	padding-top:5rem;
 }
 /* PROVVISORI */
 .text-full {
@@ -513,6 +519,10 @@ section.category-list {
 		url('fonts/font-name.svg#font-name') format('svg');
     font-weight:normal;
     font-style:normal;
+}
+
+div.text-intro {
+		font-size: 1.75rem;
 }
 .note-font {
 font-size: 0.8rem;
@@ -655,9 +665,17 @@ font-size: 0.8rem;
 	#logo {
 		font-size: 2.5rem;
 	}
+	div.text-intro {
+		font-size: 2.5rem;
+	}
 
 }
 @media only screen and (min-width:768px) {
+
+		h1.case-study {
+			padding-bottom: 4rem;
+		}
+
 		#logo {
 			padding:0px 5px 0px 20px;
 		}
@@ -674,7 +692,6 @@ font-size: 0.8rem;
 	    padding-top: 72px;
 	    padding-bottom: 72px;
 		}
-
 
 		section {
 			padding: 100px 0px;
@@ -790,6 +807,7 @@ color:inherit;
 }
 .magic-up {
 	text-align: center;
+	white-space: nowrap;
 }
 
 .magic-number {
@@ -858,8 +876,8 @@ select::-ms-expand {
   height: 50px;
   float: right;
   margin: 5px 0px;
-  padding: 0px 24px;
-  font-size: 16px;
+  padding: 0px 12px;
+  font-size: 1rem;
   line-height: 1.75;
   color: #333;
   background-color: #ffffff;
@@ -1050,6 +1068,8 @@ display:none;
 	}
 .print-icon {
 	font-size: 2rem;
+	padding-bottom: 10px;
+	display: block;
 }
 
 
