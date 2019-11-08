@@ -203,7 +203,7 @@ if($n1 && $n2 && $n3) {
 
 				<section class="results <?php echo $parent->slug; ?>">
 					<div class="container">
-				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<ion-icon name="print"></ion-icon> </a></div></div>
+				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_md-print.svg" width="40" /> </a></div></div>
 				<?php
 				$x=0;
 				if (have_posts()): while (have_posts()) : the_post();
@@ -222,21 +222,11 @@ if($n1 && $n2 && $n3) {
 						$web=get_post_meta($post->ID,"website",true);
 
 						$expanded=get_post_meta($post->ID,"expand",true);
-
 				?>
-
-
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
-				<!--		<div class="col-md-3">
-
-					</div> -->
-
-
-
-
 						<div class="col-md-3 col-title-element">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
@@ -273,7 +263,7 @@ if($n1 && $n2 && $n3) {
 								<?php echo $r->name ?><br/>
 							<?php	} ?></div>
 
-								<div class="result_meta_title"><?php _e( 'Manufacturer', 'cooltech' ); ?></div>
+								<div class="result_meta_title"><?php _e( 'Manufacturer Country', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
 								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
