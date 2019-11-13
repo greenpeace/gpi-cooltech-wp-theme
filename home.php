@@ -94,7 +94,7 @@ var current=0;
  function nextBackground() {
    body.css(
      "background-image", // Use background-image instead of `background`
-      "url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
+      "linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
    );
    setTimeout(nextBackground, <?php echo get_option("time_slide"); ?>);
  }

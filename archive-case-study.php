@@ -164,4 +164,16 @@ polygonSeries.exclude = ["AQ"];
 polygonSeries.data = [<?php echo $iso; ?>];
 // Bind "fill" property to "fill" key in data
 polygonTemplate.propertyFields.fill = "fill";
+
+polygonTemplate.events.on("over", function(ev) {
+
+// console.log(ev.target);
+// get object info
+  console.log(ev.target.dataItem.dataContext.id);
+  if(typeof ev.target.dataItem.dataContext.value==='undefined') {
+     ev.target.isHover = false;
+  }
+
+
+});
 </script>

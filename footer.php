@@ -77,6 +77,7 @@ $menu = new NestedMenu('Menu 1');
 		<div id="sidr">
 			<div class="close_menu"> <img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_ios-close.svg" width="60"></div>
 			<ul class="mobile-menu-first">
+				<li><a href="<?php echo site_url(); ?>"> Home </a></li>
   <!-- Your content -->
 	<?php
 

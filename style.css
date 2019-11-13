@@ -363,11 +363,7 @@ a {
   vertical-align: middle;
 }
 
-@media screen and (max-width: 767px) {
-  .dropdown-menu > li {
-    display: block;
-  }
-}
+
 /* sidebar */
 .sidebar {
 
@@ -654,91 +650,6 @@ font-size: 0.8rem;
 
 
 
-/*------------------------------------*\
-    RESPONSIVE
-\*------------------------------------*/
-
-@media only screen and (min-width:320px) {
-
-}
-@media only screen and (min-width:480px) {
-	#logo {
-		font-size: 2.5rem;
-	}
-	div.text-intro {
-		font-size: 2.5rem;
-	}
-
-}
-@media only screen and (min-width:768px) {
-
-		h1.case-study {
-			padding-bottom: 4rem;
-		}
-
-		#logo {
-			padding:0px 5px 0px 20px;
-		}
-
-		header.masthead {
-	    height: 100vh;
-	    min-height: 40rem;
-	    padding-top: 72px;
-	    padding-bottom: 0;
-		}
-		header.masthead.second-taxonomy {
-	    height: auto;
-	    min-height: auto;
-	    padding-top: 72px;
-	    padding-bottom: 72px;
-		}
-
-		section {
-			padding: 100px 0px;
-		}
-
-}
-@media only screen and (min-width:1024px) {
-
-	.dropbtn {
-		padding: 20px 3px;
-	}
-
-	#main-menu2 {
-		align-items: center;
-	}
-
-	.navbar-main.navbar-expand-md {
-		justify-content: space-between;
-	}
-
-
-}
-@media only screen and (min-width:1140px) {
-	.navbar-nav, .menu-finale {
-	 display:flex !important;
- }
- .btn-responsive-menu {
-	 display:none;
- }
-	.dropbtn {
-		padding: 20px 5px;
-	}
-
-}
-@media only screen and (min-width:1280px) {
-	.dropbtn {
-		padding: 20px 12px;
-	}
-	#logo {
-		padding:0px 20px;
-	}
-
-}
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	   only screen and (min-resolution:144dpi) {
-
-}
 
 
 /* TABS */
@@ -810,18 +721,13 @@ color:inherit;
 	white-space: nowrap;
 }
 
-.magic-number {
-  font-size:4rem;
+.magic-number, .magic-value {
+  font-size:3rem;
   font-weight: bold;
   text-align: center;
 	display:inline;
 }
-.magic-value {
-	font-size:4rem;
-	font-weight: bold;
-	text-align: center;
-	display: inline;
-}
+
 .magic-text {
 	clear:both;
 	text-align: center;
@@ -1072,5 +978,115 @@ display:none;
 	display: block;
 }
 
+
+/*------------------------------------*\
+    RESPONSIVE
+\*------------------------------------*/
+
+@media only screen and (min-width:320px) {
+
+}
+@media only screen and (min-width:480px) {
+	#logo {
+		font-size: 2.5rem;
+	}
+	div.text-intro {
+		font-size: 2.5rem;
+	}
+	header.masthead {
+		height: 50vh;
+		min-height: 40rem;
+		padding-top: 72px;
+		padding-bottom: 0;
+	}
+
+}
+@media only screen and (min-width:768px) {
+
+		section {
+			padding: 20px 0px;
+		}
+
+		h1.case-study {
+			padding-bottom: 4rem;
+		}
+
+		#logo {
+			padding:0px 5px 0px 20px;
+		}
+
+
+		header.masthead.second-taxonomy {
+	    height: auto;
+	    min-height: auto;
+	    padding-top: 72px;
+	    padding-bottom: 72px;
+		}
+
+
+
+}
+@media only screen and (min-width:1024px) {
+
+	.magic-number, .magic-value  {
+		font-size: 4rem;
+	}
+
+	section {
+		padding: 100px 0px;
+	}
+
+	header.masthead {
+		height: 100vh;
+		min-height: 40rem;
+		padding-top: 72px;
+		padding-bottom: 0;
+	}
+
+	.dropbtn {
+		padding: 20px 3px;
+	}
+
+	#main-menu2 {
+		align-items: center;
+	}
+
+	.navbar-main.navbar-expand-md {
+		justify-content: space-between;
+	}
+
+
+}
+@media only screen and (min-width:1140px) {
+	.navbar-nav, .menu-finale {
+	 display:flex !important;
+ }
+ .btn-responsive-menu {
+	 display:none;
+ }
+	.dropbtn {
+		padding: 20px 5px;
+	}
+
+}
+@media only screen and (min-width:1280px) {
+	.dropbtn {
+		padding: 20px 12px;
+	}
+	#logo {
+		padding:0px 20px;
+	}
+
+}
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	   only screen and (min-resolution:144dpi) {
+
+}
+
+@media screen and (max-width: 767px) {
+  .dropdown-menu > li {
+    display: block;
+  }
+}
 
 @import url("css/theme.css");

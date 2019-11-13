@@ -60,6 +60,7 @@ if($current_term_level==1) {
 		// 	$tags=array_unique(get_tags_in_use($term->term_id,"application"));
 					$tags=get_tags_in_use($term->term_id,"application");
 				//	print_r($tags); ?>
+
 				 <div class="selectdiv">	<select id="application" class="select-filter" name="application">
 						<option value="0"> Applications </option>
 						<?php foreach($tags as $tag) { ?>
@@ -227,15 +228,18 @@ if($n1 && $n2 && $n3) {
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 					<div class="row">
-						<div class="col-md-3 col-title-element">
+						<div class="col-md-12 col-title-element">
 
 						<h2 class="result_title"><?php the_title(); ?></h2>
-						<?php  if($expanded!=1) { ?>
-						<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?> </button>
-					<?php  } else { ?>
-						<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
-					<?php } ?>
+
 					</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"> 	<?php  if($expanded!=1) { ?>
+							<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?> </button>
+						<?php  } else { ?>
+							<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
+						<?php } ?></div>
 						<div class="col-md-3">
 								<div class="result_meta_title"><?php _e( 'Sector', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
@@ -263,10 +267,23 @@ if($n1 && $n2 && $n3) {
 								<?php echo $r->name ?><br/>
 							<?php	} ?></div>
 
-								<div class="result_meta_title"><?php _e( 'Manufacturer Country', 'cooltech' ); ?></div>
+								<div class="result_meta_title"><?php _e( 'Manufacturer', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
 								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
+							<?php	} ?>
+								</div>
+								<div class="result_meta_title">
+									<?php if($post->post_type=="equipment") {
+										_e( 'Manufacturer Country', 'cooltech' );
+									} else {
+										_e( 'Country', 'cooltech' );
+									}
+										?>
+								</div>
+								<div class="result_meta_content">
+								<?php foreach ($co as $c ) { ?>
+								<?php echo $c->name ?> <?php if(next($co)) { echo "/"; } ?>
 							<?php	} ?>
 								</div>
 							</div>
