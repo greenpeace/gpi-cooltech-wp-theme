@@ -32,6 +32,12 @@ if (!isset($content_width))
     $content_width = 900;
 }
 
+add_filter( "asl_result_image_after_prostproc", "asp_cf_image", 1, 1 );
+
+function asp_cf_image( $image ) {
+		return "<img src='aaaa'>";
+	}
+
 add_post_type_support( 'page', 'excerpt' );
 
 if (function_exists('add_theme_support'))
@@ -128,11 +134,6 @@ function cooltech_header_scripts()
 				wp_register_script('sidr', get_template_directory_uri()  . '/js/jquery.sidr.min.js', array( 'jquery' ));
 				wp_enqueue_script('sidr');
 
-				wp_register_script('ionicon', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js',false,false,true);
-				wp_enqueue_script('ionicon');
-
-		//		wp_register_script('jquery-ui', get_template_directory_uri()  . '/js/jquery-ui.min.js', array( 'jquery' ));
-		//		wp_enqueue_script('jquery-ui');
 
 wp_localize_script(
 		'global',
@@ -173,9 +174,6 @@ function cooltech_styles()
 
 		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
 		wp_enqueue_style('sidr-css');
-
-		wp_register_style('ionicon-css',  '//unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css');
-		wp_enqueue_style('ionicon-css');
 
 }
 
@@ -755,12 +753,12 @@ switch(count($terms)) {
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div style=""> <img src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
+								<div class="cat_icon text-sm-left"> <img src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
 							<?php
 							}
 							?>
-								<div><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
+								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?></h3> </div>
+								<div class="cat_desc text-sm-left align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
 								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
 								</div>
 						</div>

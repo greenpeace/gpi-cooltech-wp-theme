@@ -54,7 +54,7 @@ if($current_term_level==1) {
 	      </div>
 				<?php $term = $wp_query->queried_object; ?>
 				<div id="selectblock" class="row d-print-none">
-					<div class="col-sm-12">
+					<div id="selectcolumn" class="col-sm-12">
 					<?php
 			//		print_r($term);
 		// 	$tags=array_unique(get_tags_in_use($term->term_id,"application"));
@@ -204,7 +204,7 @@ if($n1 && $n2 && $n3) {
 
 				<section class="results <?php echo $parent->slug; ?>">
 					<div class="container">
-				<div class="clearfix"><div class="print-icon float-right"><a href="javascript:window.print()">	<img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_md-print.svg" width="40" /> </a></div></div>
+				<div><div class="print-icon float-right"><a href="javascript:window.print()"> <svg class="print-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"/></svg>	 </a></div></div>
 				<?php
 				$x=0;
 				if (have_posts()): while (have_posts()) : the_post();
@@ -230,12 +230,14 @@ if($n1 && $n2 && $n3) {
 					<div class="row">
 						<div class="col-md-12 col-title-element">
 
-						<h2 class="result_title"><?php the_title(); ?></h2>
+
 
 					</div>
 					</div>
 					<div class="row">
-						<div class="col-md-3"> 	<?php  if($expanded!=1) { ?>
+						<div class="col-md-3">
+									<h2 class="result_title"><?php the_title(); ?></h2>
+								<?php  if($expanded!=1) { ?>
 							<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?> </button>
 						<?php  } else { ?>
 							<a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
@@ -274,7 +276,8 @@ if($n1 && $n2 && $n3) {
 							<?php	} ?>
 								</div>
 								<div class="result_meta_title">
-									<?php if($post->post_type=="equipment") {
+									<?php
+									if($post->post_type=="equipment") {
 										_e( 'Manufacturer Country', 'cooltech' );
 									} else {
 										_e( 'Country', 'cooltech' );
@@ -287,7 +290,7 @@ if($n1 && $n2 && $n3) {
 							<?php	} ?>
 								</div>
 							</div>
-							<div class="col-sm-3">
+							<div class="col-md-3">
 									<div class="result_meta_title"><?php _e( 'Energy Efficency', 'cooltech' ); ?></div>
 									<div class="result_meta_content"><?php echo $ee; ?></div>
 							</div>

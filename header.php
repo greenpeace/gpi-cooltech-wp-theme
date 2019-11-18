@@ -37,8 +37,11 @@
 <div id="menus">
 
 
-	<div id="logo"><div id="logo-main"><a class="print-url" href="<?php echo site_url(); ?>"><span class="cool">COOL</span><span class="tech">TECHNOLOGIES</span></a></div>
-		<div id="logo-subtitle"> <?php echo get_bloginfo("description"); ?> </div></div>
+	<div id="logo">
+		<a class="print-url" href="<?php echo site_url(); ?>">
+			<img src="<?php echo get_template_directory_uri() ?>/img/cooltech-logo.svg" height="50">
+	</a>
+</div>
 
 
 		<div class="menu-finale">

@@ -19,7 +19,6 @@ $first-color: #2290BE;
 // 18 49 106 (al 20 diventa D0D6E1) Chatham Blue
 $fifth-color: #12316A;
 
-
 $background-grey: #F1F1F1;
 $black-cooling: #0a1321;
 
@@ -37,6 +36,7 @@ $refrigeration-color:$second-color;
 $heat-pumps-color:$fifth-color;
 $components-color:$third-color;
 //font
+$first-font:'SuisseRegular';
 $second-font:'SuisseAntique';
 
 // the same as h1 bootstrap
@@ -98,6 +98,10 @@ section.sector-first {
 
 /* H3 titles */
 @each $s in $sector-colors {
+
+    section.#{nth($s, 1)} .print-svg {
+      fill:#{nth($s, 2)};
+    }
 
     section.#{nth($s, 1)}-numbers {
       background-color: white;
@@ -163,8 +167,12 @@ article.element.case-study {
 .result_meta_title, .result_title {
   color:$first-color;
 }
-.result_meta_content {
+.result_title {
   font-family: $second-font;
+}
+
+.result_meta_content {
+  font-family: $first-font;
 }
 
 /* PAGE CASE STUDY */
