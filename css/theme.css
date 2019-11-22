@@ -2,6 +2,9 @@
 .navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
   background-color: #165774; }
 
+.basic-background, header.masthead.basic-background {
+  background-color: #D3E9F2; }
+
 #logo span.cool {
   color: #2290BE; }
 
@@ -174,7 +177,7 @@ article.element {
   margin-bottom: 1rem;
   min-height: 200px; }
 
-article.element.equipment {
+article.element.equipment, article.element.page {
   background-color: white; }
 
 article.element.case-study {

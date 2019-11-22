@@ -260,6 +260,20 @@ function my_remove_recent_comments_style()
     ));
 }
 
+function add_http($url) {
+	$parsed = parse_url($url);
+	if (empty($parsed['scheme'])) {
+    $url = 'http://'.ltrim($url, '/');
+	}
+  return $url;
+}
+
+function createLink($text) {
+	$preg_match = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
+	$text = preg_replace($preg_match, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $text);
+	return $text;
+}
+
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
 function cooltechwp_pagination()
 {
@@ -753,7 +767,7 @@ switch(count($terms)) {
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div class="cat_icon text-sm-left"> <img src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
+								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
 							<?php
 							}
 							?>

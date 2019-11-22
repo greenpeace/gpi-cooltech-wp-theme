@@ -56,6 +56,10 @@ $padding-bottom-title:4rem;
     background-color: $second-color;
 }
 
+.basic-background, header.masthead.basic-background {
+  background-color: #D3E9F2;
+}
+
 #logo span.cool {
 	color:$first-color;
 }
@@ -158,7 +162,7 @@ article.element {
   margin-bottom:$margin-bottom;
   min-height: 200px;
 }
-article.element.equipment {
+article.element.equipment, article.element.page {
   background-color: white;
 }
 article.element.case-study {

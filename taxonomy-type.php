@@ -204,7 +204,7 @@ if($n1 && $n2 && $n3) {
 
 				<section class="results <?php echo $parent->slug; ?>">
 					<div class="container">
-				<div><div class="print-icon float-right"><a href="javascript:window.print()"> <svg class="print-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"/></svg>	 </a></div></div>
+				<div><div class="print-icon float-right print-icon-results"><a href="javascript:window.print()"> <svg class="print-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"/></svg>	 </a></div></div>
 				<?php
 				$x=0;
 				if (have_posts()): while (have_posts()) : the_post();
@@ -227,16 +227,13 @@ if($n1 && $n2 && $n3) {
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
-					<div class="row">
-						<div class="col-md-12 col-title-element">
 
-
-
-					</div>
+					<div class="row d-lg-none">
+								<div class="col-md-12"><h2 class="result_title"><?php the_title(); ?></h2> </div>
 					</div>
 					<div class="row">
 						<div class="col-md-3">
-									<h2 class="result_title"><?php the_title(); ?></h2>
+									<h2 class="result_title d-none d-sm-none d-md-none d-lg-block"><?php the_title(); ?></h2>
 								<?php  if($expanded!=1) { ?>
 							<button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?> </button>
 						<?php  } else { ?>
@@ -308,10 +305,15 @@ if($n1 && $n2 && $n3) {
 							</div>
 							<div class="col-sm-9">
 								<div><?php the_content(); ?></div>
+								<?php if($web) {?>
 								<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
-								<div class="result_meta_content"><?php  echo $web; ?></div>
-								<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
-								<div class="result_meta_content"><?php  echo $source; ?></div>
+								<div class="result_meta_content result_web"><a href="<?php echo web ?>" target="_blank"><?php echo $web; ?></a></div>
+								<?php } ?>
+								<?php if ($source) { ?>
+								<div class="result_meta_title"><a title="<?php echo $source; ?>" class="result_meta_title" href="<?php  echo add_http($source); ?>" target="_blank"><?php _e( 'Source', 'cooltech' ); ?></a></div>
+								<div class="result_meta_content result_source"><?php  echo createLink($source); ?></div>
+								<?php } ?>
+
 							</div>
 						</div>
 

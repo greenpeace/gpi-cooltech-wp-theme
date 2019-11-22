@@ -40,11 +40,9 @@
  }
 ?>
 
-	<main role="main" style="background-color:#D2E9F1">
-		<!-- section -->
-		<!-- <section> -->
+	<main role="main" class="basic-background">
 
-		<header class="masthead case-study" style="background-color:#D2E9F1">
+		<header class="masthead case-study basic-background">
 	    <div id="chartdiv" class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 
@@ -165,11 +163,10 @@ polygonSeries.data = [<?php echo $iso; ?>];
 // Bind "fill" property to "fill" key in data
 polygonTemplate.propertyFields.fill = "fill";
 
+// disable over on country without data
 polygonTemplate.events.on("over", function(ev) {
 
-// console.log(ev.target);
-// get object info
-  console.log(ev.target.dataItem.dataContext.id);
+  // console.log(ev.target.dataItem.dataContext.id);
   if(typeof ev.target.dataItem.dataContext.value==='undefined') {
      ev.target.isHover = false;
   }

@@ -19,9 +19,9 @@
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
 	        </div>
-	        <div class="col-lg-6 align-self-baseline">
+	        <div class="col-lg-5 align-self-baseline">
 	          <p class="text-white-75 font-weight-light mb-5"></p>
 					<?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
 	    <!--    <input type="text" name="s" class="form-control search-autocomplete" placeholder="Search"> -->
