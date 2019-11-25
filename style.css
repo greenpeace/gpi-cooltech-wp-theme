@@ -26,7 +26,7 @@ html {
 	/* font-size:62.5%; */
 }
 body {
-	font:300 1.4rem 'SuisseRegular','Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family:'SuisseRegular','Helvetica Neue', Helvetica, Arial, sans-serif;
 	color:#444;
 	counter-reset: fn-counter;
 }
@@ -91,7 +91,7 @@ input:focus {
 \*------------------------------------*/
 
 section {
-	padding:20px 0px;
+	padding:50px 0px;
 }
 
 /* wrapper */
@@ -108,23 +108,24 @@ section {
 
 /* logo */
 #logo {
-z-index:10;
-padding-left:5px;
-font-family: "Industrial";
-font-size:1.5rem;
-line-height:1;
-
+	z-index:10;
+	padding-top:2px;
+	padding-left:5px;
+	font-family: "Industrial";
+	font-size:1.5rem;
+	line-height:1;
+}
+div#logo-subtitle {
+	font-family:"SuisseRegular";
+	font-size:0.625rem;
+	line-height: normal;
 }
 #partners {
 	padding:0px 10px;
 	display:flex;
 	align-items: center;
 }
-div#logo-subtitle {
-	font-family:"SuisseRegular";
-	font-size:0.8rem;
-	line-height: normal;
-}
+
 .logo-img {
 
 }
@@ -363,11 +364,7 @@ a {
   vertical-align: middle;
 }
 
-@media screen and (max-width: 767px) {
-  .dropdown-menu > li {
-    display: block;
-  }
-}
+
 /* sidebar */
 .sidebar {
 
@@ -400,6 +397,10 @@ a.btn {
 	background-color: #165773;
 	color:white;
 }
+.footer-title {
+font-family: "Industrial";
+font-size:3rem;
+}
 .line {
 	height:2px;
 	background-color: white;
@@ -409,8 +410,6 @@ a.btn {
     PAGES
 \*------------------------------------*/
 header.masthead {
-    padding-top: 10rem;
-    padding-bottom: calc(10rem - 72px);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -419,6 +418,12 @@ header.masthead {
 }
 header.masthead.case-study {
 	padding-top:5rem;
+}
+header.masthead.second-taxonomy {
+	height: auto;
+	min-height: auto;
+	padding-top: 72px;
+	padding-bottom: 72px;
 }
 /* PROVVISORI */
 .text-full {
@@ -431,7 +436,7 @@ header.masthead.case-study {
 	font-size:1.3125rem;
 }
 .wp-block-coolech-innerblock {
-	font-size:1.875rem;
+	font-size: 1.3125rem;
 	line-height: 1.2;
 }
 
@@ -459,6 +464,15 @@ section.category-list {
 
 .cat_desc {
 	padding-bottom:0.8rem;
+}
+.cat_desc, .cat_icon, .cat_title {
+	text-align: center;
+}
+.icon-category {
+	height: 60px;
+}
+.cat_icon, .cat_col {
+	margin-bottom:15px;
 }
 
 /* CASE STUDY */
@@ -497,12 +511,16 @@ section.category-list {
 
 @font-face {
   font-family: 'SuisseAntique';
-  src: url('fonts/SuisseBPIntAntique.ttf') format('truetype'),
-		url('fonts/SuisseBPIntAntique.woff') format('woff');
+	src: url('fonts/SuisseIntl-SemiBold-WebS.woff') format('woff');
 }
 @font-face {
   font-family: 'SuisseRegular';
-  src: url('fonts/SuisseBPIntRegular.woff') format('woff')
+  src: url('fonts/SuisseIntl-Regular-WebS.woff') format('woff'),
+		url('fonts/SuisseIntl-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SuisseLight';
+	src: url('fonts/SuisseIntl-Light-WebS.woff') format('woff');
 }
 
 @font-face {
@@ -519,6 +537,14 @@ section.category-list {
 		url('fonts/font-name.svg#font-name') format('svg');
     font-weight:normal;
     font-style:normal;
+}
+
+h1.h1-home {
+	font-size:1.75rem;
+}
+
+h2.result_title {
+	font-size: 1.875rem;
 }
 
 div.text-intro {
@@ -552,8 +578,6 @@ font-size: 0.8rem;
 
 
 .close-icon {
-
-
 	color:white;
 	background-repeat: no-repeat;
 	background-position: right 20px center;
@@ -654,91 +678,6 @@ font-size: 0.8rem;
 
 
 
-/*------------------------------------*\
-    RESPONSIVE
-\*------------------------------------*/
-
-@media only screen and (min-width:320px) {
-
-}
-@media only screen and (min-width:480px) {
-	#logo {
-		font-size: 2.5rem;
-	}
-	div.text-intro {
-		font-size: 2.5rem;
-	}
-
-}
-@media only screen and (min-width:768px) {
-
-		h1.case-study {
-			padding-bottom: 4rem;
-		}
-
-		#logo {
-			padding:0px 5px 0px 20px;
-		}
-
-		header.masthead {
-	    height: 100vh;
-	    min-height: 40rem;
-	    padding-top: 72px;
-	    padding-bottom: 0;
-		}
-		header.masthead.second-taxonomy {
-	    height: auto;
-	    min-height: auto;
-	    padding-top: 72px;
-	    padding-bottom: 72px;
-		}
-
-		section {
-			padding: 100px 0px;
-		}
-
-}
-@media only screen and (min-width:1024px) {
-
-	.dropbtn {
-		padding: 20px 3px;
-	}
-
-	#main-menu2 {
-		align-items: center;
-	}
-
-	.navbar-main.navbar-expand-md {
-		justify-content: space-between;
-	}
-
-
-}
-@media only screen and (min-width:1140px) {
-	.navbar-nav, .menu-finale {
-	 display:flex !important;
- }
- .btn-responsive-menu {
-	 display:none;
- }
-	.dropbtn {
-		padding: 20px 5px;
-	}
-
-}
-@media only screen and (min-width:1280px) {
-	.dropbtn {
-		padding: 20px 12px;
-	}
-	#logo {
-		padding:0px 20px;
-	}
-
-}
-@media only screen and (-webkit-min-device-pixel-ratio:1.5),
-	   only screen and (min-resolution:144dpi) {
-
-}
 
 
 /* TABS */
@@ -763,7 +702,6 @@ opacity:0.6;
 color:inherit;
 }
 
-
 a.glossary_suggestion:hover {
 text-decoration: underline;
 color:inherit;
@@ -784,6 +722,10 @@ color:inherit;
 /*------------------------------------*\
     ELEMENTS
 \*------------------------------------*/
+
+.result_web, .result_source {
+	word-break: break-all;
+}
 
 .element {
 	padding:0.5rem;
@@ -808,20 +750,16 @@ color:inherit;
 .magic-up {
 	text-align: center;
 	white-space: nowrap;
+	font-family:"SuisseLight";
 }
 
-.magic-number {
-  font-size:4rem;
+.magic-number, .magic-value {
+  font-size:3rem;
   font-weight: bold;
   text-align: center;
 	display:inline;
 }
-.magic-value {
-	font-size:4rem;
-	font-weight: bold;
-	text-align: center;
-	display: inline;
-}
+
 .magic-text {
 	clear:both;
 	text-align: center;
@@ -835,9 +773,9 @@ color:inherit;
   position: relative;
   /*Don't really need this just for demo styling*/
 
-  float: left;
+  text-align:center;
   width: 165px;
-  margin: 0px 2px;
+  margin: auto
 }
 
 /*To remove button from IE11, thank you Matt */
@@ -1068,9 +1006,162 @@ display:none;
 	}
 .print-icon {
 	font-size: 2rem;
-	padding-bottom: 10px;
 	display: block;
+	vertical-align: inherit;
+	position:relative;
+
+}
+.print-icon-results {
+
 }
 
+.print-svg {
+	width:40px;
+}
+
+.filter-svg-print {
+	filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+}
+
+
+/* SEARCH BAR PLUGIN */
+.probox, div.asl_m .probox .proinput input {
+	height:50px !important;
+}
+.proinput input {
+	font-size: 1rem !important;
+	font-family: SuisseRegular !important;
+}
+.proclose, .promagnifier, .proloading {
+	height: 50px !important;
+	width:50px !important;
+}
+/* SITE MAP */
+
+a::after {
+    content: "" !important;
+	}
+
+
+/*------------------------------------*\
+    RESPONSIVE
+\*------------------------------------*/
+
+@media only screen and (min-width:320px) {
+
+}
+@media only screen and (min-width:480px) {
+
+	h1.h1-home {
+		font-size:2.5rem;
+	}
+
+
+	.wp-block-coolech-innerblock {
+		font-size:1.875rem;
+		line-height: 1.2;
+	}
+
+	.selectdiv {
+		float: left;
+		width: 165px;
+		margin: 0px 2px;
+	}
+	#selectcolumn {
+		display: flex;
+		justify-content: center;
+		flex-wrap:wrap;
+	}
+
+	#logo {
+		font-size: 2.5rem;
+	}
+	div.text-intro {
+		font-size: 2.5rem;
+	}
+	header.masthead {
+		height: 50vh;
+		min-height: 40rem;
+		padding-top: 0px;
+		padding-bottom: 0;
+	}
+
+}
+@media only screen and (min-width:768px) {
+
+	.cat_cal {
+		margin-bottom: 0px;
+	}
+
+		section {
+			padding: 50px 0px;
+		}
+
+		h1.case-study {
+			padding-bottom: 2rem;
+		}
+
+		#logo {
+			padding:0px 5px 0px 20px;
+		}
+}
+@media only screen and (min-width:1024px) {
+
+	.magic-number, .magic-value  {
+		font-size: 4rem;
+	}
+
+	section {
+		padding: 100px 0px;
+	}
+
+	header.masthead {
+		height: 100vh;
+		min-height: 40rem;
+		padding-bottom: 0;
+	}
+	.dropbtn {
+		padding: 20px 3px;
+	}
+	#main-menu2 {
+		align-items: center;
+	}
+	.navbar-main.navbar-expand-md {
+		justify-content: space-between;
+	}
+}
+@media only screen and (min-width:1140px) {
+	h1.industrial {
+		font-size: 6rem;
+	}
+	.navbar-nav, .menu-finale {
+	 display:flex !important;
+ }
+ .btn-responsive-menu {
+	 display:none;
+ }
+	.dropbtn {
+		padding: 20px 5px;
+	}
+
+}
+@media only screen and (min-width:1280px) {
+	.dropbtn {
+		padding: 20px 12px;
+	}
+	#logo {
+		padding:0px 20px;
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	   only screen and (min-resolution:144dpi) {
+
+}
+
+@media screen and (max-width: 767px) {
+  .dropdown-menu > li {
+    display: block;
+  }
+}
 
 @import url("css/theme.css");

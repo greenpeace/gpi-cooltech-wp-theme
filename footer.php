@@ -1,71 +1,62 @@
-			<!-- footer -->
-			<footer class="footer" role="contentinfo">
-				<section id="footer-form">
-
-				<div class="container">
-					<div class="row">
-							<div class="col-md-7 offset-md-2">
-								<h1> <?php echo get_option('footer_textbig'); ?></h1>
-								<p> <?php echo get_option('footer_subtitle'); ?></p>
-								<a href="<?php echo site_url(); ?>/<?php echo get_option('footer_button_url'); ?>" class="btn-300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
-							</div>
-					</div>
-
-
-
-
+	<!-- footer -->
+	<footer class="footer" role="contentinfo">
+		<section id="footer-form">
+					<div class="container">
+						<div class="row">
+								<div class="col-md-7 offset-md-2">
+									<h1> <?php echo get_option('footer_textbig'); ?></h1>
+									<p> <?php echo get_option('footer_subtitle'); ?></p>
+									<a href="<?php echo site_url(); ?>/<?php echo get_option('footer_button_url'); ?>" class="btn-300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
+								</div>
+						</div>
 						<div class="row">
 							<div class="col-sm-12 line"> </div>
 						</div>
-					<div class="row">
-						<div class="col-md-8"><h2> COOL TECHNOLOGIES </h2></div>
+						<div class="row">
+							<div class="col-md-8"><div class="footer-title"> COOLTECHNOLOGIES </div></div>
+							<div class="col-md-4">
+								<h4> <?php	_e("CONTACT US","cooltech"); ?> </h4>
+								<h5>	<a class="text-white" href="mailto:info@cooltechnologies.org">info@cooltechnologies.org</a>
+								</h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-8 align-self-end">
+								<a href="https://eia-international.org/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png"></a>
+								<a href="https://www.greenpeace.org/global/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png"></a>
+							</div>
 						<div class="col-md-4">
-							<h4>	CONTACT US </h4>
-							<h5>	<a class="text-white" href="mailto:info@cooltechnologies.org">info@cooltechnologies.org</a></h5>
-
-											</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8 align-self-end">
-					<a href="https://eia-international.org/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png"></a>
-					<a href="https://www.greenpeace.org/global/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png"></a>
+							<span class="note-font">
+								<?php echo get_option('footer_small_text'); ?>
+							</span>
+						</div>
 					</div>
-					<div class="col-md-4">
-						<span class="note-font">
-					<?php echo get_option('footer_small_text'); ?>
-</span>
-
-
-
 				</div>
-			</div>
-				</div>
-				</section>
-
+			</section>
 				<div class="container">
-					<div class="row">
-						<div class="col-sm-12">
-				<nav class="navbar navbar-last navbar-dark navbar-expand-md">	<?php wp_nav_menu(
-						array(
-							'theme_location'  => 'footer-menu',
-							'container'       => 'div',
-							'container_class' => 'collapse navbar-collapse',
-							'container_id'    => 'navbarNavDropdown',
-							'menu_class'      => 'navbar-nav navbar-top m-auto',
-							'fallback_cb'     => '',
-							'menu_id'         => 'main-menu',
-							'depth'           => 1,
-							'walker'          => new WP_Bootstrap_Navwalker(),
-						)
-					); ?></nav>
-				</div>
-				</div>
-				</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<nav class="navbar navbar-last navbar-dark navbar-expand-md">	<?php wp_nav_menu(
+									array(
+										'theme_location'  => 'footer-menu',
+										'container'       => 'div',
+										'container_class' => 'collapse navbar-collapse',
+										'container_id'    => 'navbarNavDropdown',
+										'menu_class'      => 'navbar-nav navbar-top m-auto',
+										'fallback_cb'     => '',
+										'menu_id'         => 'main-menu',
+										'depth'           => 1,
+										'walker'          => new WP_Bootstrap_Navwalker(),
+									)
+						); ?></nav>
+							</div>
+						</div>
+					</div>
 
-			</footer>
+				</footer>
 			<!-- /footer -->
 
-		</div>
+
 <?php
 $menu = new NestedMenu('Menu 1');
 
@@ -74,9 +65,10 @@ $menu = new NestedMenu('Menu 1');
 //	print_r($res);
 
  ?>
-		<div id="sidr">
+	<div id="sidr">
 			<div class="close_menu"> <img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_ios-close.svg" width="60"></div>
 			<ul class="mobile-menu-first">
+				<li><a href="<?php echo site_url(); ?>"> Home </a></li>
   <!-- Your content -->
 	<?php
 

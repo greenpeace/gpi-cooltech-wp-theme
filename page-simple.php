@@ -2,7 +2,6 @@
 /**
  * Template Name: Simple Page
  *
- * Template for displaying case studies
  *
  * @package understrap
  */

@@ -2,6 +2,9 @@
 .navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
   background-color: #165774; }
 
+.basic-background, header.masthead.basic-background {
+  background-color: #D3E9F2; }
+
 #logo span.cool {
   color: #2290BE; }
 
@@ -39,6 +42,9 @@ h1.glossary {
   color: #2290BE; }
 
 /* H3 titles */
+section.air-conditioning .print-svg {
+  fill: #2290BE; }
+
 section.air-conditioning-numbers {
   background-color: white; }
   section.air-conditioning-numbers .magic-up {
@@ -65,6 +71,9 @@ section.category-list.air-conditioning, section.results.air-conditioning {
 
 .air-conditioning .text-intro {
   color: #2290BE; }
+
+section.refrigeration .print-svg {
+  fill: #165774; }
 
 section.refrigeration-numbers {
   background-color: white; }
@@ -93,6 +102,9 @@ section.category-list.refrigeration, section.results.refrigeration {
 .refrigeration .text-intro {
   color: #165774; }
 
+section.heat-pumps .print-svg {
+  fill: #12316A; }
+
 section.heat-pumps-numbers {
   background-color: white; }
   section.heat-pumps-numbers .magic-up {
@@ -119,6 +131,9 @@ section.category-list.heat-pumps, section.results.heat-pumps {
 
 .heat-pumps .text-intro {
   color: #12316A; }
+
+section.components .print-svg {
+  fill: #4DAEEF; }
 
 section.components-numbers {
   background-color: white; }
@@ -151,7 +166,7 @@ section.category-list h3 {
   color: #165774;
   font-family: "SuisseAntique"; }
 
-header.masthead.second-taxonomy {
+header.masthead.second-taxonomy, section.archive-glossary {
   background-color: #F1F1F1; }
 
 /* RESULTS */
@@ -162,7 +177,7 @@ article.element {
   margin-bottom: 1rem;
   min-height: 200px; }
 
-article.element.equipment {
+article.element.equipment, article.element.page {
   background-color: white; }
 
 article.element.case-study {
@@ -171,8 +186,11 @@ article.element.case-study {
 .result_meta_title, .result_title {
   color: #2290BE; }
 
-.result_meta_content {
+.result_title {
   font-family: "SuisseAntique"; }
+
+.result_meta_content {
+  font-family: "SuisseRegular"; }
 
 /* PAGE CASE STUDY */
 .col-card {
@@ -198,8 +216,10 @@ article.generic-page h2 {
 h2.glossary_letter, h2.glossary_term {
   color: #2290BE; }
 
+h1.glossary, h1.case-study {
+  font-family: "SuisseAntique"; }
+
 h1.glossary {
-  font-family: "SuisseAntique";
   padding-bottom: 4rem; }
 
 .selectable {

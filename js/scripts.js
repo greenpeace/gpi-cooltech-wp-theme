@@ -9,6 +9,7 @@
 
 				/* MOBILE MENU */
             $('#responsive-menu-button').sidr();
+
             $(".close_menu").click(function() {
                 jQuery.sidr('close', 'sidr');
                 $('#responsive-menu-button').sidr("close");
@@ -70,16 +71,6 @@
                 });
             }
 
-      /*      var waypoints = $('.wp-block-cooltech-block-magic-numbers').waypoint({
-                handler: function(direction) {
-                    //notify(this.element.id + ' hit');
-                  //  console.log("RAGGIUNTO");
-                    $('.magic-number').each(function() {
-                        startCounter($(this));
-                    });
-                },
-                offset: 100
-            }) */
 
 						/* MENU */
             $('li.dropdown').on('hover', function() {
@@ -96,34 +87,19 @@
 							//	$(".submenu").remove();
 							 $("ul.dropdown-menu").css("display","none");
 						});
-				/*		$('li.dropdown a').on('mouseout', function() {
-								$(this).parent().removeClass("show");
-								console.log("mouseout li");
-						});
-
-            $('li.dropdown a').on('mouseenter', function() {
-                $(this).parent().addClass("show");
-                console.log("mousenter a");
-            });
-            $('ul.dropdown-menu').on('mouseleave', function() {
-                $(this).parent().removeClass("show");
-                console.log("mouseleave ul");
-            }); */
 
 						/* page case study */
 
-
-
-            var indirizzo = "http://127.0.0.1/wp-greenpeace/wordpress/wp-admin/admin-ajax.php";
-            $(".filter2").change(function() {
+            $(".select-filter-2").change(function() {
                 $.ajax({
                     type: 'POST',
-                    url: indirizzo,
+                    url: ajax_url,
                     data: {
                         manufacturer: $("#manufacturer").val(),
                         refrigerant: $("#refrigerant").val(),
                         country: $("#country").val(),
                         application: $("#application").val(),
+                        sector:$("#sector").val(),
                         action: 'filterElements'
                     },
                     success: function(data, textStatus, XMLHttpRequest) {

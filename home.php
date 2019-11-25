@@ -1,10 +1,8 @@
 <?php
 /**
- * Template Name: Page Home
+ * Template Name: Homepage Full Width
  *
- * Template for displaying case studies
  *
- * @package understrap
  */
  get_header();
 
@@ -19,13 +17,12 @@
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+
 	        </div>
-	        <div class="col-lg-6 align-self-baseline">
-	          <p class="text-white-75 font-weight-light mb-5"></p>
-					<?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
-	    <!--    <input type="text" name="s" class="form-control search-autocomplete" placeholder="Search"> -->
-	        </div>
+	        <div class="col-lg-5 align-self-baseline">
+              <?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+            </div>
 	      </div>
 	    </div>
 	  </header>
@@ -94,7 +91,7 @@ var current=0;
  function nextBackground() {
    body.css(
      "background-image", // Use background-image instead of `background`
-      "url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
+      "linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url("+backgrounds[++current % backgrounds.length]+")" // no need to `current = `
    );
    setTimeout(nextBackground, <?php echo get_option("time_slide"); ?>);
  }

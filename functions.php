@@ -32,6 +32,12 @@ if (!isset($content_width))
     $content_width = 900;
 }
 
+add_filter( "asl_result_image_after_prostproc", "asp_cf_image", 1, 1 );
+
+function asp_cf_image( $image ) {
+		return "<img src='aaaa'>";
+	}
+
 add_post_type_support( 'page', 'excerpt' );
 
 if (function_exists('add_theme_support'))
@@ -117,6 +123,8 @@ function cooltech_header_scripts()
         wp_enqueue_script('modernizr'); // Enqueue it!
 
         wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), time()); // Custom scripts
+				wp_localize_script('cooltechscripts','ajax_url', admin_url( 'admin-ajax.php' ));
+
         wp_enqueue_script('cooltechscripts'); // Enqueue it!
 
 				wp_register_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), '4.3.0'); // Conditionizr
@@ -128,19 +136,7 @@ function cooltech_header_scripts()
 				wp_register_script('sidr', get_template_directory_uri()  . '/js/jquery.sidr.min.js', array( 'jquery' ));
 				wp_enqueue_script('sidr');
 
-				wp_register_script('ionicon', '//unpkg.com/ionicons@4.5.10-0/dist/ionicons.js',false,false,true);
-				wp_enqueue_script('ionicon');
 
-		//		wp_register_script('jquery-ui', get_template_directory_uri()  . '/js/jquery-ui.min.js', array( 'jquery' ));
-		//		wp_enqueue_script('jquery-ui');
-
-wp_localize_script(
-		'global',
-		'global',
-		array(
-			'ajax' => admin_url( 'admin-ajax.php' ),
-		)
-	);
 
 }
 
@@ -173,9 +169,6 @@ function cooltech_styles()
 
 		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
 		wp_enqueue_style('sidr-css');
-
-		wp_register_style('ionicon-css',  '//unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css');
-		wp_enqueue_style('ionicon-css');
 
 }
 
@@ -260,6 +253,20 @@ function my_remove_recent_comments_style()
         $wp_widget_factory->widgets['WP_Widget_Recent_Comments'],
         'recent_comments_style'
     ));
+}
+
+function add_http($url) {
+	$parsed = parse_url($url);
+	if (empty($parsed['scheme'])) {
+    $url = 'http://'.ltrim($url, '/');
+	}
+  return $url;
+}
+
+function createLink($text) {
+	$preg_match = '@(http)?(s)?(://)?(([a-zA-Z])([-\w]+\.)+([^\s\.]+[^\s]*)+[^,.\s])@';
+	$text = preg_replace($preg_match, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $text);
+	return $text;
 }
 
 // Pagination for paged posts, Page 1, Page 2, Page 3, with Next and Previous Links, No plugin
@@ -755,13 +762,13 @@ switch(count($terms)) {
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div style=""> <img src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
+								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
 							<?php
 							}
 							?>
-								<div><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
-								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
+								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?></h3> </div>
+								<div class="cat_desc text-sm-left align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
+								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> <?php _e("Enter Database", "cooltech"); ?> </a>
 								</div>
 						</div>
 		<?php } ?>
@@ -857,8 +864,58 @@ function get_tags_in_use($category_ID, $taxonomy){
 		add_action( 'wp_ajax_filterElements', 'filterElements' );
 
 		function filterElements() {
+			$tax_query = array('relation' => 'AND');
+    	if (isset( $_POST["sector"]))
+    	{
+        $tax_query[] =  array(
+                'taxonomy' => 'type',
+                'field' => 'slug',
+                'terms' =>  $_POST["sector"]
+            );
+    }
+    if ($_POST["application"]!="0")
+    {
+        $tax_query[] =  array(
+                'taxonomy' => 'application',
+                'field' => 'slug',
+                'terms' => $_POST["application"]
+            );
+    }
+    if ($_POST["country"]!="0")
+    {
+        $tax_query[] =  array(
+                'taxonomy' => 'country',
+                'field' => 'slug',
+                'terms' => $_POST["country"]
+            );
+    }
+		if ($_POST["manufacturer"]!="0")
+		{
+				$tax_query[] =  array(
+								'taxonomy' => 'manufacturer',
+								'field' => 'slug',
+								'terms' => $_POST["manufacturer"]
+						);
+		}
+		if ($_POST["refrigerant"]!="0")
+		{
+				$tax_query[] =  array(
+								'taxonomy' => 'refrigerant',
+								'field' => 'slug',
+								'terms' => $_POST["refrigerant"]
+						);
+		}
 
-				echo $_POST["manufacturer"];
+
+
+			$args = array(
+    'post_type' => array("equipment","case-study"),
+    'tax_query' => $tax_query,
+	);
+
+			// print_r($tax_query);
+			$posts=get_posts($args);
+			print_r($posts);
 
 		}
 
