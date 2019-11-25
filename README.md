@@ -33,8 +33,9 @@
 
 ## Preloaded Functions (functions.php)
 
-### Shortcodes:
-**fn** footnotes
+## Shortcodes:
+###fn footnotes
+
  attributes:
  nourl - the footnotes has no url
 >ex: [fn nourl=1]text[/fn]
@@ -49,6 +50,8 @@ id - id of the glossary term
 **cooltech_cat** it displays the sectors (air conditioning, etc..) or subsectors in columns.
 If logo=1 it displays icons.
 > (ex: [cooltech_cat logo=1])
+
+**
 
 ### Gutenberg Blocks
 All the blocks are developed for the homepage that has full width template, but can be used also in other templates.

@@ -153,7 +153,9 @@ header.masthead.second-taxonomy, section.archive-glossary {
 header.masthead.second-taxonomy h1 {
 
 }
-
+.tab-content {
+  margin-bottom: 2rem;
+}
 /* RESULTS */
 section.results {
   background-color: $background1;
@@ -162,7 +164,7 @@ article.element {
   margin-bottom:$margin-bottom;
   min-height: 200px;
 }
-article.element.equipment, article.element.page {
+article.element.equipment, article.element.page, article.element.glossary {
   background-color: white;
 }
 article.element.case-study {
