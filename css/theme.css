@@ -169,6 +169,9 @@ section.category-list h3 {
 header.masthead.second-taxonomy, section.archive-glossary {
   background-color: #F1F1F1; }
 
+.tab-content {
+  margin-bottom: 2rem; }
+
 /* RESULTS */
 section.results {
   background-color: rgba(33, 154, 185, 0.2); }
@@ -177,7 +180,7 @@ article.element {
   margin-bottom: 1rem;
   min-height: 200px; }
 
-article.element.equipment, article.element.page {
+article.element.equipment, article.element.page, article.element.glossary {
   background-color: white; }
 
 article.element.case-study {

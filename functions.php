@@ -762,7 +762,7 @@ switch(count($terms)) {
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/<?php echo $t->slug;?>.svg" width="120"> </div>
+								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" width="120"> </div>
 							<?php
 							}
 							?>
@@ -797,10 +797,10 @@ $args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
 		<div class="container h-100">
 			<div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-center">
-						<div class="case-study-label"> CASE STUDY </div>
+						<div class="case-study-label"><?php _e("CASE STUDY","cooltech"); ?> </div>
 	          <h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/case-studies"><?php echo $cs[0]->post_title; ?></a></h1>
 						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div><div>
-						<a class="btn btn-primary btn-arrow btn-300 m-auto" href="<?php echo site_url(); ?>/case-studies"> More Case Studies <i class="i-arrow-right-w"></i></a></div>
+						<a class="btn btn-primary btn-arrow btn-300 m-auto" href="<?php echo site_url(); ?>/case-studies"> <?php _e("More Case Studies","cooltech"); ?> <i class="i-arrow-right-w"></i></a></div>
 	        </div>
 	       <!-- <div class="col-lg-8 align-self-baseline">
 
@@ -906,9 +906,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 						);
 		}
 
-
-
-			$args = array(
+		$args = array(
     'post_type' => array("equipment","case-study"),
     'tax_query' => $tax_query,
 	);

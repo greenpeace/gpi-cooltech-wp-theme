@@ -20,8 +20,11 @@
 	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
 
 	        </div>
-	        <div class="col-lg-5 align-self-baseline">
-              <?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+	        <div class="col-lg-5 align-self-baseline" style="margin-top:1rem">
+              <?php if ( shortcode_exists('wpdreams_ajaxsearchlite') ) {
+                echo do_shortcode('[wpdreams_ajaxsearchlite]');
+                }
+              ?>
             </div>
 	      </div>
 	    </div>

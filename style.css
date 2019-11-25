@@ -415,6 +415,8 @@ header.masthead {
     background-attachment: scroll;
     background-size: cover;
 		background-color:black;
+		padding-top:72px;
+		padding-bottom:72px;
 }
 header.masthead.case-study {
 	padding-top:5rem;
@@ -557,7 +559,7 @@ font-size: 0.8rem;
 .i-arrow-right {
 	background-image: url("img/arrow-right.svg");
 	background-repeat: no-repeat;
-	background-position: right 20px center;
+	background-position: right center;
 	background-size:contain;
 	width:60px;
 	height: 20px;
@@ -613,7 +615,7 @@ font-size: 0.8rem;
 .i-arrow-right-w {
 	background-image: url("img/arrow-right-white.svg");
 	background-repeat: no-repeat;
-	background-position: right 20px center;
+	background-position: right center;
 	background-size:contain;
 	width:60px;
 	height: 20px;
@@ -1025,7 +1027,11 @@ display:none;
 
 
 /* SEARCH BAR PLUGIN */
-.probox, div.asl_m .probox .proinput input {
+
+.proinput input[type=submit] {
+	display:none;
+}
+.probox, div.asl_m .probox .proinput input[type=search], .proinput input[type=text] {
 	height:50px !important;
 }
 .proinput input {
@@ -1038,7 +1044,7 @@ display:none;
 }
 /* SITE MAP */
 
-a::after {
+.sitemap a::after {
     content: "" !important;
 	}
 
@@ -1119,6 +1125,7 @@ a::after {
 		height: 100vh;
 		min-height: 40rem;
 		padding-bottom: 0;
+		padding-top:0;
 	}
 	.dropbtn {
 		padding: 20px 3px;
