@@ -410,8 +410,6 @@ font-size:3rem;
     PAGES
 \*------------------------------------*/
 header.masthead {
-    padding-top: 10rem;
-    padding-bottom: calc(10rem - 72px);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -1014,7 +1012,7 @@ display:none;
 
 }
 .print-icon-results {
-	top:-50px;
+
 }
 
 .print-svg {
@@ -1038,6 +1036,11 @@ display:none;
 	height: 50px !important;
 	width:50px !important;
 }
+/* SITE MAP */
+
+a::after {
+    content: "" !important;
+	}
 
 
 /*------------------------------------*\
@@ -1079,7 +1082,7 @@ display:none;
 	header.masthead {
 		height: 50vh;
 		min-height: 40rem;
-		padding-top: 72px;
+		padding-top: 0px;
 		padding-bottom: 0;
 	}
 
@@ -1095,18 +1098,12 @@ display:none;
 		}
 
 		h1.case-study {
-			padding-bottom: 4rem;
+			padding-bottom: 2rem;
 		}
 
 		#logo {
 			padding:0px 5px 0px 20px;
 		}
-
-
-
-
-
-
 }
 @media only screen and (min-width:1024px) {
 
@@ -1121,25 +1118,22 @@ display:none;
 	header.masthead {
 		height: 100vh;
 		min-height: 40rem;
-		padding-top: 72px;
 		padding-bottom: 0;
 	}
-
 	.dropbtn {
 		padding: 20px 3px;
 	}
-
 	#main-menu2 {
 		align-items: center;
 	}
-
 	.navbar-main.navbar-expand-md {
 		justify-content: space-between;
 	}
-
-
 }
 @media only screen and (min-width:1140px) {
+	h1.industrial {
+		font-size: 6rem;
+	}
 	.navbar-nav, .menu-finale {
 	 display:flex !important;
  }
@@ -1158,7 +1152,6 @@ display:none;
 	#logo {
 		padding:0px 20px;
 	}
-
 }
 @media only screen and (-webkit-min-device-pixel-ratio:1.5),
 	   only screen and (min-resolution:144dpi) {

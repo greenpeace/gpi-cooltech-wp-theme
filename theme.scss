@@ -147,7 +147,7 @@ section.sector-first {
   }
 
 
-header.masthead.second-taxonomy {
+header.masthead.second-taxonomy, section.archive-glossary {
 	background-color: $background-grey;
 }
 header.masthead.second-taxonomy h1 {
@@ -208,8 +208,10 @@ article.generic-page h2 {
 h2.glossary_letter, h2.glossary_term {
   color:$first-color;
 }
-h1.glossary {
+h1.glossary, h1.case-study {
   font-family:$second-font;
+}
+h1.glossary {
   padding-bottom:$padding-bottom-title;
 }
 .selectable {

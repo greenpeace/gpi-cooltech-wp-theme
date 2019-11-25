@@ -123,6 +123,8 @@ function cooltech_header_scripts()
         wp_enqueue_script('modernizr'); // Enqueue it!
 
         wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), time()); // Custom scripts
+				wp_localize_script('cooltechscripts','ajax_url', admin_url( 'admin-ajax.php' ));
+
         wp_enqueue_script('cooltechscripts'); // Enqueue it!
 
 				wp_register_script('bootstrapjs', get_template_directory_uri() . '/js/bootstrap.bundle.min.js', array(), '4.3.0'); // Conditionizr
@@ -135,13 +137,6 @@ function cooltech_header_scripts()
 				wp_enqueue_script('sidr');
 
 
-wp_localize_script(
-		'global',
-		'global',
-		array(
-			'ajax' => admin_url( 'admin-ajax.php' ),
-		)
-	);
 
 }
 
@@ -773,7 +768,7 @@ switch(count($terms)) {
 							?>
 								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?></h3> </div>
 								<div class="cat_desc text-sm-left align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
-								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> Enter Database  </a>
+								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> <?php _e("Enter Database", "cooltech"); ?> </a>
 								</div>
 						</div>
 		<?php } ?>
@@ -869,8 +864,58 @@ function get_tags_in_use($category_ID, $taxonomy){
 		add_action( 'wp_ajax_filterElements', 'filterElements' );
 
 		function filterElements() {
+			$tax_query = array('relation' => 'AND');
+    	if (isset( $_POST["sector"]))
+    	{
+        $tax_query[] =  array(
+                'taxonomy' => 'type',
+                'field' => 'slug',
+                'terms' =>  $_POST["sector"]
+            );
+    }
+    if ($_POST["application"]!="0")
+    {
+        $tax_query[] =  array(
+                'taxonomy' => 'application',
+                'field' => 'slug',
+                'terms' => $_POST["application"]
+            );
+    }
+    if ($_POST["country"]!="0")
+    {
+        $tax_query[] =  array(
+                'taxonomy' => 'country',
+                'field' => 'slug',
+                'terms' => $_POST["country"]
+            );
+    }
+		if ($_POST["manufacturer"]!="0")
+		{
+				$tax_query[] =  array(
+								'taxonomy' => 'manufacturer',
+								'field' => 'slug',
+								'terms' => $_POST["manufacturer"]
+						);
+		}
+		if ($_POST["refrigerant"]!="0")
+		{
+				$tax_query[] =  array(
+								'taxonomy' => 'refrigerant',
+								'field' => 'slug',
+								'terms' => $_POST["refrigerant"]
+						);
+		}
 
-				echo $_POST["manufacturer"];
+
+
+			$args = array(
+    'post_type' => array("equipment","case-study"),
+    'tax_query' => $tax_query,
+	);
+
+			// print_r($tax_query);
+			$posts=get_posts($args);
+			print_r($posts);
 
 		}
 

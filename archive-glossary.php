@@ -5,7 +5,7 @@ $letters = range('A', 'Z');
 
 	<main role="main">
 		<!-- section -->
-		<section>
+		<section class="archive-glossary">
 
 		<div class="container">
 			<div class="row">

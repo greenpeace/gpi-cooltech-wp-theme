@@ -1,10 +1,8 @@
 <?php
 /**
- * Template Name: Page Home
+ * Template Name: Homepage Full Width
  *
- * Template for displaying case studies
  *
- * @package understrap
  */
  get_header();
 
@@ -20,12 +18,11 @@
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
 	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+
 	        </div>
 	        <div class="col-lg-5 align-self-baseline">
-	          <p class="text-white-75 font-weight-light mb-5"></p>
-					<?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
-	    <!--    <input type="text" name="s" class="form-control search-autocomplete" placeholder="Search"> -->
-	        </div>
+              <?php	echo do_shortcode('[wpdreams_ajaxsearchlite]'); ?>
+            </div>
 	      </div>
 	    </div>
 	  </header>
