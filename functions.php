@@ -12,7 +12,7 @@
 
 
 $cooltech_includes = array(
-	'/class-wp-bootstrap-navwalker.php', '/blocks.php'   // Load custom WordPress nav walker.
+		'/class-element.php','/class-wp-bootstrap-navwalker.php', '/blocks.php'   // Load custom WordPress nav walker.
 );
 
 foreach ( $cooltech_includes as $file ) {
@@ -215,8 +215,7 @@ function add_slug_to_body_class($classes)
     } elseif (is_singular()) {
         $classes[] = sanitize_html_class($post->post_name);
     }
-
-    return $classes;
+  return $classes;
 }
 
 // If Dynamic Sidebar Exists
@@ -762,7 +761,7 @@ switch(count($terms)) {
 			<?php foreach ( $terms  as $t ) { ?>
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" width="120"> </div>
+								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" width="120" alt="Icon <?php echo $t->name; ?>"> </div>
 							<?php
 							}
 							?>
@@ -800,7 +799,7 @@ $args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
 						<div class="case-study-label"><?php _e("CASE STUDY","cooltech"); ?> </div>
 	          <h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/case-studies"><?php echo $cs[0]->post_title; ?></a></h1>
 						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div><div>
-						<a class="btn btn-primary btn-arrow btn-300 m-auto" href="<?php echo site_url(); ?>/case-studies"> <?php _e("More Case Studies","cooltech"); ?> <i class="i-arrow-right-w"></i></a></div>
+						<a class="btn btn-primary btn-arrow btn--300 m-auto" href="<?php echo site_url(); ?>/case-studies"> <?php _e("More Case Studies","cooltech"); ?> <i class="i-arrow-right-w"></i></a></div>
 	        </div>
 	       <!-- <div class="col-lg-8 align-self-baseline">
 
@@ -851,17 +850,17 @@ function get_tags_in_use($category_ID, $taxonomy){
 				$tags=array("id"=>$tag_id,"name"=>$tag_name,"slug"=>$tag_slug);
 				$all_tags[$x]= $tags;
 				$x++;
-			//	print_r($all_tags);
 
-      endforeach;
-    	endwhile; endif;
-	//	print_r($all_tags);
-  		return unique_multidim_array($all_tags,"id");
+      	endforeach;
+    		endwhile; endif;
+				//	print_r($all_tags);
+  			return unique_multidim_array($all_tags,"id");
 		}
 
 		// create custom Ajax call for WordPress
 		add_action( 'wp_ajax_nopriv_filterElements', 'filterElements' );
 		add_action( 'wp_ajax_filterElements', 'filterElements' );
+
 
 		function filterElements() {
 			$tax_query = array('relation' => 'AND');
@@ -905,15 +904,53 @@ function get_tags_in_use($category_ID, $taxonomy){
 								'terms' => $_POST["refrigerant"]
 						);
 		}
+		if ($_POST["tt"]!="0")
+		{
+				$tax_query[] =  array(
+								'taxonomy' => 'technology-type',
+								'field' => 'slug',
+								'terms' => $_POST["tt"]
+						);
+		}
+		if($_POST["type"]!="0") {
+			 $type=$_POST["type"];
+		} else {
+			$type=array("equipment","case-study");
+		}
 
 		$args = array(
-    'post_type' => array("equipment","case-study"),
+    'post_type' => $type,
     'tax_query' => $tax_query,
 	);
+			$elements=array();
 
 			// print_r($tax_query);
 			$posts=get_posts($args);
-			print_r($posts);
+			$x=0;
+			foreach($posts as $po) {
+
+				$p=new Element($po);
+				$args=array( 'fields' => 'names' );
+
+				$p->application=wp_get_post_terms( $p->post->ID, "application", $args );
+				$p->technology_type=wp_get_post_terms( $p->post->ID, "technology-type", $args );
+				$p->manufacturer=wp_get_post_terms( $p->post->ID, "manufacturer", $args );
+				$p->refrigerant=wp_get_post_terms( $p->post->ID, "refrigerant", $args );
+				$p->country=wp_get_post_terms( $p->post->ID, "country", $args );
+				$p->energy_efficency=get_post_meta($p->post->ID,"energy_efficency",true);
+				$source=get_post_meta($p->post->ID,"source",true);
+				if($source) {
+					$p->source=$source;
+				}
+				$p->web=get_post_meta($p->post->ID,"website",true);
+				if($web) {
+					$p->web=$web;
+				}
+				$p->sector=$p->get_sector();
+				array_push($elements,$p);
+			}
+
+			echo json_encode($elements);
 
 		}
 
@@ -1382,6 +1419,17 @@ function display_footer_subtitle(){
 <textarea rows="5" cols="50" name="footer_subtitle"><?php echo get_option('footer_subtitle'); ?> </textarea>
 
 <?php
+}
+
+add_action( 'pre_get_posts', 'custom_get_posts' );
+
+function custom_get_posts( $query ) {
+
+  if( (is_category() || is_archive()) && $query->is_main_query() ) {
+    $query->query_vars['orderby'] = 'name';
+    $query->query_vars['order'] = 'ASC';
+  }
+
 }
 
 
