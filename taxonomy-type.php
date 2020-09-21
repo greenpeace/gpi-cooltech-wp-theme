@@ -208,11 +208,12 @@ if($n1 && $n2 && $n3) {
 				<div id="results">
 				<?php
 				$x=0;
-			//	query_posts(array("orderby"=>"title","order"=>"ASC"));
+				// query_posts(array("orderby"=>"title","order"=>"ASC"));
+				query_posts($query_string."&orderby=title&order=ASC");
 				if (have_posts()): while (have_posts()) : the_post();
 
 							$el=new Element($post);
-							print_r($el);
+						//	print_r($el);
 
 
 						$args=array("childless"=>true);

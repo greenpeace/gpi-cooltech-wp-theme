@@ -158,9 +158,9 @@
 
 
 
-            /* display the selected elements in categories */
-            $(".select-filter").change(function() {
-                /* reset all the elements */
+            /* display the selected elements in categories
+          $(".select-filter").change(function() {
+
                 $(".element").css("display", "block");
                 $(".select-filter").each(function(index) {
                     //	console.log( index + ": " + $( this ).val() );
@@ -169,7 +169,7 @@
                     }
                 });
 
-            });
+            }); */
 
         });
 

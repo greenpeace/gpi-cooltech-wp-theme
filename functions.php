@@ -921,6 +921,9 @@ function get_tags_in_use($category_ID, $taxonomy){
 		$args = array(
     'post_type' => $type,
     'tax_query' => $tax_query,
+		'orderby' => 'title',
+		'order'=>"ASC",
+		'posts_per_page'=>-1 
 	);
 			$elements=array();
 
