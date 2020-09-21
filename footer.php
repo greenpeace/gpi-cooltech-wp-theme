@@ -6,14 +6,14 @@
 								<div class="col-md-7 offset-md-2">
 									<h1> <?php echo get_option('footer_textbig'); ?></h1>
 									<p> <?php echo get_option('footer_subtitle'); ?></p>
-									<a href="<?php echo site_url(); ?>/<?php echo get_option('footer_button_url'); ?>" class="btn-300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
+									<a href="<?php echo site_url(); ?>/<?php echo get_option('footer_button_url'); ?>" class="btn--300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
 								</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12 line"> </div>
+							<div class="col-sm-12 footer__line"> </div>
 						</div>
 						<div class="row">
-							<div class="col-md-8"><div class="footer-title"> COOLTECHNOLOGIES </div></div>
+							<div class="col-md-8"><div class="footer__title"> COOLTECHNOLOGIES </div></div>
 							<div class="col-md-4">
 								<h4> <?php	_e("CONTACT US","cooltech"); ?> </h4>
 								<h5>	<a class="text-white" href="mailto:info@cooltechnologies.org">info@cooltechnologies.org</a>
@@ -22,8 +22,8 @@
 						</div>
 						<div class="row">
 							<div class="col-md-8 align-self-end">
-								<a href="https://eia-international.org/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png"></a>
-								<a href="https://www.greenpeace.org/global/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png"></a>
+								<a href="https://eia-international.org/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/eia-logo1.png" alt="Logo Eia International"></a>
+								<a href="https://www.greenpeace.org/global/" target="_blank">	<img src="<?php echo get_template_directory_uri() ?>/img/greenpeace-logo2.png" alt="Logo Greenpeace"></a>
 							</div>
 						<div class="col-md-4">
 							<span class="note-font">
@@ -56,22 +56,12 @@
 				</footer>
 			<!-- /footer -->
 
-
-<?php
-$menu = new NestedMenu('Menu 1');
-
-//	print_r($menu);
-//	echo "-------------------------------";
-//	print_r($res);
-
- ?>
+<?php $menu = new NestedMenu('Menu 1'); ?>
 	<div id="sidr">
 			<div class="close_menu"> <img src="<?php echo get_template_directory_uri(); ?>/img/_ionicons_svg_ios-close.svg" width="60"></div>
 			<ul class="mobile-menu-first">
 				<li><a href="<?php echo site_url(); ?>"> Home </a></li>
-  <!-- Your content -->
-	<?php
-
+<?php
 	foreach ($menu->items as $item) {
 			if($m->post_parent==0) {
 				$submenu = $menu->get_submenu($item); ?>
@@ -95,12 +85,9 @@ $menu = new NestedMenu('Menu 1');
 		<?php
 			}
 		}
-
   ?>
 	</ul>
 </div>
-
-
 		<!-- /wrapper -->
 		<script
   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
