@@ -75,10 +75,8 @@
 <script>
 
 <?php
-$attimages = get_attached_media('image', $post->ID);
-
-
- ?>
+    $attimages = get_attached_media('image', $post->ID);
+?>
 body=jQuery(".masthead");
 
 var backgrounds = [<?php foreach ($attimages as $image) {

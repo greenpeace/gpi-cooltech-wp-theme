@@ -45,7 +45,6 @@ if($current_term_level==1) {
 						<div><h3 class="<?php echo $parent->slug; ?>"><?php echo get_queried_object()->description; ?></h3></div>
 						<div class="text-full-second"><?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 						?> </div>
-
 				  </div>
 	      </div>
 				<?php $term = $wp_query->queried_object; ?>
@@ -197,7 +196,6 @@ if($n1 && $n2 && $n3) {
 
 			if($term->parent) {
 				?>
-
 				<section class="results <?php echo $parent->slug; ?>">
 					<div class="container">
 						<div class="row">
@@ -207,9 +205,16 @@ if($n1 && $n2 && $n3) {
 								</div>
 							</div>
 						</div>
+				<div id="results">
 				<?php
 				$x=0;
+				// query_posts(array("orderby"=>"title","order"=>"ASC"));
+				query_posts($query_string."&orderby=title&order=ASC");
 				if (have_posts()): while (have_posts()) : the_post();
+
+							$el=new Element($post);
+						//	print_r($el);
+
 
 						$args=array("childless"=>true);
 						$se=wp_get_post_terms( $post->ID, "type", $args );
@@ -228,7 +233,6 @@ if($n1 && $n2 && $n3) {
 				?>
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<!--	<div class="col-sm-6 col-md-4 d-flex pb-3"> -->
 
 					<div class="row d-lg-none">
 								<div class="col-md-12"><h2 class="result_title"><?php the_title(); ?></h2> </div>
@@ -311,7 +315,7 @@ if($n1 && $n2 && $n3) {
 								<div><?php the_content(); ?></div>
 								<?php if($web) {?>
 								<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
-								<div class="result_meta_content result_web"><a href="<?php echo web ?>" target="_blank"><?php echo $web; ?></a></div>
+								<div class="result_meta_content result_web"><a href="<?php echo $web ?>" target="_blank"><?php echo $web; ?></a></div>
 								<?php } ?>
 								<?php if ($source) { ?>
 								<div class="result_meta_title"><a title="<?php echo $source; ?>" class="result_meta_title" href="<?php  echo add_http($source); ?>" target="_blank"><?php _e( 'Source', 'cooltech' ); ?></a></div>
@@ -331,6 +335,7 @@ if($n1 && $n2 && $n3) {
 				<?php
 			}
 			?>
+		</div>
 
 			</div>
 		</div>

@@ -4,7 +4,7 @@
  *
  * Template for displaying case studies
  *
- * @package understrap
+ *
  */
 
 get_header();
