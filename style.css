@@ -1073,7 +1073,7 @@ display:none;
 	}
 	header.masthead {
 		height: 50vh;
-		min-height: 40rem;
+		min-height: 30rem;
 		padding-top: 0px;
 		padding-bottom: 0;
 	}
@@ -1098,7 +1098,6 @@ display:none;
 		}
 }
 @media only screen and (min-width:1024px) {
-
 	.magic-number, .magic-value  {
 		font-size: 4rem;
 	}
@@ -1108,8 +1107,8 @@ display:none;
 	}
 
 	header.masthead {
-		height: 100vh;
-		min-height: 40rem;
+		height: 50vh;
+		min-height: 30rem;
 		padding-bottom: 0;
 		padding-top:0;
 	}

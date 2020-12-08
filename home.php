@@ -6,29 +6,55 @@
  */
  get_header();
 
- $image_id=get_post_thumbnail_id( $post->ID );
- $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
+ // $image_id=get_post_thumbnail_id( $post->ID );
+ // $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
 
  $page_layout="";
 
 ?>
-	<main role="main home">
-		<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
+<!--	<main role="main home">
+		<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php // echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+	          <h1 class="h1-home text-white font-weight-bold"><?php // echo $post->post_excerpt; ?></h1>
 
 	        </div>
 	        <div class="col-lg-5 align-self-baseline" style="margin-top:1rem">
-              <?php if ( shortcode_exists('wpdreams_ajaxsearchlite') ) {
+              <?php /* if ( shortcode_exists('wpdreams_ajaxsearchlite') ) {
                 echo do_shortcode('[wpdreams_ajaxsearchlite]');
-                }
+              } */
               ?>
             </div>
 	      </div>
 	    </div>
 	  </header>
+-->
+<?php
+ if (get_option("carousel_option")) { ?>
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div class="carousel-inner">
+<div class="carousel-item active">
+  <?php echo do_shortcode("[net_to_zero class='height50']"); ?>
+</div>
+<div class="carousel-item">
+    <?php echo do_shortcode("[search_panel]"); ?>
+</div>
+
+</div>
+<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+</div>
+  <?php
+  }
+  ?>
 
 		<div class="div-home">
 
@@ -75,10 +101,8 @@
 <script>
 
 <?php
-$attimages = get_attached_media('image', $post->ID);
-
-
- ?>
+    $attimages = get_attached_media('image', $post->ID);
+?>
 body=jQuery(".masthead");
 
 var backgrounds = [<?php foreach ($attimages as $image) {

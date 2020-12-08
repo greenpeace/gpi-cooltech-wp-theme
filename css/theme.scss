@@ -1,0 +1,324 @@
+// Variables
+
+
+
+// Colors
+//A9BCC1
+// rgba(46, 188, 208, 1) 20 => D5F2F6 Turqouise
+$fourth-color: #2EDBC0;
+
+// 22 87 116 dark blue (al 20 diventa D0DDE3) Chatham Blue
+$second-color:#165774;
+
+//77 174 239 (al 20 diventa DBEFFC) Picton Blue
+$third-color: #4DAEEF;
+
+//34 144 190 (al 20 diventa D3E9F2) Eastern Blue
+$first-color: #2290BE;
+
+// 18 49 106 (al 20 diventa D0D6E1) Chatham Blue
+$fifth-color: #12316A;
+
+$background-grey: #F1F1F1;
+$black-cooling: #0a1321;
+
+$pages-colors: case-study #2290BE,
+                glossary #2290BE;
+
+// name color background
+$sector-colors: air-conditioning #2290BE #D3E9F2,
+         refrigeration #165774 #D0DDE3,
+         heat-pumps #12316A #D0D6E1,
+         components #4DAEEF #DBEFFC;
+
+$air-conditioning-color:$first-color;
+$refrigeration-color:$second-color;
+$heat-pumps-color:$fifth-color;
+$components-color:$third-color;
+//font
+$first-font:'SuisseRegular';
+$second-font:'SuisseAntique';
+
+// the same as h1 bootstrap
+$font-big:2.5rem;
+
+$background1: rgba(33, 154, 185, 0.2);
+$background2: rgba(22, 87, 116, 0.2);
+$background3: rgba(77, 174, 239, 0.2);
+$background4: rgba(34,144,190, 0.2);
+$background5: rgba(18,49,106, 0.2);
+
+/* margins padding */
+$margin-bottom:1rem;
+$padding-bottom-title:4rem;
+
+.navbar-nav.navbar-top > li.dropdown.show .dropdown-menu {
+    background-color: $second-color;
+}
+
+.basic-background, header.masthead.basic-background {
+  background-color: #D3E9F2;
+}
+
+#logo span.cool {
+	color:$first-color;
+}
+#logo span.tech {
+  color:$second-color;
+}
+#logo-subtitle {
+  color:$second-color;
+}
+@media (min-width: 768px) {
+  .height80 {
+    height: 80vh;
+  }
+  .height50 {
+    height: 50vh;
+    min-height:30rem;
+  }
+}
+
+div.div-home {
+  background-color: $background1;
+  color: $black-cooling;
+}
+div.text-intro {
+  font-family:$second-font;
+  line-height:1.2;
+}
+div.div-home div.text-intro {
+  color:$second-color;
+  padding-bottom:1rem;
+}
+
+section.sector-first {
+  background-color:$background-grey;
+}
+.btn-outline-dark {
+  color:$second-color;
+  border-color:$second-color;
+  &:hover {
+        background-color: $second-color;
+  }
+}
+@each $p in $pages-colors {
+  h1.#{nth($p, 1)} {
+    color:#{nth($p, 2)}
+  }
+
+}
+
+@each $s in $sector-colors {
+    .title_h2.#{nth($s, 1)} {
+      color:#{nth($s, 2)};
+    }
+  }
+
+/* H3 titles */
+@each $s in $sector-colors {
+
+    section.#{nth($s, 1)} .print-svg {
+      fill:#{nth($s, 2)};
+    }
+
+    section.#{nth($s, 1)}-numbers {
+      background-color: white;
+      .magic-up {
+        color:#{nth($s, 2)};
+      }
+    }
+
+    section.category-list.#{nth($s, 1)} h3 {
+        color: #{nth($s, 2)};
+        font-family: $second-font;
+    }
+    .btn-outline-dark.#{nth($s, 1)} {
+      border-color:#{nth($s, 2)};
+      color:#{nth($s, 2)};
+    }
+    .btn-outline-dark.#{nth($s, 1)}:hover {
+        color: #fff;
+        background-color: #{nth($s, 2)};
+        border-color: #{nth($s, 2)};
+    }
+    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title, section.results.#{nth($s, 1)} ion-icon  {
+      color:#{nth($s, 2)}
+    }
+    section.category-list.#{nth($s, 1)}, section.results.#{nth($s, 1)} {
+      background-color:#{nth($s, 3)}
+    }
+    .#{nth($s, 1)} .text-intro {
+      color:#{nth($s, 2)}
+    }
+}
+
+  section.category-list  {
+    h3 {
+      color:$refrigeration-color;
+      font-family: $second-font;
+    }
+
+  }
+
+
+header.masthead.second-taxonomy, section.archive-glossary {
+	background-color: $background-grey;
+}
+header.masthead.second-taxonomy h1 {
+
+}
+.tab-content {
+  margin-bottom: 2rem;
+}
+/* RESULTS */
+section.results {
+  background-color: $background1;
+}
+article.element {
+  margin-bottom:$margin-bottom;
+  min-height: 200px;
+}
+article.element.equipment, article.element.page, article.element.glossary {
+  background-color: white;
+}
+article.element.case-study {
+  background-color: $background-grey;
+}
+article.element.zero {
+  background-color: #D0DDE3;
+}
+.result_meta_title, .result_title {
+  color:$first-color;
+}
+.result_title {
+  font-family: $second-font;
+}
+
+.result_meta_content {
+  font-family: $first-font;
+}
+
+/* NET TO ZERO */
+#net-to-zero .container {
+  /* border:3px solid white; */
+}
+
+/* PAGE CASE STUDY */
+.col-card {
+  margin-bottom:$margin-bottom;
+}
+
+/* SINGLE PAGE STUDY */
+.sidebar-term {
+  border-top:2px solid $first-color;
+}
+.sidebar-term {
+  color:$first-color;
+  padding: $margin-bottom 0;
+}
+
+/* SINGLE PAGE */
+div.single-case-study-title, div.single-equipment {
+  padding-bottom: 50px;
+}
+
+
+
+/* GENERIC PAGE */
+article.generic-page h2 {
+  color:$first-color;
+}
+
+/* GLOSSARY PAGE */
+h2.glossary_letter, h2.glossary_term {
+  color:$first-color;
+}
+h1.glossary, h1.case-study {
+  font-family:$second-font;
+}
+h1.glossary {
+  padding-bottom:$padding-bottom-title;
+}
+.selectable {
+  cursor:pointer;
+  color:$first-color;
+}
+.menu-item-letter {
+  padding:0.2rem;
+}
+
+/* MOBILE */
+ul.mobile-menu-first li {
+	background-color: $second-color;
+	color:white;
+  font-family:"SuisseRegular";
+}
+
+.sidr, #sidr {
+  background-color: $second-color;
+  font-family:"SuisseRegular";
+}
+
+/* NET TO ZERO */
+.titolo_lineparent {
+  padding-bottom:60px;
+}
+.titolo_lineparent > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  .title_h2 {
+    font-size: 1.75rem;
+    font-family: "SuisseAntique";
+  }
+}
+
+.air-conditioning .title_h2 {
+  color:#2290BE;
+}
+
+.refrigeration .title_h2 {
+  color: #165774;
+}
+
+.infinite-loading {
+  display: none;
+  text-align: center;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid $first-color;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $first-color transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
