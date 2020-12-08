@@ -1,5 +1,5 @@
 	<!-- footer -->
-	<footer class="footer" role="contentinfo">
+	<footer id="footer" class="footer" role="contentinfo">
 		<section id="footer-form">
 					<div class="container">
 						<div class="row">

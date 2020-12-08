@@ -1,4 +1,79 @@
-<?php get_header();
+<?php get_header(); ?>
+<script>
+
+jQuery.fn.isOnScreen = function(){
+
+    var win = jQuery(window);
+
+    var viewport = {
+        top : win.scrollTop(),
+        left : win.scrollLeft()
+    };
+    viewport.right = viewport.left + win.width();
+    viewport.bottom = viewport.top + win.height();
+
+    var bounds = this.offset();
+    bounds.right = bounds.left + this.outerWidth();
+    bounds.bottom = bounds.top + this.outerHeight();
+
+    return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+
+};
+
+jQuery(document).ready(function($) {
+	var x = 2;
+	var carico = 0 ;
+
+	$(window).scroll(function(){
+
+			if ($('#footer').isOnScreen() && carico===0 && jQuery("header").hasClass("second-taxonomy") && x<=totpages) {
+					// The element is visible, do something
+          $(".infinite-loading").show();
+					loadData();
+
+			} else {
+					// The element is NOT visible, do something else
+			}
+	});
+
+function loadData() {
+		carico=2;
+		console.log("cambio");
+		$.ajax({
+				type: 'POST',
+				url: ajax_url,
+				data: {
+						manufacturer: $("#manufacturer").val(),
+						refrigerant: $("#refrigerant").val(),
+						country: $("#country").val(),
+						application: $("#application").val(),
+						sector:$("#sector").val(),
+						tt:$("#technology-type").val(),
+						type:$("#type").val(),
+						action: 'filterElements',
+						numpage: x,
+            totpage: totpages
+				},
+				success: function(data, textStatus, XMLHttpRequest) {
+						var len = data.length;
+						data = data.substring(0, len - 1);
+						console.log("aggiungo da taxonomy");
+            $(".infinite-loading").hide();
+						$('#results').append(data);
+						carico=0;
+						x=x+1;
+
+				},
+				error: function(MLHttpRequest, textStatus, errorThrown) {
+						//        alert(errorThrown);
+				}
+		});
+}
+
+});
+
+</script>
+<?php
 $current_term_level = get_tax_level(get_queried_object()->term_id, get_queried_object()->taxonomy);
 $slug=get_queried_object()->slug;
 
@@ -42,12 +117,20 @@ if($current_term_level==1) {
 						</h1>
 	        </div>
 	        <div class="col-lg-8 align-self-baseline">
-						<div><h3 class="<?php echo $parent->slug; ?>"><?php echo get_queried_object()->description; ?></h3></div>
+						<div><h3 class="<?php echo $parent->slug; ?>">
+              <?php if($_GET["pt"]=="zero") { ?>
+                <?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'net_to_zero_desc', true ));
+    						?>
+              <?php } else { ?>
+              <?php echo get_queried_object()->description; ?></h3></div>
+            <?php }  ?>
 						<div class="text-full-second"><?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 						?> </div>
 				  </div>
 	      </div>
-				<?php $term = $wp_query->queried_object; ?>
+				<?php $term = $wp_query->queried_object;
+        // print_r($term);
+        ?>
 				<input type="hidden" id="sector" value="<?php echo $slug ?>">
 				<div id="selectblock" class="row d-print-none">
 					<div id="selectcolumn" class="col-sm-12">
@@ -110,13 +193,20 @@ if($current_term_level==1) {
 						<?php }?>
 					</select>
 </div>
-<div class="selectdiv">
+  <?php if($_GET["pt"]=="zero") { ?>
+      <inpt type="hidden" id="type" value="zero">
+  <?php } else { ?>
+    <div class="selectdiv">
 					<select class="select-filter" id="type">
 						<option value="0"><?php _e("Type","cooltech"); ?></option>
 						<option value="equipment"><?php _e("Equipment","cooltech"); ?></option>
 						<option value="case-study"><?php _e("Case Study","cooltech"); ?></option>
+						<option value="zero"><?php _e("Net to Zero","cooltech"); ?> </option>
 					</select>
-</div>
+      </div>
+    <?php
+    }
+    ?>
 					</div>
 				</div>
 
@@ -132,7 +222,7 @@ if($current_term_level==1) {
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-10 offset-sm-1">
-						<div class="text-intro">	<?php echo nl2br(do_shortcode(get_queried_object()->description)); ?> </div>
+						<div class="text-intro"> 	<?php echo nl2br(do_shortcode(get_queried_object()->description)); ?> </div>
 						<div class="text-full">
 						<?php echo do_shortcode(get_term_meta( get_queried_object()->term_id, 'full_text', true ));
 						?></div>
@@ -186,10 +276,10 @@ if($n1 && $n2 && $n3) {
 	</section>
 		<?php
 		}
-			echo do_shortcode('[cooltech_cat]');
-			} else {
+		echo do_shortcode('[cooltech_cat]');
+		} else {
 			    // show third drop-down
-			}
+		}
 			 ?>
 			<?php
 			$term = $wp_query->queried_object;
@@ -208,8 +298,18 @@ if($n1 && $n2 && $n3) {
 				<div id="results">
 				<?php
 				$x=0;
+				if($_GET["pt"]) {
+					$queryadd="&post_type=".$_GET["pt"];
+				}
 				// query_posts(array("orderby"=>"title","order"=>"ASC"));
-				query_posts($query_string."&orderby=title&order=ASC");
+				query_posts($query_string."&orderby=title&order=ASC&paged=1&posts_per_page=10".$queryadd);
+        global $wp_query;
+        $totpag=$wp_query->max_num_pages;
+        ?>
+        <script>
+          var totpages=<?php echo $totpag; ?>
+        </script>
+        <?php
 				if (have_posts()): while (have_posts()) : the_post();
 
 							$el=new Element($post);
@@ -335,10 +435,17 @@ if($n1 && $n2 && $n3) {
 				<?php
 			}
 			?>
+
 		</div>
+
+
 
 			</div>
 		</div>
+    <?php ?>
+		<div class="infinite-loading"> <div class="lds-ring"><div></div><div></div><div></div><div></div></div> </div>
+    <?php ?>
+
 		</section>
 
 			<?php // get_template_part('loop'); ?>

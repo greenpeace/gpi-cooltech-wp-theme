@@ -1,4 +1,10 @@
-<?php get_header();
+<?php
+/**
+ * Template Name: Page Full Width
+ *
+ *
+ */
+get_header();
 
 $image_id=get_post_thumbnail_id( $post->ID );
 $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
@@ -25,7 +31,7 @@ $classes=array("generic-page");
 	  </header>
 
 		<section>
-		<div class="container">
+<!--		<div class="container"> -->
 
 
 		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
@@ -56,7 +62,7 @@ $classes=array("generic-page");
 
 		<?php endif; ?>
 
-	</div>
+<!--	</div>  -->
 </section>
 		<!-- </section> -->
 		<!-- /section -->

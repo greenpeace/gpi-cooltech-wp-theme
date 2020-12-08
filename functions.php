@@ -32,11 +32,7 @@ if (!isset($content_width))
     $content_width = 900;
 }
 
-add_filter( "asl_result_image_after_prostproc", "asp_cf_image", 1, 1 );
 
-function asp_cf_image( $image ) {
-		return "<img src='aaaa'>";
-	}
 
 add_post_type_support( 'page', 'excerpt' );
 
@@ -133,6 +129,9 @@ function cooltech_header_scripts()
 				wp_register_script('waypoints', get_template_directory_uri()  . '/js/jquery.waypoints.min.js', array( 'jquery' ));
 				wp_enqueue_script('waypoints');
 
+				wp_register_script('infinite', get_template_directory_uri()  . '/js/infinite.js', array( 'jquery' ));
+				wp_enqueue_script('infinite');
+
 				wp_register_script('sidr', get_template_directory_uri()  . '/js/jquery.sidr.min.js', array( 'jquery' ));
 				wp_enqueue_script('sidr');
 
@@ -164,7 +163,7 @@ function cooltech_styles()
 		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), time(), 'all');
 		wp_enqueue_style('bootstrap'); // Enqueue it!
 
-		wp_register_style('theme-css', get_template_directory_uri() . '/css/theme.css');
+		wp_register_style('theme-css', get_template_directory_uri() . '/css/theme.min.css');
 		wp_enqueue_style('theme-css');
 
 		wp_register_style('sidr-css', get_template_directory_uri() . '/css/sidr.dark.min.css');
@@ -400,9 +399,13 @@ remove_filter('the_excerpt', 'wpautop'); // Remove <p> tags from Excerpt altoget
 // Shortcodes
 add_shortcode('cooltech_cat', 'cooltech_shortcode_cat'); // You can place [cooltech_shortcode_demo] in Pages, Posts now.
 add_shortcode('case_study','show_last_case_study');
+add_shortcode('net_to_zero','show_net_to_zero');
 
 add_shortcode('g','find_glossary');
 add_shortcode('fn','add_footnote');
+
+add_shortcode('filter_bar','add_filter_bar');
+add_shortcode('search_panel','add_search_panel');
 
 add_shortcode('cooltech_shortcode_demo_2', 'cooltech_shortcode_demo_2'); // Place [cooltech_shortcode_demo_2] in Pages, Posts now.
 
@@ -440,12 +443,11 @@ function create_post_type_cooltech()
             'editor',
             'excerpt',
             'thumbnail',
-						'custom-fields',
 						'technology-type'
         ), // Go to Dashboard Custom cooltech Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
         'taxonomies' => array(
-            'country','type','manufacturer','refrigerant','application','technology-type','post_tag'
+            'country','type','manufacturer','refrigerant','application','technology-type','post_tag', 'category'
         ) // Add Category and Post Tags support
     ));
 		register_post_type('case-study', // Register Custom Post Type
@@ -518,6 +520,38 @@ function create_post_type_cooltech()
 		    'taxonomies' => array(
 		    ) // Add Category and Post Tags support
 		));
+		register_post_type('zero', // Register Custom Post Type
+        array(
+        'labels' => array(
+            'name' => __('Net Zeros', 'cooltech'), // Rename these to suit
+            'singular_name' => __('Net Zero', 'cooltech'),
+            'add_new' => __('Add New', 'cooltech'),
+            'add_new_item' => __('Add New Net Zero', 'cooltech'),
+            'edit' => __('Edit', 'cooltech'),
+            'edit_item' => __('Edit Net Zero', 'cooltech'),
+            'new_item' => __('New Net Zero', 'cooltech'),
+            'view' => __('View Net Zero', 'cooltech'),
+            'view_item' => __('View Net Zero', 'cooltech'),
+            'search_items' => __('Search Net Zero', 'cooltech'),
+            'not_found' => __('No Net Zero found', 'cooltech'),
+            'not_found_in_trash' => __('No Net Zero found in Trash', 'cooltech')
+        ),
+        'public' => true,
+        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
+        'has_archive' => true,
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+						'custom-fields',
+						'technology-type'
+        ), // Go to Dashboard Custom cooltech Blank post for supports
+        'can_export' => true, // Allows export in Tools > Export
+        'taxonomies' => array(
+            'country','type','manufacturer','refrigerant','application','technology-type','post_tag'
+        ) // Add Category and Post Tags support
+    ));
 }
 
 add_action( 'init', 'create_cooltech_taxonomies', 0 );
@@ -735,39 +769,85 @@ function add_footnote($atts, $content) {
 	return $out;
 }
 
+
+
 // Shortcode Demo with simple <h2> tag
 function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
 {
+
+	if($atts["cat"]) {
+		$slug=$atts["cat"];
+	//	$terms=get_sector_fron_slug($slug);
+		$terms=get_sector_from_slug($slug);
+	} else {
+
 	$q = get_queried_object();
-	if($q) {
-		$slug=$q->slug;
-	}
+
+		if($q) {
+			$slug=$q->slug;
+		}
 	$terms=get_sector_from_slug($slug);
-
+	}
 	ob_start();
-switch(count($terms)) {
-	case 3:
-	$cols="col-md-4 col-sm-12";
-	break;
-	default:
-	$cols="col-md-3 col-sm-6";
-	break;
-}
+ 	//	print_r($terms);
+	// 	echo $slug;
+	switch(count($terms)) {
+		case 3:
+		$cols="col-md-4 col-sm-12";
+		break;
+		default:
+		$cols="col-md-3 col-sm-6";
+		break;
+	}
 	?>
-
 	<section class="category-list <?php echo $slug; ?>">
 		<div class="container">
+		<?php
+
+				if($atts["lineparent"]=="1") {
+					?>
+						<div class="row titolo_lineparent">
+							<div class="col-sm-12">
+						 	<?php $term = get_term_by('slug', $slug, 'type'); $name = $term->name; ?>
+
+								<div><img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $slug;?>-net.svg" width="120" alt="Icon <?php echo $t->name; ?>"></div>
+								<div class="title_h2 <?php echo $slug; ?>"><?php echo $name; ?> </div>
+							</div>
+						</div>
+					<?php
+				}
+	 			?>
 				<div class="row">
-			<?php foreach ( $terms  as $t ) { ?>
+					<?php foreach ( $terms  as $t ) { ?>
+					<?php
+						if($atts["link"]) {
+							$link=home_url()."/sector/". $t->slug."?".$atts["link"];
+						} elseif ($atts["page"]) {
+							$link=home_url()."/path-to-zero-".$slug;
+						} else {
+							$link=home_url()."/sector/". $t->slug;
+						}
+						?>
+
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
 								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" width="120" alt="Icon <?php echo $t->name; ?>"> </div>
 							<?php
 							}
 							?>
-								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?></h3> </div>
-								<div class="cat_desc text-sm-left align-items-stretch"> <?php echo do_shortcode($t->description);  ?> </div>
-								<div class="cat_button"> <a href="<?php echo home_url(); ?>/sector/<?php echo $t->slug ?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> <?php _e("Enter Database", "cooltech"); ?> </a>
+								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?><?php if($name) { echo "&nbsp; ".$name; }?></h3> </div>
+								<div class="cat_desc text-sm-left align-items-stretch"> <?php
+								if($atts["lineparent"]=="1") {
+									$desc=get_term_meta($t->term_id, 'net_to_zero_desc', true );
+									echo $desc;
+								} else {
+									echo do_shortcode($t->description);
+							 	}
+									?>
+							  </div>
+								<div class="cat_button">
+
+									<a href="<?php echo $link;?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> <?php _e("Enter Database", "cooltech"); ?> </a>
 								</div>
 						</div>
 		<?php } ?>
@@ -800,6 +880,43 @@ $args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
 	          <h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/case-studies"><?php echo $cs[0]->post_title; ?></a></h1>
 						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div><div>
 						<a class="btn btn-primary btn-arrow btn--300 m-auto" href="<?php echo site_url(); ?>/case-studies"> <?php _e("More Case Studies","cooltech"); ?> <i class="i-arrow-right-w"></i></a></div>
+	        </div>
+	       <!-- <div class="col-lg-8 align-self-baseline">
+
+				 </div> -->
+	      </div>
+
+	  </div>
+
+</section>
+		<?php
+		$out = ob_get_contents();
+		ob_end_clean();
+	return $out;
+}
+
+function show_net_to_zero($atts) {
+	if($atts["class"]) {
+		$class=$atts["class"];
+	}
+$args=array("post_type"=>"page","numberposts"=>1,"name"=>"net-to-zero");
+	$cs=get_posts($args);
+
+	$image_id=get_post_thumbnail_id( $cs[0]->ID );
+	$post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
+		ob_start();
+?>
+<section id="net-to-zero" class="<?php echo $class; ?>" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
+<?php		// print_r($cs);
+		?>
+		<div class="container h-100">
+			<div class="row h-100 align-items-center justify-content-center text-center">
+	        <div class="col-lg-10 align-self-center">
+					<!--	<div class="case-study-label"><?php _e("NET TO ZERO","cooltech"); ?> </div>
+					-->
+					<h1 class="text-white font-weight-bold"><a class="text-white" href="<?php echo site_url(); ?>/net-to-zero"><?php echo $cs[0]->post_title; ?></a></h1>
+						<div class="text-white case-study-home-excerpt"><?php echo $cs[0]->post_excerpt; ?> </div><div>
+						<a class="btn btn-primary btn-arrow btn--300 m-auto" href="<?php echo site_url(); ?>/net-to-zero"> <?php _e("Go to Net to Zero","cooltech"); ?> <i class="i-arrow-right-w"></i></a></div>
 	        </div>
 	       <!-- <div class="col-lg-8 align-self-baseline">
 
@@ -864,6 +981,13 @@ function get_tags_in_use($category_ID, $taxonomy){
 
 		function filterElements() {
 			$tax_query = array('relation' => 'AND');
+
+			if(isset($_POST["numpage"])) {
+				$paged=$_POST["numpage"];
+			} else {
+				$paged=1;
+			}
+
     	if (isset( $_POST["sector"]))
     	{
         $tax_query[] =  array(
@@ -918,18 +1042,22 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$type=array("equipment","case-study");
 		}
 
+
 		$args = array(
     'post_type' => $type,
     'tax_query' => $tax_query,
 		'orderby' => 'title',
 		'order'=>"ASC",
-		'posts_per_page'=>-1 
+		'posts_per_page'=>10,
+		'paged'=>$paged
 	);
 			$elements=array();
 
 			// print_r($tax_query);
 			$posts=get_posts($args);
 			$x=0;
+			/* manca numero pagine tot */
+			echo "<script>var totpages=</script>";
 			foreach($posts as $po) {
 
 				$p=new Element($po);
@@ -951,9 +1079,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 				}
 				$p->sector=$p->get_sector();
 				array_push($elements,$p);
-			}
+ 				include 'contenuto-ajax.php';
+				}
 
-			echo json_encode($elements);
+		//	echo json_encode($elements);
 
 		}
 
@@ -1364,11 +1493,18 @@ function options_callback() {
 		$options = get_option( 'top_menu_option' );
 		echo '<input name="top_menu_option" id="first_field_option" type="checkbox" value="1" class="code" ' . checked( 1, $options, false ) . ' /> Check for enabling top menu';
 }
+function carousel_callback() {
+		$options = get_option( 'carousel_option' );
+		echo '<input name="carousel_option" id="carousel_option" type="checkbox" value="1" class="code" ' . checked( 1, $options, false ) . ' /> Check for enabling Carousel';
+}
 function test_theme_settings(){
 		add_option('top_menu_option',0);// add theme option to database
+		add_option('carousel',0);
 		add_settings_section( 'first_section', 'New Theme Options Section',
 		'theme_section_description','theme-options');
 		add_settings_field('top_menu_option','Top Menu','options_callback',
+		'theme-options','first_section');
+		add_settings_field('carousel','Carousel','carousel_callback',
 		'theme-options','first_section');
 		add_settings_field('time_slide','Time Slide','time_slide_callback',
 		'theme-options','first_section');
@@ -1388,6 +1524,7 @@ function test_theme_settings(){
 		register_setting( 'theme-options-grp', 'footer_button_url');
 		register_setting( 'theme-options-grp', 'footer_button_text');
 		register_setting( 'theme-options-grp', 'top_menu_option');
+		register_setting( 'theme-options-grp', 'carousel_option');
 		register_setting( 'theme-options-grp', 'footer_small_text');
 		register_setting( 'theme-options-grp', 'time_slide');
 }
@@ -1433,6 +1570,122 @@ function custom_get_posts( $query ) {
     $query->query_vars['order'] = 'ASC';
   }
 
+}
+
+function add_search_panel() {
+	global $post;
+
+	$image_id=get_post_thumbnail_id( $post->ID );
+	$post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
+	ob_start();
+	?>
+
+	<header class="masthead" style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
+	    <div class="container h-100">
+	      <div class="row h-100 align-items-center justify-content-center text-center">
+	        <div class="col-lg-10 align-self-end">
+	          <h1 class="h1-home text-white font-weight-bold"><?php echo $post->post_excerpt; ?></h1>
+
+	        </div>
+	        <div class="col-lg-5 align-self-baseline" style="margin-top:1rem">
+              <?php if ( shortcode_exists('wpdreams_ajaxsearchlite') ) {
+                echo do_shortcode('[wpdreams_ajaxsearchlite]');
+                }
+              ?>
+            </div>
+	      </div>
+	    </div>
+	  </header>
+
+	<?php
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
+}
+
+
+function add_filter_bar($atts) {
+	ob_start();
+	$slug=$atts["slug"];
+	//echo $slug;
+	//$term=get_term_by("slug", $slug);
+	$term = get_term_by('slug', $slug, 'type');
+	echo $term->term_id;
+	?>
+
+	<input type="hidden" id="sector" value="<?php echo $slug ?>">
+	<div id="selectblock" class="row d-print-none">
+		<div id="selectcolumn" class="col-sm-12">
+		<?php
+//		print_r($term);
+// 	$tags=array_unique(get_tags_in_use($term->term_id,"application"));
+		$tags=get_tags_in_use($term->term_id,"application");
+	//	print_r($tags); ?>
+
+	 <div class="selectdiv">	<select id="application" class="select-filter" name="application">
+			<option value="0"> <?php _e("Applications","cooltech"); ?></option>
+			<?php foreach($tags as $tag) { ?>
+			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
+			<?php }?>
+		</select> </div>
+		<?php
+		// print_r($term);
+		$tags=get_tags_in_use($term->term_id,"country");
+
+		//print_r($tags); ?>
+		<div class="selectdiv"><select id="country" class="select-filter" name="country">
+			<option value="0"><?php _e("Country","cooltech"); ?> </option>
+			<?php foreach($tags as $tag) { ?>
+			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
+			<?php }?>
+		</select></div>
+		<?php
+		// print_r($term);
+		$tags=get_tags_in_use($term->term_id,"refrigerant");
+; ?>
+<div class="selectdiv">
+		<select id="refrigerant" class="select-filter" name="refrigerant">
+			<option value="0"><?php _e("Refrigerant","cooltech"); ?>  </option>
+			<?php foreach($tags as $tag) { ?>
+			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
+			<?php }?>
+		</select>
+	</div>
+		<?php
+		// print_r($term);
+		$tags=get_tags_in_use($term->term_id,"manufacturer");
+		//print_r($tags); ?>
+		<div class="selectdiv">
+		<select id="manufacturer" class="select-filter" name="manufacturer">
+			<option value="0"> <?php _e("Manufacturer","cooltech"); ?> </option>
+			<?php foreach($tags as $tag) { ?>
+			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
+			<?php }?>
+		</select>
+	</div>
+		<?php
+		// print_r($term);
+		$tags=get_tags_in_use($term->term_id,"technology-type");
+ ?>
+<div class="selectdiv">
+		<select id="technology-type" class="select-filter" name="technology-type">
+			<option value="0"> <?php _e("Technology Type","cooltech"); ?> </option>
+			<?php foreach($tags as $tag) { ?>
+			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
+			<?php }?>
+		</select>
+</div>
+
+		<input type="hidden" class="select-filter" id="type" value="zero">
+
+
+		</div>
+	</div>
+
+	<?php
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
 }
 
 

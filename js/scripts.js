@@ -6,7 +6,7 @@
 
         $(document).ready(function() {
 
-
+          console.log("reeeddy");
 				/* MOBILE MENU */
             $('#responsive-menu-button').sidr();
 
@@ -34,14 +34,14 @@
 						    var TopElement = $elementToBeChecked.offset().top;
 						    var BotElement = TopElement + $elementToBeChecked.height();
 						    return ((BotElement <= BotView) && (TopElement >= TopView));
-								}
+						}
 
 								$(window).scroll(function () {
 								    $( ".magic-number" ).each(function() {
 								    var isOnView = isElementVisible($(this));
 								        if(isOnView && !$(this).hasClass('Starting')){
 								           $(this).addClass('Starting');
-													 	console.log("visibile");
+													// 	console.log("visibile");
 								          	startCounter($(this));
 								        }
 								    });
@@ -79,6 +79,7 @@
 						/* page case study */
 
             $(".select-filter").change(function() {
+                console.log("cambio");
                 $.ajax({
                     type: 'POST',
                     url: ajax_url,
@@ -91,39 +92,21 @@
                         tt:$("#technology-type").val(),
                         type:$("#type").val(),
                         action: 'filterElements',
-                        dataType: 'json'
                     },
                     success: function(data, textStatus, XMLHttpRequest) {
                         var len = data.length;
                     	  data = data.substring(0, len - 1);
                         // alert("aaaaaa");
 
-                        console.log(data);
+                        console.log("aggiungo da script.js");
 
-                        var obj = jQuery.parseJSON(data);
+                    //    var obj = jQuery.parseJSON(data);
                         $("#results").empty();
 
-                        console.log(obj.post);
-                        for(let x=0;x<obj.length;x++) {
-                          var wrapper="<article class='element "+obj[x].post.post_type+"' id=''><div class='row d-lg-none'><div class='col-md-12'>";
-                          var wrapper_close="</div></div></div></article>";
+                  //      console.log(obj.post);
 
+                        $('#results').append(data);
 
-                          var sector="<h2 class='result_title'>"+obj[x].post.post_title+"</h2> </div></div><div class='row'><div class='col-md-3'><h2 class='result_title d-none d-sm-none d-md-none d-lg-block'>"+obj[x].post.post_title+"</h2><button class='air-conditioning expand_text btn btn-rounded btn-outline-dark' > More Information</button></div><div class='col-md-3'><div class='result_meta_title'>Sector</div><div class='result_meta_content'>"+obj[x].sector+"</div><div class='result_meta_title'>Application</div><div class='result_meta_content'>"+obj[x].application+"</div><div class='result_meta_title'>Technology Type </div><div class='result_meta_content'>"+obj[x].technology_type+"</div></div><div class='col-md-3'><div class='result_meta_title'>Refrigerant</div><div class='result_meta_content'>"+obj[x].refrigerant+"</div><div class='result_meta_title'>Manufacturer</div><div class='result_meta_content'>"+obj[x].manufacturer+"															</div>	<div class='result_meta_title'>		Country								</div><div class='result_meta_content'>	"+obj[x].country+"												</div>	</div>	<div class='col-md-3'><div class='result_meta_title'>Energy Efficency</div>	<div class='result_meta_content'>"+obj[x].energy_efficency+"</div></div></div><div class='equipment_full_text'><div class='row'><div class='col-sm-3'></div><div class='col-sm-9'><div><p>"+obj[x].post.post_content+"</p></div>";
-
-                          var element=wrapper+sector;
-
-                          if(obj[x].source) {
-                          var source="<div class='result_meta_title'><a title='' target='_blank'>Source</a></div><div class='result_meta_content result_source'><a href='"+obj[x].source+"'>"+obj[x].source+"</a></div>";
-                          element=element+source;
-                          }
-                          if(obj[x].web) {
-                          var web="<div class='result_meta_title'>Website</div><div class='result_meta_content result_web'><a href='web' target='_blank'>"+obj[x].web+"</a></div>";
-                          element=element+web;
-                          }
-                          element=element+wrapper_close;
-                          $("#results").append(element);
-                        }
                     },
                     error: function(MLHttpRequest, textStatus, errorThrown) {
                         //        alert(errorThrown);
