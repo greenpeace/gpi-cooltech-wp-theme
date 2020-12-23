@@ -27,6 +27,7 @@ jQuery(document).ready(function($) {
 	$(window).scroll(function(){
 
 			if ($('#footer').isOnScreen() && carico===0 && jQuery("header").hasClass("second-taxonomy") && x<=totpages) {
+        console.log("scroll fine");
 					// The element is visible, do something
           $(".infinite-loading").show();
 					loadData();
@@ -37,7 +38,7 @@ jQuery(document).ready(function($) {
 	});
 
 function loadData() {
-		carico=2;
+		carico=1;
 		console.log("cambio");
 		$.ajax({
 				type: 'POST',
@@ -59,13 +60,14 @@ function loadData() {
 						data = data.substring(0, len - 1);
 						console.log("aggiungo da taxonomy");
             $(".infinite-loading").hide();
+            console.log(data);
 						$('#results').append(data);
 						carico=0;
 						x=x+1;
 
 				},
 				error: function(MLHttpRequest, textStatus, errorThrown) {
-						//        alert(errorThrown);
+					console.log(errorThrown);
 				}
 		});
 }
@@ -111,7 +113,7 @@ if($current_term_level==1) {
 	    <div class="container">
 	      <div class="row h-100 align-items-center justify-content-center text-center">
 	        <div class="col-lg-10 align-self-end">
-	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>"><?php single_cat_title(); ?> <?php echo $parent->name ?>
+	          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>">  <?php if($_GET["pt"]=="zero") { echo "Net to Zero "; }?><?php single_cat_title(); ?> <?php echo $parent->name ?>
 						<?php  $id=get_queried_object()->parent;
 						$parent=	get_term($id,"type"); ?>
 						</h1>
@@ -128,9 +130,23 @@ if($current_term_level==1) {
 						?> </div>
 				  </div>
 	      </div>
+      </div>
+        <?php if($_GET["pt"]=="zero") { ?>
+          <?php $pdf=get_term_meta(get_queried_object()->term_id,"pdf",true); ?>
+          <?php $file=wp_get_attachment_url($pdf )?>
+          <?php if($pdf) { ?>
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <a href="<?php echo $file; ?>" target="_blank"> DOWNLOAD PDF </a></div>
+            </div>
+        <?php }
+        } ?>
+
 				<?php $term = $wp_query->queried_object;
         // print_r($term);
         ?>
+      <div class="row">
+         <div class="col-lg-12 align-self-end">
 				<input type="hidden" id="sector" value="<?php echo $slug ?>">
 				<div id="selectblock" class="row d-print-none">
 					<div id="selectcolumn" class="col-sm-12">
@@ -199,14 +215,15 @@ if($current_term_level==1) {
     <div class="selectdiv">
 					<select class="select-filter" id="type">
 						<option value="0"><?php _e("Type","cooltech"); ?></option>
-						<option value="equipment"><?php _e("Equipment","cooltech"); ?></option>
+						<option value="equipment"><?php _e("Cool Technologies Products","cooltech"); ?></option>
 						<option value="case-study"><?php _e("Case Study","cooltech"); ?></option>
-						<option value="zero"><?php _e("Net to Zero","cooltech"); ?> </option>
+						<option value="zero"><?php _e("Pathway to Zero Products","cooltech"); ?> </option>
 					</select>
       </div>
     <?php
     }
     ?>
+  </div>
 					</div>
 				</div>
 

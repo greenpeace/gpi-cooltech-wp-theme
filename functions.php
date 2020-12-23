@@ -792,6 +792,10 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
  	//	print_r($terms);
 	// 	echo $slug;
 	switch(count($terms)) {
+
+		case 2:
+		$cols="col-md-4 col-sm-4";
+		break;
 		case 3:
 		$cols="col-md-4 col-sm-12";
 		break;
@@ -817,7 +821,7 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 					<?php
 				}
 	 			?>
-				<div class="row">
+				<div class="row justify-content-center">
 					<?php foreach ( $terms  as $t ) { ?>
 					<?php
 						if($atts["link"]) {
@@ -1056,8 +1060,8 @@ function get_tags_in_use($category_ID, $taxonomy){
 			// print_r($tax_query);
 			$posts=get_posts($args);
 			$x=0;
-			/* manca numero pagine tot */
-			echo "<script>var totpages=</script>";
+	
+
 			foreach($posts as $po) {
 
 				$p=new Element($po);
