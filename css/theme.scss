@@ -146,7 +146,7 @@ section.sector-first {
         background-color: #{nth($s, 2)};
         border-color: #{nth($s, 2)};
     }
-    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title, section.results.#{nth($s, 1)} ion-icon  {
+    h1.last-sector.#{nth($s, 1)}, h3.#{nth($s, 1)}, section.results.#{nth($s, 1)} h2.result_title, section.results.#{nth($s, 1)} .result_meta_title, section.results.#{nth($s, 1)} ion-icon, .download-pdf.#{nth($s, 1)} a  {
       color:#{nth($s, 2)}
     }
     section.category-list.#{nth($s, 1)}, section.results.#{nth($s, 1)} {
@@ -207,6 +207,14 @@ article.element.zero {
 #net-to-zero .container {
   /* border:3px solid white; */
 }
+.download-pdf {
+  padding:2rem 0;
+  font-family:$first-font;
+  a {
+    font-weight: bold;
+  }
+}
+
 
 /* PAGE CASE STUDY */
 .col-card {

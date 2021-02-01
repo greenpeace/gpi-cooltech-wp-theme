@@ -851,7 +851,9 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 							  </div>
 								<div class="cat_button">
 
-									<a href="<?php echo $link;?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>"> <?php _e("Enter Database", "cooltech"); ?> </a>
+									<a href="<?php echo $link;?>" class="btn btn-rounded btn-block btn-outline-dark <?php echo $slug; ?>">
+										<?php _e("Enter Database", "cooltech"); ?>
+									</a>
 								</div>
 						</div>
 		<?php } ?>
@@ -1060,7 +1062,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 			// print_r($tax_query);
 			$posts=get_posts($args);
 			$x=0;
-	
+
 
 			foreach($posts as $po) {
 
@@ -1501,9 +1503,14 @@ function carousel_callback() {
 		$options = get_option( 'carousel_option' );
 		echo '<input name="carousel_option" id="carousel_option" type="checkbox" value="1" class="code" ' . checked( 1, $options, false ) . ' /> Check for enabling Carousel';
 }
+function ntz_callback() {
+		$options = get_option( 'ntz_option' );
+		echo '<input name="ntz_option" id="ntz_option" type="checkbox" value="1" class="code" ' . checked( 1, $options, false ) . ' /> Check for enabling Net to Zero Product List filter';
+}
 function test_theme_settings(){
 		add_option('top_menu_option',0);// add theme option to database
 		add_option('carousel',0);
+		add_option('ntz',0);
 		add_settings_section( 'first_section', 'New Theme Options Section',
 		'theme_section_description','theme-options');
 		add_settings_field('top_menu_option','Top Menu','options_callback',
@@ -1511,6 +1518,8 @@ function test_theme_settings(){
 		add_settings_field('carousel','Carousel','carousel_callback',
 		'theme-options','first_section');
 		add_settings_field('time_slide','Time Slide','time_slide_callback',
+		'theme-options','first_section');
+		add_settings_field('ntz','Net to Zero','ntz_callback',
 		'theme-options','first_section');
 
 		add_settings_field('footer_button_url','Button Url','button_url_callback',
@@ -1531,6 +1540,7 @@ function test_theme_settings(){
 		register_setting( 'theme-options-grp', 'carousel_option');
 		register_setting( 'theme-options-grp', 'footer_small_text');
 		register_setting( 'theme-options-grp', 'time_slide');
+		register_setting( 'theme-options-grp', 'ntz_option');
 }
 function button_text_callback() { ?>
 	<input type="text" name="footer_button_text" value="<?php echo get_option('footer_button_text'); ?>"/>
