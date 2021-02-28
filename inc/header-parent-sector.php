@@ -7,7 +7,6 @@ $post_thumbnail_img = wp_get_attachment_image_src( $image_id, 'full' );
     <div class="row h-100 align-items-center justify-content-center text-center">
       <div class="col-lg-10 align-self-center">
         <h1 class="text-white <?php echo $font; ?>"><?php single_cat_title(); ?>
-
         </h1>
       </div>
     </div>

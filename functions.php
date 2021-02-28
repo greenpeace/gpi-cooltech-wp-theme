@@ -1092,7 +1092,6 @@ function get_tags_in_use($category_ID, $taxonomy){
 			<?php
 			$x=0;
 
-
 			foreach($posts as $po) {
 
 				$p=new Element($po);

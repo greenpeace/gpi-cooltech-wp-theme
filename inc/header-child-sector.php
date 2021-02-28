@@ -59,7 +59,7 @@ $parent=	get_term($id,"type");
           <?php }?>
         </select> </div>
         <?php
-        // print_r($term);
+    
         $tags=get_tags_in_use($term->term_id,"country");
 
         //print_r($tags); ?>

@@ -344,9 +344,6 @@ if($n1 && $n2 && $n3) {
 
 		</section>
 
-			<?php // get_template_part('loop'); ?>
-
-			<?php // get_template_part('pagination'); ?>
 
 
 		<!-- /section -->

@@ -1,7 +1,6 @@
 
 
 <article class='element <?php echo $p->post->post_type; ?>' id=''>
-
   <div class='row d-lg-none'><div class='col-md-12'>
   </div></div>
 <div class='row'>
