@@ -87,6 +87,19 @@
 		}
   ?>
 	</ul>
+	<?php wp_nav_menu(
+		array(
+			'theme_location'  => 'top-menu',
+			'container'       => 'div',
+			'container_class' => 'collapse navbar-collapse',
+			'container_id'    => 'navbarNavDropdown',
+			'menu_class'      => 'navbar-top ml-auto',
+			'fallback_cb'     => '',
+			'menu_id'         => 'main-menu',
+			'depth'           => 1,
+			'walker'          => new WP_Bootstrap_Navwalker(),
+		)
+	); ?>
 </div>
 		<!-- /wrapper -->
 		<script

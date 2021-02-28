@@ -1,6 +1,6 @@
 /*
-	Theme Name: Cooltech
-	Description: Cooltech Theme
+	Theme Name: Uniplom
+	Description: Uniplom Theme
 	Version: 1.0.4
 	Author: Fabrizio Giannone
 	Tags: CSS3
@@ -1064,6 +1064,9 @@ display:none;
 		justify-content: center;
 		flex-wrap:wrap;
 	}
+	.navbar-first {
+ 	 display:none;
+  }
 
 	#logo {
 		font-size: 2.5rem;
@@ -1129,9 +1132,12 @@ display:none;
 	.navbar-nav, .menu-finale {
 	 display:flex !important;
  }
+ .navbar-first {
+	 display:block;
+ }
  .btn-responsive-menu {
 	 display:none;
- }
+ 	}
 	.dropbtn {
 		padding: 20px 5px;
 	}

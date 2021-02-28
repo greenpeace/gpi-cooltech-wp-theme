@@ -771,8 +771,7 @@ function add_footnote($atts, $content) {
 
 
 
-// Shortcode Demo with simple <h2> tag
-function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 shortcode, allows for nesting within above element. Fully expandable.
+function cooltech_shortcode_cat($atts, $content = null)
 {
 
 	if($atts["cat"]) {
@@ -835,14 +834,14 @@ function cooltech_shortcode_cat($atts, $content = null) // Demo Heading H2 short
 
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" width="120" alt="Icon <?php echo $t->name; ?>"> </div>
+								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.png" alt="Icon <?php echo $t->name; ?>"> </div>
 							<?php
 							}
 							?>
 								<div class="cat_title text-sm-left"><h3><?php echo $t->name; ?><?php if($name) { echo "&nbsp; ".$name; }?></h3> </div>
 								<div class="cat_desc text-sm-left align-items-stretch"> <?php
 								if($atts["lineparent"]=="1") {
-									$desc=get_term_meta($t->term_id, 'net_to_zero_desc', true );
+									$desc=get_term_meta($t->term_id, 'net_to_zero_intro', true );
 									echo $desc;
 								} else {
 									echo do_shortcode($t->description);
@@ -939,17 +938,32 @@ $args=array("post_type"=>"page","numberposts"=>1,"name"=>"net-to-zero");
 }
 
 function get_tags_in_use($category_ID, $taxonomy){
+
+	if($_GET["pt"]=="zero") {
+		$t=array("zero");
+	} else {
+		$t=array("zero","case-study","equipment");
+	}
+
+	$args = array(
+		'tax_query' => array(
+			array(
+		'taxonomy' => 'type',
+		'field' => 'id',
+		'terms' => $category_ID)
+		),
+  	'posts_per_page' => -1,
+		'post_type'=>$t
+		);
+		if(is_user_logged_in()) {
+			$args['post_status'] = array( 'publish', 'draft' );
+		}
+
     // Set up the query for our posts
-    $my_posts = new WP_Query(array(
-			'tax_query' => array(
-				array(
-			'taxonomy' => 'type',
-			'field' => 'id',
-			'terms' => $category_ID
-		)
-	),
-      'posts_per_page' => -1 // All posts from that category
-    ));
+    $my_posts = new WP_Query($args);
+
+		// print_r($my_posts);
+
 	//	print_r($my_posts);
 		$all_tags=array();
 		$x=0;
@@ -958,6 +972,7 @@ function get_tags_in_use($category_ID, $taxonomy){
     // If there are posts in this category, loop through them
     if ($my_posts->have_posts()): while ($my_posts->have_posts()): $my_posts->the_post();
 
+		//	echo ">><b>".$my_posts->post->post_title."</b>";
       // Get all tags of current post
       $post_tags = wp_get_post_terms($my_posts->post->ID, $taxonomy);
 		//	print_r($post_tags);
@@ -1048,7 +1063,6 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$type=array("equipment","case-study");
 		}
 
-
 		$args = array(
     'post_type' => $type,
     'tax_query' => $tax_query,
@@ -1057,10 +1071,25 @@ function get_tags_in_use($category_ID, $taxonomy){
 		'posts_per_page'=>10,
 		'paged'=>$paged
 	);
+
+		if(is_user_logged_in()) {
+			$args['post_status'] = array( 'publish', 'draft' );
+		}
 			$elements=array();
 
 			// print_r($tax_query);
-			$posts=get_posts($args);
+			//$posts=get_posts($args);
+
+			$query = new WP_Query($args);
+			$posts = $query->posts;
+ 			$max_num_pages = $query->max_num_pages;
+
+			// echo ">>".$max_num_pages;
+			?>
+			<script>
+				totpages=<?php echo $max_num_pages; ?>
+			</script>
+			<?php
 			$x=0;
 
 
@@ -1076,6 +1105,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 				$p->country=wp_get_post_terms( $p->post->ID, "country", $args );
 				$p->energy_efficency=get_post_meta($p->post->ID,"energy_efficency",true);
 				$source=get_post_meta($p->post->ID,"source",true);
+				$expanded=get_post_meta($p->post->ID,"expand",true);
+				if($expanded) {
+					$p->expanded=$expanded;
+				}
 				if($source) {
 					$p->source=$source;
 				}
@@ -1084,6 +1117,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 					$p->web=$web;
 				}
 				$p->sector=$p->get_sector();
+
+				$img_id = get_post_thumbnail_id( $p->post->ID );
+				$img = wp_get_attachment_image_src( $img_id, "medium");
+				$p->img=$img[0];
 				array_push($elements,$p);
  				include 'contenuto-ajax.php';
 				}
@@ -1137,15 +1174,26 @@ function unique_multidim_array($array, $key) {
     $temp_array = array();
     $i = 0;
     $key_array = array();
-
+		// for every list of tags
     foreach($array as $val) {
+			// if the id(key) is not in key array
         if (!in_array($val[$key], $key_array)) {
+					// add in the key (id) array
             $key_array[$i] = $val[$key];
+						// add in array
             $temp_array[$i] = $val;
         }
         $i++;
     }
+		usort($temp_array,"order_tags_by_name");
     return $temp_array;
+}
+
+function order_tags_by_name($a,$b) {
+	if ($a["name"] == $b["name"]) {
+    return 0;
+  }
+  return ($a["name"] < $b["name"] ? -1 : 1);
 }
 
 function get_tax_level($id, $tax){

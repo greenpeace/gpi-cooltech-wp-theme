@@ -20,7 +20,7 @@
 <body id="page-top">
 	<?php if(get_option( 'top_menu_option' )) { ?>
 	<div class="">
-		<nav class="navbar navbar-first navbar-expand-md navbar-light bg-light">	<?php wp_nav_menu(
+		<nav class="navbar navbar-first navbar-expand-md navbar-light bg-light d-none d-sm-block">	<?php wp_nav_menu(
 			array(
 				'theme_location'  => 'top-menu',
 				'container'       => 'div',
