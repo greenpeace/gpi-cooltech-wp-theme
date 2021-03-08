@@ -214,6 +214,7 @@ if($n1 && $n2 && $n3) {
 						$ee=get_post_meta($post->ID,"energy_efficency",true);
 						$source=get_post_meta($post->ID,"source",true);
 						$web=get_post_meta($post->ID,"website",true);
+            $web=explode(",",$web);
 
 						$expanded=get_post_meta($post->ID,"expand",true);
 
@@ -223,23 +224,30 @@ if($n1 && $n2 && $n3) {
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-					<div class="row d-lg-none">
-								<div class="col-md-12"><h2 class="result_title"><?php the_title(); ?></h2>
+					<div class="row">
+								<div class="col-md-12">
+                  <div class="product-title-block">
 
+                    <h2 class="result_title"><?php the_title(); ?></h2>
 
-                 </div>
+                    <?php  if($expanded!=1 && $post->post_type!="zero") { ?>
+                      <button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
+
+                      </button>
+                      <?php  } else { ?>
+                        <a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
+                      <?php } ?>
+                     </div>
+               </div>
 					</div>
 					<div class="row">
 						<div class="col-md-3">
-							<h2 class="result_title d-none d-sm-none d-md-none d-lg-block"><?php the_title(); ?></h2>
-              <?php  if($expanded!=1 && $post->post_type!="zero") { ?>
-                <button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
 
-                </button>
-              <?php  } else { ?>
-                <a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
-            <?php } ?>
-
+            <?php
+            if($img_id) {
+              ?> <img src="<?php echo $img[0] ?>" />
+            <?php }
+            ?>
 					</div>
 						<div class="col-md-3">
 								<div class="result_meta_title"><?php _e( 'Sector', 'cooltech' ); ?></div>
@@ -309,10 +317,15 @@ if($n1 && $n2 && $n3) {
 							</div>
 							<div class="col-sm-9">
 								<div><?php the_content(); ?></div>
-								<?php if($web) {?>
+								<?php if($web) {
+                  ?>
 								<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
-								<div class="result_meta_content result_web"><a href="<?php echo $web ?>" target="_blank"><?php echo $web; ?></a></div>
-								<?php } ?>
+								<div class="result_meta_content result_web">
+                  <?php foreach ($web as $w) {?>
+                  <a href="<?php echo $w ?>" target="_blank"><?php echo $w; ?></a>
+                  <?php } ?>
+                  </div>
+                <?php } ?>
 								<?php if ($source) { ?>
 								<div class="result_meta_title"><a title="<?php echo $source; ?>" class="result_meta_title" href="<?php  echo add_http($source); ?>" target="_blank"><?php _e( 'Source', 'cooltech' ); ?></a></div>
 								<div class="result_meta_content result_source"><?php  echo createLink($source); ?></div>

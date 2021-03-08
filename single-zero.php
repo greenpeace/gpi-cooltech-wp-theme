@@ -6,6 +6,7 @@
         $args=array("childless"=>true);
         $se=wp_get_post_terms($post->ID, "type", $args);
         $p=get_term($se[0]->parent);
+        
 ?>
 <main role="main">
 	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
@@ -27,13 +28,18 @@
                         $ee=get_post_meta($post->ID, "energy_efficency", true);
                         $source=get_post_meta($post->ID, "source", true);
                         $web=get_post_meta($post->ID, "website", true);
+                        $web=explode(",",$web);
                         if ($ee) { ?>
 													<h2> <?php _e("Energy Efficency","cooltech"); ?> </h2>
 													<?php echo $ee; ?>
 												<?php  } ?>
 										<?php if($web) { ?>
-											<div class="result_meta_title"><a class="result_meta_title" href="<?php  echo $web; ?>" target="_blank"><?php _e('Website', 'cooltech'); ?></a></div>
-											<div class="result_meta_content"><a href="<?php  echo $web; ?>" target="_blank"><?php  echo $web; ?></a></div>
+											<div class="result_meta_title"><?php _e('Website', 'cooltech'); ?></div>
+											<div class="result_meta_content">
+                        <?php foreach ($web as $w) {?>
+                        <a href="<?php echo $w ?>" target="_blank"><?php echo $w; ?></a>
+                        <?php } ?>
+                        </div>
 										<?php } ?>
 										<?php if($source) { ?>
 											<div class="result_meta_title"><a class="result_meta_title" title="<?php echo $source; ?>" href="<?php  echo $source; ?>" target="_blank"><?php _e('Source', 'cooltech'); ?></a></div>

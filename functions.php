@@ -825,16 +825,19 @@ function cooltech_shortcode_cat($atts, $content = null)
 					<?php
 						if($atts["link"]) {
 							$link=home_url()."/sector/". $t->slug."?".$atts["link"];
+							$classzero="icon-zero";
 						} elseif ($atts["page"]) {
 							$link=home_url()."/path-to-zero-".$slug;
+							$classzero="";
 						} else {
 							$link=home_url()."/sector/". $t->slug;
+							$classzero="";
 						}
 						?>
 
 						<div class="<?php echo $cols;?> cat_col">
 							<?php if($atts["logo"]) { ?>
-								<div class="cat_icon text-sm-left"> <img class="icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.png" alt="Icon <?php echo $t->name; ?>"> </div>
+								<div class="cat_icon text-sm-left"> <img class="<?php echo $classzero; ?> icon-category" src="<?php echo get_template_directory_uri();?>/img/icon-<?php echo $t->slug;?>.svg" alt="Icon <?php echo $t->name; ?>"> </div>
 							<?php
 							}
 							?>

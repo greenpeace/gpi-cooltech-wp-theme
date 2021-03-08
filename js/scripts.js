@@ -19,7 +19,7 @@
             });
 
             function expandInformation() {
-              $(this).parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
+              $(this).parent().parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
               $(this).toggleClass("btn--active");
               if ($(this).hasClass("btn--active")) {
                 $(this).text("Less Information");
@@ -123,7 +123,7 @@
 
 
             $(document).on("click", ".expand_text", function() {
-                $(this).parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
+                $(this).parent().parent().parent().siblings(".equipment_full_text").toggleClass("expanded");
                 $(this).toggleClass("btn--active");
                 if ($(this).hasClass("btn--active")) {
                   $(this).text("Less Information");

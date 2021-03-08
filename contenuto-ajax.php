@@ -1,19 +1,26 @@
 
 
 <article class='element <?php echo $p->post->post_type; ?>' id=''>
-  <div class='row d-lg-none'><div class='col-md-12'>
-  </div></div>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class="product-title-block">
+      <h2 class="result_title">
+      <?php echo $p->post->post_title; ?></h2>
+      <?php  if($p->post->expanded!=1 && $p->post->post_type!="zero") { ?>
+        <button class="<?php echo $p->post->sector; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
+      </button>
+      <?php  } else { ?>
+        <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo $p->post->guid ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
+      <?php } ?>
+      </div>
+  </div>
+</div>
 <div class='row'>
   <div class='col-md-3'>
-    <h2 class='result_title d-lg-block'><?php echo $p->post->post_title; ?></h2>
+    <?php if($p->img) { ?>
     <img src="<?php echo $p->img;  ?>" class="img-fluid" />
-
-    <?php  if($p->post->expanded!=1 && $p->post->post_type!="zero") { ?>
-      <button class="<?php echo $p->post->sector; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
-    </button>
-    <?php  } else { ?>
-      <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo $p->post->guid ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
     <?php } ?>
+
   </div>
   <div class='col-md-3'>
     <div class='result_meta_title'>Sector</div>
@@ -56,12 +63,19 @@
 <?php
 
 if($p->source) { ?>
-<div class='result_meta_title'><a title='' target='_blank'>Source</a></div><div class='result_meta_content result_source'><a href='"+obj[x].source+"'><?php echo $p->source ?></a></div>;
+<div class='result_meta_title'><a title='' target='_blank'>Source</a></div><div class='result_meta_content result_source'><a href="<?php echo add_http($source); ?>"><?php echo $p->source ?></a></div>
 <?php
 }
 ?>
-<?php if($p->web) { ?>
-<div class='result_meta_title'>Website</div><div class='result_meta_content result_web'><a href='web' target='_blank'><?php echo $p->web ?></a></div>
+<?php if($p->web) {
+$web=explode(",",$p->web);
+   ?>
+<div class='result_meta_title'>Website</div>
+<div class='result_meta_content result_web'>
+  <?php foreach ($web as $w) {?>
+  <a href="<?php echo $w ?>" target="_blank"><?php echo $w; ?></a>
+  <?php } ?>
+</div>
 
 <?php
 } ?>
