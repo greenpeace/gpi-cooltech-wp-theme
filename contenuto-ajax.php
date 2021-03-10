@@ -1,5 +1,3 @@
-
-
 <article class='element <?php echo $p->post->post_type; ?>' id=''>
   <div class='row'>
     <div class='col-md-12'>
@@ -40,7 +38,15 @@
     <div class='result_meta_content'>
       <?php echo	implode($p->manufacturer, " "); ?>
     </div>
-    <div class='result_meta_title'>		Country								</div>
+    <div class='result_meta_title'>			<?php
+      if($p->post->post_type=="equipment") {
+        _e( 'Manufacturer Country', 'cooltech' );
+      } elseif($p->post->post_type=="zero") {
+        _e( 'Availability', 'cooltech' );
+      } else {
+        _e( 'Country', 'cooltech' );
+      }
+        ?>						</div>
     <div class='result_meta_content'>
       <?php echo	implode($p->country," "); ?>
     </div>

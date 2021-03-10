@@ -1698,7 +1698,14 @@ function add_filter_bar($atts) {
 
 		//print_r($tags); ?>
 		<div class="selectdiv"><select id="country" class="select-filter" name="country">
-			<option value="0"><?php _e("Country","cooltech"); ?> </option>
+			<option value="0">
+				<?php
+				if($_GET["pt"]=="zero") {
+			 		_e("Availability");
+		 		} else {
+					_e("Country","cooltech");
+				}
+			 ?> </option>
 			<?php foreach($tags as $tag) { ?>
 			<option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>
 			<?php }?>

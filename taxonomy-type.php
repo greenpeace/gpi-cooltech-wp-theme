@@ -286,7 +286,9 @@ if($n1 && $n2 && $n3) {
 									<?php
 									if($post->post_type=="equipment") {
 										_e( 'Manufacturer Country', 'cooltech' );
-									} else {
+									} elseif($post->post_type=="zero") {
+                    _e( 'Availability', 'cooltech' );
+                  } else {
 										_e( 'Country', 'cooltech' );
 									}
 										?>
