@@ -219,7 +219,7 @@ if($n1 && $n2 && $n3) {
 						$expanded=get_post_meta($post->ID,"expand",true);
 
              $img_id = get_post_thumbnail_id( $post->ID );
-             $img = wp_get_attachment_image_src( $img_id, "thumbnail");
+             $img = wp_get_attachment_image_src( $img_id, "medium");
 				?>
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -245,7 +245,7 @@ if($n1 && $n2 && $n3) {
 
             <?php
             if($img_id) {
-              ?> <img src="<?php echo $img[0] ?>" />
+              ?> <img src="<?php echo $img[0] ?>" class="img-fluid" />
             <?php }
             ?>
 					</div>

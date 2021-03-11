@@ -6,7 +6,7 @@ $parent=	get_term($id,"type");
     <div class="container">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
-          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>">  <?php if($_GET["pt"]=="zero") { echo "Net to Zero "; }?><?php single_cat_title(); ?> <?php echo $parent->name ?>
+          <h1 class="last-sector text-black font-weight-bold <?php echo $parent->slug; ?>">  <?php if($_GET["pt"]=="zero") { echo "Net Zero "; }?><?php single_cat_title(); ?> <?php echo $parent->name ?>
           <?php  $id=get_queried_object()->parent;
           $parent=	get_term($id,"type"); ?>
           </h1>
@@ -71,7 +71,7 @@ $parent=	get_term($id,"type");
     		 		} else {
     					_e("Country","cooltech");
     				}
-    			 ?> 
+    			 ?>
           </option>
           <?php foreach($tags as $tag) { ?>
           <option value="<?php echo $tag["slug"] ?>"><?php echo $tag["name"]; ?> </option>

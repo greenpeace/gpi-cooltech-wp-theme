@@ -122,6 +122,15 @@ section.sector-first {
 /* H3 titles */
 @each $s in $sector-colors {
 
+    section.#{nth($s, 1)}  {
+      .single-title, .single-title-energy-efficency, .colour-title, .sidebar-term {
+      color:#{nth($s, 2)};
+      }
+      .sidebar-term {
+        border-top: 2px solid #{nth($s, 2)};
+      }
+    }
+
     section.#{nth($s, 1)} .print-svg {
       fill:#{nth($s, 2)};
     }
@@ -263,7 +272,8 @@ article.element.zero {
 }
 
 /* SINGLE PAGE */
-div.single-case-study-title, div.single-equipment {
+div.single-case-study-title, div.single-equipment, div.single-net-zero-title, .single-title {
+  padding-top:15px;
   padding-bottom: 50px;
 }
 
