@@ -15,6 +15,7 @@
 </div>
 <div class='row'>
   <div class='col-md-3'>
+    <div><?php echo getTypeLabel($p->post->post_type); ?> </div>
     <?php if($p->img) { ?>
     <img src="<?php echo $p->img;  ?>" class="img-fluid" />
     <?php } ?>
@@ -55,7 +56,7 @@
   <div class='col-md-3'>
       <div class='result_meta_title'>Energy Efficency</div>
       <div class='result_meta_content'>
-        <?php echo $p->energy_efficency; ?></div>
+        <?php echo wp_trim_words($p->energy_efficency,25,"..."); ?></div>
       </div>
 </div>
 

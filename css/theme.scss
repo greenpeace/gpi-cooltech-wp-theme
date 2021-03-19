@@ -123,11 +123,17 @@ section.sector-first {
 @each $s in $sector-colors {
 
     section.#{nth($s, 1)}  {
-      .single-title, .single-title-energy-efficency, .colour-title, .sidebar-term {
+      .single-title, .single-title-energy-efficency, .colour-title, .sidebar-term, .single-small-legend {
       color:#{nth($s, 2)};
       }
       .sidebar-term {
         border-top: 2px solid #{nth($s, 2)};
+      }
+      .sidebar-manufacturer {
+        border-bottom:2px solid #{nth($s, 2)};
+      }
+      #filters {
+        color:#{nth($s, 2)};
       }
     }
 
@@ -194,6 +200,19 @@ section.small-padding {
   }
 }
 
+#filters span {
+  font-size:1.2rem;
+}
+#filters span:nth-child(n+3)::before {
+  content:" / ";
+}
+
+
+.single-small-legend {
+  font-size:0.75rem;
+  text-align: right;
+ /*  font-weight:bold; */
+}
 
 header.masthead.second-taxonomy, section.archive-glossary {
 	background-color: $background-grey;
@@ -235,6 +254,14 @@ article.element.zero {
 
 /* NET TO ZERO */
 
+.single-zero-page div.bg-white {
+  padding-bottom:50px;
+}
+h2.single-title-energy-efficency {
+  font-size:1.25rem;
+}
+
+
 .net-zero-title-block {
   margin-bottom:1rem;
   h2.result_title {
@@ -266,9 +293,16 @@ article.element.zero {
 .sidebar-term {
   border-top:2px solid $first-color;
 }
+.sidebar-manufacturer {
+  border-bottom:2px solid $first-color;
+}
+.sidebar-term:last-child {
+  border-bottom:2px solid $first-color;
+}
+
 .sidebar-term {
   color:$first-color;
-  padding: $margin-bottom 0;
+  padding: $margin-bottom 0 0 0;
 }
 
 /* SINGLE PAGE */

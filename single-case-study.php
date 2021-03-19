@@ -62,30 +62,7 @@
 				</article>
 			</div>
 			<div class="col-sm-4">
-					<?php if(!$ex) { ?>
-				<div style="padding-bottom:15px"><?php if(has_post_thumbnail( $post->ID )) {
-					?> <?php ?>
-					<?php
-					the_post_thumbnail("full");
-				} ?>
-				</div>
-			<?php } ?>
-			<div class="sidebar-application sidebar-term">
-					<?php	$ap=wp_get_post_terms( $post->ID, "application", $args );
-					echo $ap[0]->name;
-					?>
-			</div>
-			<div class="sidebar-country sidebar-term">
-				<?php	$co=wp_get_post_terms( $post->ID, "country", $args );
-				echo $co[0]->name;
-				?>
-			</div>
-			<div class="sidebar-manufacturer sidebar-term">
-				<?php	$ma=wp_get_post_terms( $post->ID, "manufacturer", $args );
-				echo $ma[0]->name;
-				?>
-			</div>
-					<?php  get_sidebar(); ?>
+					<?php  get_sidebar("product"); ?>
 			</div>
 			</div>
 			<!-- /article -->

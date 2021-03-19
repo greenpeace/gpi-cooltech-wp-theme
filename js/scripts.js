@@ -77,9 +77,35 @@
                 });
             }
 						/* page case study */
+            var append=0;
 
             $(".select-filter").change(function() {
-                console.log("cambio");
+                let id=$(this).val();
+                let t=$(this).find('option:selected').text();
+                let f=$(this).find('option:first').text();
+
+                $("#filter-"+this.id).remove();
+
+                if(t!=f) {
+                  append++;
+                  var azione="agg";
+                } else {
+                  append--;
+                  var azione="togli";
+                }
+
+                if(append==1 && azione=="agg") {
+                  $("#filters").append("<span class='filter-label'>filters: </span>");
+                }
+                if(append==0 && azione=="togli") {
+                  $(".filter-label").remove();
+                }
+                if(t!=f) {
+                  $("#filters").append("<span class='filter-element' id='filter-"+this.id+"'>"+t+"</span>");
+                }
+
+                $("#results").empty();
+                $(".infinite-loading").show();
                 $.ajax({
                     type: 'POST',
                     url: ajax_url,
@@ -98,8 +124,8 @@
                     	  data = data.substring(0, len - 1);
                         // alert("aaaaaa");
 
-                        console.log("aggiungo da script.js");
-
+                        // console.log("aggiungo da script.js");
+                        $(".infinite-loading").hide();
                     //    var obj = jQuery.parseJSON(data);
                         $("#results").empty();
 

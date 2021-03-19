@@ -173,12 +173,17 @@ if($n1 && $n2 && $n3) {
 					<div class="container">
 						<div class="row">
 							<div class="col-sm-12">
-								<div class="print-icon float-right print-icon-results">
+                <div id="block-filters-print" class="d-flex justify-content-between align-items-center">
+                <div id="filters"> </div>
+								<div class="print-icon print-icon-results">
 									<a href="javascript:window.print()"> <svg class="print-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"/></svg>	 </a>
 								</div>
+              </div>
+
 							</div>
 						</div>
 				<div id="results">
+
 				<?php
 				$x=0;
 				if($_GET["pt"]) {
@@ -228,7 +233,10 @@ if($n1 && $n2 && $n3) {
 								<div class="col-md-12">
                   <div class="product-title-block">
 
-                    <h2 class="result_title"><?php the_title(); ?></h2>
+                    <div><h2 class="result_title"><?php the_title(); ?></h2>
+                      <div><?php echo getTypeLabel($post->post_type);  ?></div>
+                    </div>
+
 
                     <?php  if($expanded!=1 && $post->post_type!="zero") { ?>
                       <button class="<?php echo $parent->slug; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
@@ -238,11 +246,11 @@ if($n1 && $n2 && $n3) {
                         <a class="more_text <?php echo $parent->slug; ?> btn btn-rounded btn-outline-dark" href="<?php the_permalink(); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
                       <?php } ?>
                      </div>
+
                </div>
 					</div>
 					<div class="row">
 						<div class="col-md-3">
-
             <?php
             if($img_id) {
               ?> <img src="<?php echo $img[0] ?>" class="img-fluid" />
@@ -302,7 +310,7 @@ if($n1 && $n2 && $n3) {
 							<div class="col-md-3">
                 <!--  <img src="<?php echo $img[0]; ?>" class="img-fluid" /> -->
 							    <div class="result_meta_title"><?php _e( 'Energy Efficency', 'cooltech' ); ?></div>
-									<div class="result_meta_content"><?php echo $ee; ?></div>
+									<div class="result_meta_content"><?php echo wp_trim_words($ee, 25, "..."); ?></div>
 
 							</div>
 						</div>

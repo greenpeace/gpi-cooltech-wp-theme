@@ -1139,6 +1139,22 @@ function get_tags_in_use($category_ID, $taxonomy){
 			}
 		}
 
+		function getTypeLabel($type) {
+			switch ($type) {
+		    case "zero":
+		       // return "Net Zero Equipment";
+					 return "";
+		        break;
+		    case "equipment":
+		      //  return "Equipment";
+					return "";
+		        break;
+		    case "case-study":
+		        return "Case Study";
+		        break;
+				}
+		}
+
 	function ja_ajax_search() {
 		echo $_POST["search"];
 	$results = new WP_Query( array(
@@ -1634,6 +1650,21 @@ function custom_get_posts( $query ) {
     $query->query_vars['order'] = 'ASC';
   }
 
+}
+
+
+function getCountryLabel($type) {
+	switch ($type) {
+    case "zero":
+        return "Availability";
+        break;
+    case "equipment":
+        return "Manufacturer Country";
+        break;
+    case "case-study":
+        return "Country";
+        break;
+		}
 }
 
 function add_search_panel() {
