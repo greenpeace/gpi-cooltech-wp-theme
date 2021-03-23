@@ -10,9 +10,9 @@
 ?>
 <main role="main" class="single-zero-page">
 	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-          <article>
+
 		      <?php include("single-product.php"); ?>
-          </article>
+  
 						<!-- /article -->
 					<?php endwhile; ?>
 					<?php else: ?>

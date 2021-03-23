@@ -2,20 +2,35 @@
   <div class='row'>
     <div class='col-md-12'>
       <div class="product-title-block">
-      <h2 class="result_title">
-      <?php echo $p->post->post_title; ?></h2>
-      <?php  if($p->post->expanded!=1 && $p->post->post_type!="zero") { ?>
-        <button class="<?php echo $p->post->sector; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
-      </button>
-      <?php  } else { ?>
-        <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo $p->post->guid ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
-      <?php } ?>
-      </div>
+
+        <div><h2 class="result_title">
+          <?php
+          $title=$p->post->post_title;
+          // if the title is the same as the manufacturer
+          if($title==$p->manufacturer[0] || get_post_meta($p->post->ID, "hide_manufacturer")==true || $p->post->post_type=="case-study" ) {
+            $titolo=$title;
+          }  else {
+          // else
+            $titolo=$title." - ".$p->manufacturer[0];
+          }
+          ?>
+          <?php echo $titolo; ?></h2>
+          <div class="subtitle-product-list"><?php echo getTypeLabel($p->post->post_type);  ?></div>
+        </div>
+
+
+        <?php  if($expanded!=1 && $p->post->post_type!="zero") { ?>
+          <button class="<?php echo $p->post->sector; ?> expand_text btn btn-rounded btn-outline-dark"> <?php _e( 'More Information', 'cooltech' ); ?>
+
+          </button>
+          <?php  } else { ?>
+            <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo $p->post->guid ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
+          <?php } ?>
+         </div>
   </div>
 </div>
 <div class='row'>
   <div class='col-md-3'>
-    <div><?php echo getTypeLabel($p->post->post_type); ?> </div>
     <?php if($p->img) { ?>
     <img src="<?php echo $p->img;  ?>" class="img-fluid" />
     <?php } ?>

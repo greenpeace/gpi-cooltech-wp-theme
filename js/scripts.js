@@ -130,8 +130,11 @@
                         $("#results").empty();
 
                   //      console.log(obj.post);
-
-                        $('#results').append(data);
+                        if(!data) {
+                          $('#results').append("<div class='no-product'>No products found</div>");
+                        } else {
+                          $('#results').append(data);
+                        }
 
                     },
                     error: function(MLHttpRequest, textStatus, errorThrown) {

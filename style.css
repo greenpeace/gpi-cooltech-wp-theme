@@ -730,7 +730,7 @@ color:inherit;
 	flex-direction: column;
 }
 .expand_text, .more_text {
-	margin-top:auto;
+	/* margin-top:auto; */
 }
 
 

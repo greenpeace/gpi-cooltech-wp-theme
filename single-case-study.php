@@ -10,7 +10,7 @@
 	$p=get_term($se[0]->parent);
 ?>
 <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-	<main role="main">
+	<main role="main" class="case-study-page">
 		<?php if($ex) { ?>
 			<header class="masthead"  style="background-image:linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2)),url('<?php echo $post_thumbnail_img[0]; ?>')">
 	    <div class="container h-100">
@@ -35,6 +35,9 @@
 				 </div>
 			 </div>
 			<div class="row">
+				<div class="col-sm-4">
+						<?php  get_sidebar("product"); ?>
+				</div>
 			<div class="col-sm-8">
 			<!-- article -->
 				<article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
@@ -44,26 +47,24 @@
 				$web=get_post_meta($post->ID,"website",true);
 				if($ee) {
 					?>
-					<h2><?php _e("Energy Efficency","cooltech"); ?></h2>
+					<h2 class="single-title-energy-efficency colour-title"><?php _e("Energy Efficency","cooltech"); ?></h2>
 					<?php
 					echo $ee;
 				}
 				?>
 				<?php if($web) { ?>
-				<div class="result_meta_title"><?php _e( 'Website', 'cooltech' ); ?></div>
+				 <div class="result_meta_title colour-title"><?php _e( 'Website', 'cooltech' ); ?></div>
 				<div class="result_meta_content result_web"><a href="<?php  echo $web; ?>" target="_blank"><?php  echo $web; ?></a></div>
 				<?php } ?>
 				<?php if($source) { ?>
-				<div class="result_meta_title"><?php _e( 'Source', 'cooltech' ); ?></div>
+				  <div class="result_meta_title colour-title"><?php _e( 'Source', 'cooltech' ); ?></div>
 				<div class="result_meta_content result_source"><?php echo createLink($source); ?> </div>
 			<?php } ?>
 				<br class="clear">
-				<?php edit_post_link(); ?>
+				<?php // edit_post_link(); ?>
 				</article>
 			</div>
-			<div class="col-sm-4">
-					<?php  get_sidebar("product"); ?>
-			</div>
+
 			</div>
 			<!-- /article -->
 		<?php endwhile; ?>

@@ -207,6 +207,12 @@ section.small-padding {
   content:" / ";
 }
 
+.subtitle-product-list {
+  font-size: 0.75rem;
+}
+.no-product {
+  font-size:2rem;
+}
 
 .single-small-legend {
   font-size:0.75rem;
@@ -254,7 +260,7 @@ article.element.zero {
 
 /* NET TO ZERO */
 
-.single-zero-page div.bg-white {
+.single-zero-page div.bg-white, .case-study-page div.bg-white {
   padding-bottom:50px;
 }
 h2.single-title-energy-efficency {

@@ -13,6 +13,9 @@
       </div>
       </div>
       <div class="row">
+        <div class="col-sm-4">
+             <?php  get_sidebar("product"); ?>
+        </div>
         <div class="col-sm-8">
           <!-- article -->
           <article id="post-<?php the_ID(); ?>" <?php post_class($classes); ?>>
@@ -45,7 +48,5 @@
               <?php // edit_post_link(); ?>
             </article>
           </div>
-          <div class="col-sm-4">
-               <?php  get_sidebar("product"); ?>
-      </div>
+
     </div>

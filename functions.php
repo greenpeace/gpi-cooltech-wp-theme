@@ -1086,7 +1086,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$query = new WP_Query($args);
 			$posts = $query->posts;
  			$max_num_pages = $query->max_num_pages;
-
+			if($posts) {
 			// echo ">>".$max_num_pages;
 			?>
 			<script>
@@ -1094,6 +1094,8 @@ function get_tags_in_use($category_ID, $taxonomy){
 			</script>
 			<?php
 			$x=0;
+
+
 
 			foreach($posts as $po) {
 
@@ -1126,7 +1128,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 				array_push($elements,$p);
  				include 'contenuto-ajax.php';
 				}
-
+			}
 		//	echo json_encode($elements);
 
 		}
@@ -1142,12 +1144,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 		function getTypeLabel($type) {
 			switch ($type) {
 		    case "zero":
-		       // return "Net Zero Equipment";
-					 return "";
+		        return "Net Zero Product";
 		        break;
 		    case "equipment":
-		      //  return "Equipment";
-					return "";
+		        return "Product";
 		        break;
 		    case "case-study":
 		        return "Case Study";

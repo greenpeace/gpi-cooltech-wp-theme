@@ -233,8 +233,19 @@ if($n1 && $n2 && $n3) {
 								<div class="col-md-12">
                   <div class="product-title-block">
 
-                    <div><h2 class="result_title"><?php the_title(); ?></h2>
-                      <div><?php echo getTypeLabel($post->post_type);  ?></div>
+                    <div><h2 class="result_title">
+                      <?php
+                      $title=get_the_title();
+                      // if the title is the same as the manufacturer
+                      if($title==$ma[0]->name || get_post_meta($post->ID, "hide_manufacturer")==true || $post->post_type=="case-study" ) {
+                        $titolo=$title;
+                      }  else {
+                      // else
+                        $titolo=$title." - ".$ma[0]->name;
+                      }
+                      ?>
+                      <?php echo $titolo; ?></h2>
+                      <div class="subtitle-product-list"><?php echo getTypeLabel($post->post_type);  ?></div>
                     </div>
 
 
@@ -287,8 +298,8 @@ if($n1 && $n2 && $n3) {
 								<div class="result_meta_title"><?php _e( 'Manufacturer', 'cooltech' ); ?></div>
 								<div class="result_meta_content">
 								<?php foreach ($ma as $m ) { ?>
-								<?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
-							<?php	} ?>
+								          <?php echo $m->name ?> <?php if(next($ma)) { echo "/"; } ?>
+							     <?php	} ?>
 								</div>
 								<div class="result_meta_title">
 									<?php
