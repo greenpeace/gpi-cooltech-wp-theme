@@ -1144,16 +1144,24 @@ function get_tags_in_use($category_ID, $taxonomy){
 		function getTypeLabel($type) {
 			switch ($type) {
 		    case "zero":
-		        return "Net Zero Product";
+		        return "Net-Zero Product";
 		        break;
 		    case "equipment":
-		        return "Product";
+		        return "Cool Technologies Product";
 		        break;
 		    case "case-study":
 		        return "Case Study";
 		        break;
 				}
 		}
+
+	function getFullTitle($title,$manufacturer,$post_type,$hide) {
+		if($title==$manufacturer || $post_type=="case-study" || $hide==true) {
+			return $title;
+		} else {
+			return $title." - ".$manufacturer;
+		}
+	}
 
 	function ja_ajax_search() {
 		echo $_POST["search"];

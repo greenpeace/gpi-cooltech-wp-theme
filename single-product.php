@@ -3,13 +3,19 @@
       <div class="row">
         <div class="single-net-zero-title single-title colour-title col-sm-12">
           <div class="d-flex justify-content-between">
-          <h1><?php the_title(); ?> </h1>
+          <h1>
+          <?php  $title=get_the_title();
+            $ma=wp_get_post_terms($post->ID, "manufacturer", $args);
+            $hide=get_post_meta($post->ID, "hide_manufacturer");
+            echo getFullTitle($title,$ma[0]->name,$post->post_type,$hide); ?>
+
+           </h1>
 
           <div class="print-icon">
             <a href="javascript:window.print()"><svg class="print-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"/></svg></a></div>
           </div>
 
-          Net Zero Product - <a href="../../sector/<?php echo $p->slug;  ?>"><?php echo $p->name; ?></a> / <a href="../../sector/<?php echo $se[0]->slug; ?>"><?php echo $se[0]->name; ?></a>
+          Net-Zero Product - <a href="../../sector/<?php echo $p->slug;  ?>"><?php echo $p->name; ?></a> / <a href="../../sector/<?php echo $se[0]->slug; ?>"><?php echo $se[0]->name; ?></a>
       </div>
       </div>
       <div class="row">

@@ -236,15 +236,11 @@ if($n1 && $n2 && $n3) {
                     <div><h2 class="result_title">
                       <?php
                       $title=get_the_title();
-                      // if the title is the same as the manufacturer
-                      if($title==$ma[0]->name || get_post_meta($post->ID, "hide_manufacturer")==true || $post->post_type=="case-study" ) {
-                        $titolo=$title;
-                      }  else {
-                      // else
-                        $titolo=$title." - ".$ma[0]->name;
-                      }
-                      ?>
-                      <?php echo $titolo; ?></h2>
+
+                      $hide=get_post_meta($post->ID, "hide_manufacturer");
+                      echo getFullTitle($title,$ma[0]->name,$post->post_type,$hide); ?>
+
+                      </h2>
                       <div class="subtitle-product-list"><?php echo getTypeLabel($post->post_type);  ?></div>
                     </div>
 

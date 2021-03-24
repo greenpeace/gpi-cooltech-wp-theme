@@ -6,15 +6,10 @@
         <div><h2 class="result_title">
           <?php
           $title=$p->post->post_title;
-          // if the title is the same as the manufacturer
-          if($title==$p->manufacturer[0] || get_post_meta($p->post->ID, "hide_manufacturer")==true || $p->post->post_type=="case-study" ) {
-            $titolo=$title;
-          }  else {
-          // else
-            $titolo=$title." - ".$p->manufacturer[0];
-          }
+          $hide=get_post_meta($p->post->ID, "hide_manufacturer");
+          echo getFullTitle($title,$p->manufacturer[0],$p->post->post_type,$hide);
           ?>
-          <?php echo $titolo; ?></h2>
+          </h2>
           <div class="subtitle-product-list"><?php echo getTypeLabel($p->post->post_type);  ?></div>
         </div>
 
@@ -24,7 +19,7 @@
 
           </button>
           <?php  } else { ?>
-            <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo $p->post->guid ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
+            <a class="more_text <?php echo $p->post->sector; ?> btn btn-rounded btn-outline-dark" href="<?php echo get_permalink($p->post->ID); ?>"><?php _e( 'More Information', 'cooltech' ); ?>  </a>
           <?php } ?>
          </div>
   </div>
