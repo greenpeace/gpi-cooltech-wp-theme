@@ -316,7 +316,7 @@ if($n1 && $n2 && $n3) {
 							</div>
 							<div class="col-md-3">
                 <!--  <img src="<?php echo $img[0]; ?>" class="img-fluid" /> -->
-							    <div class="result_meta_title"><?php _e( 'Energy Efficency', 'cooltech' ); ?></div>
+							    <div class="result_meta_title"><?php _e( 'Energy Efficiency', 'cooltech' ); ?></div>
 									<div class="result_meta_content"><?php echo wp_trim_words($ee, 25, "..."); ?></div>
 
 							</div>

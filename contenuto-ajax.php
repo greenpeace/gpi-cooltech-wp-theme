@@ -64,7 +64,7 @@
   </div>
 
   <div class='col-md-3'>
-      <div class='result_meta_title'>Energy Efficency</div>
+      <div class='result_meta_title'>Energy Efficiency</div>
       <div class='result_meta_content'>
         <?php echo wp_trim_words($p->energy_efficency,25,"..."); ?></div>
       </div>

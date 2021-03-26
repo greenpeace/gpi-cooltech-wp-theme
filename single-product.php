@@ -31,8 +31,8 @@
                   $web=get_post_meta($post->ID, "website", true);
                   $web=explode(",",$web);
                   if ($ee) { ?>
-                    <h2 class="single-title-energy-efficency colour-title"> <?php _e("Energy Efficency","cooltech"); ?> </h2>
-                    <?php echo $ee; ?>
+                    <h2 class="single-title-energy-efficency colour-title"> <?php _e("Energy Efficiency","cooltech"); ?> </h2>
+                    <?php echo nl2br($ee); ?>
                   <?php  } ?>
               <?php if($web) { ?>
                 <div class="result_meta_title colour-title"><?php _e('Website', 'cooltech'); ?></div>

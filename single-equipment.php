@@ -28,8 +28,8 @@
                         $source=get_post_meta($post->ID, "source", true);
                         $web=get_post_meta($post->ID, "website", true);
                         if ($ee) { ?>
-													<h2> <?php _e("Energy Efficency","cooltech"); ?> </h2>
-													<?php echo $ee; ?>
+													<h2> <?php _e("Energy Efficiency","cooltech"); ?> </h2>
+													<?php echo nl2br($ee); ?>
 												<?php  } ?>
 										<?php if($web) { ?>
 											<div class="result_meta_title"><a class="result_meta_title" href="<?php  echo $web; ?>" target="_blank"><?php _e('Website', 'cooltech'); ?></a></div>

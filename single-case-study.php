@@ -50,9 +50,9 @@
 				$web=get_post_meta($post->ID,"website",true);
 				if($ee) {
 					?>
-					<h2 class="single-title-energy-efficency colour-title"><?php _e("Energy Efficency","cooltech"); ?></h2>
+					<h2 class="single-title-energy-efficency colour-title"><?php _e("Energy Efficiency","cooltech"); ?></h2>
 					<?php
-					echo $ee;
+					echo nl2br($ee);
 				}
 				?>
 				<?php if($web) { ?>
