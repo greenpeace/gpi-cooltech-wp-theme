@@ -982,7 +982,8 @@ function get_tags_in_use($category_ID, $taxonomy){
 
       // Loop through each tag
       foreach ($post_tags as $tag):
-
+				// 717 is an empty tag
+				if($tag->term_id!=717) {
         // Set up our tags by id, name, and/or slug
         $tag_id = $tag->term_id;
         $tag_name = $tag->name;
@@ -991,7 +992,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 				$tags=array("id"=>$tag_id,"name"=>$tag_name,"slug"=>$tag_slug);
 				$all_tags[$x]= $tags;
 				$x++;
-
+				}
       	endforeach;
     		endwhile; endif;
 				//	print_r($all_tags);
