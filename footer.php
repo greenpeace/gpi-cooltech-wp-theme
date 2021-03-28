@@ -87,7 +87,9 @@
 		}
   ?>
 	</ul>
-	<?php wp_nav_menu(
+	<?php
+	 if(get_option( 'top_menu_option' )) {
+	 wp_nav_menu(
 		array(
 			'theme_location'  => 'top-menu',
 			'container'       => 'div',
@@ -99,7 +101,9 @@
 			'depth'           => 1,
 			'walker'          => new WP_Bootstrap_Navwalker(),
 		)
-	); ?>
+	);
+	}
+	?>
 </div>
 		<!-- /wrapper -->
 		<script

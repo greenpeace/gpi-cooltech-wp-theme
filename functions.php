@@ -1063,7 +1063,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 		if($_POST["type"]!="0") {
 			 $type=$_POST["type"];
 		} else {
-			$type=array("equipment","case-study");
+			$type=array("equipment","case-study","zero");
 		}
 
 		$args = array(

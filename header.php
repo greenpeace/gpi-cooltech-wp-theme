@@ -26,7 +26,7 @@
 				'container'       => 'div',
 				'container_class' => 'collapse navbar-collapse',
 				'container_id'    => 'navbarNavDropdown',
-				'menu_class'      => 'navbar-nav navbar-top ml-auto',
+				'menu_class'      => 'navbar-nav navbar-top ml-auto float-right',
 				'fallback_cb'     => '',
 				'menu_id'         => 'main-menu',
 				'depth'           => 1,

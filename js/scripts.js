@@ -80,6 +80,7 @@
             var append=0;
 
             $(".select-filter").change(function() {
+
                 let id=$(this).val();
                 let t=$(this).find('option:selected').text();
                 let f=$(this).find('option:first').text();

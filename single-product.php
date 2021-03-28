@@ -6,7 +6,7 @@
           <h1>
           <?php  $title=get_the_title();
             $ma=wp_get_post_terms($post->ID, "manufacturer", $args);
-            $hide=get_post_meta($post->ID, "hide_manufacturer");
+            $hide=get_post_meta($post->ID, "hide_manufacturer", true);
             echo getFullTitle($title,$ma[0]->name,$post->post_type,$hide); ?>
 
            </h1>

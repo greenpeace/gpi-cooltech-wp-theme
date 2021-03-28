@@ -24,12 +24,21 @@ jQuery(document).ready(function($) {
 	var x = 2;
 	var carico = 0 ;
 
+    $(".select-filter").change(function() {
+      x=2;
+    });
+
+
 	$(window).scroll(function(){
       if ($('#footer').isOnScreen()) {
           //    console.log("x"+x+"totpages"+totpages);
       }
+      console.log("totpages"+totpages);
+      console.log(x);
+
 			if ($('#footer').isOnScreen() && carico===0 && jQuery("header").hasClass("second-taxonomy") && x<=totpages) {
-        // console.log("scroll fine");
+
+
 					// The element is visible, do something
           $(".infinite-loading").show();
 					loadData();
@@ -223,8 +232,8 @@ if($n1 && $n2 && $n3) {
 
 						$expanded=get_post_meta($post->ID,"expand",true);
 
-             $img_id = get_post_thumbnail_id( $post->ID );
-             $img = wp_get_attachment_image_src( $img_id, "medium");
+            $img_id = get_post_thumbnail_id( $post->ID );
+            $img = wp_get_attachment_image_src( $img_id, "medium");
 				?>
 					<!-- article -->
 					<article class="element <?php showClassTags($ap); showClassTags($tt);showClassTags($ma);showClassTags($re); showClassTags($co); ?><?php echo $post->post_type; ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -237,7 +246,7 @@ if($n1 && $n2 && $n3) {
                       <?php
                       $title=get_the_title();
 
-                      $hide=get_post_meta($post->ID, "hide_manufacturer");
+                      $hide=get_post_meta($post->ID, "hide_manufacturer", true);
                       echo getFullTitle($title,$ma[0]->name,$post->post_type,$hide); ?>
 
                       </h2>
@@ -310,8 +319,8 @@ if($n1 && $n2 && $n3) {
 								</div>
 								<div class="result_meta_content">
 								<?php foreach ($co as $c ) { ?>
-								<?php echo $c->name ?> <?php if(next($co)) { echo "/"; } ?>
-							<?php	} ?>
+								          <?php echo $c->name ?> <?php if(next($co)) { echo "/"; } ?>
+							  <?php	} ?>
 								</div>
 							</div>
 							<div class="col-md-3">

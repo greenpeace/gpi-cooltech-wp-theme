@@ -6,7 +6,7 @@
         <div><h2 class="result_title">
           <?php
           $title=$p->post->post_title;
-          $hide=get_post_meta($p->post->ID, "hide_manufacturer");
+          $hide=get_post_meta($p->post->ID, "hide_manufacturer",true);
           echo getFullTitle($title,$p->manufacturer[0],$p->post->post_type,$hide);
           ?>
           </h2>
