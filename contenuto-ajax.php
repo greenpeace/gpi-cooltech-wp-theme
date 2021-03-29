@@ -51,7 +51,11 @@
     </div>
     <div class='result_meta_title'>			<?php
       if($p->post->post_type=="equipment") {
-        _e( 'Manufacturer Country', 'cooltech' );
+        if(get_the_date("Y",$p->post->ID)=="2021") {
+          _e( 'Availability', 'cooltech' );
+        } else {
+          _e( 'Manufacturer Country', 'cooltech' );
+        }
       } elseif($p->post->post_type=="zero") {
         _e( 'Availability', 'cooltech' );
       } else {

@@ -69,7 +69,7 @@ $parent=	get_term($id,"type");
     				if($_GET["pt"]=="zero") {
     			 		_e("Availability");
     		 		} else {
-    					_e("Country","cooltech");
+    					_e("Country / Availability","cooltech");
     				}
     			 ?>
           </option>

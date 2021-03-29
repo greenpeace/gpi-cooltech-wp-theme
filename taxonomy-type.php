@@ -309,7 +309,11 @@ if($n1 && $n2 && $n3) {
 								<div class="result_meta_title">
 									<?php
 									if($post->post_type=="equipment") {
-										_e( 'Manufacturer Country', 'cooltech' );
+                    if(get_the_date("Y",$post->ID)=="2021") {
+                      _e( 'Availability', 'cooltech' );
+                    } else {
+                      _e( 'Manufacturer Country', 'cooltech' );
+                    }
 									} elseif($post->post_type=="zero") {
                     _e( 'Availability', 'cooltech' );
                   } else {
