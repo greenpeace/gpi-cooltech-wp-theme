@@ -119,13 +119,15 @@ $parent=	get_term($id,"type");
   <div class="selectdiv">
         <select class="select-filter" id="type">
           <option value="0"><?php _e("Type","cooltech"); ?></option>
+          <option value="all-products"><?php _e("All Products","cooltech"); ?> </option>
+          <?php
+          $options = get_option( 'ntz_option' );
+          if ($options) { ?>
+        <option value="zero"><?php _e("Pathway to Zero Products","cooltech"); ?> </option>
+          <?php } ?>
           <option value="equipment"><?php _e("Cool Technologies Products","cooltech"); ?></option>
           <option value="case-study"><?php _e("Case Study","cooltech"); ?></option>
-            <?php
-            $options = get_option( 'ntz_option' );
-            if ($options) { ?>
-          <option value="zero"><?php _e("Pathway to Zero Products","cooltech"); ?> </option>
-            <?php } ?>
+
         </select>
     </div>
   <?php

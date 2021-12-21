@@ -1061,11 +1061,24 @@ function get_tags_in_use($category_ID, $taxonomy){
 								'terms' => $_POST["tt"]
 						);
 		}
-		if($_POST["type"]!="0") {
+	 /*	if($_POST["type"]!="0") {
 			 $type=$_POST["type"];
 		} else {
 			$type=array("equipment","case-study","zero");
+		} */
+
+		switch ($_POST["type"]) {
+		  case "0":
+		    $type=array("equipment","case-study","zero");
+		    break;
+		  case "all-products":
+			 	$type=array("equipment","zero");
+		    break;
+		   default:
+		   $type=$_POST["type"];
+		   break;
 		}
+
 
 		$args = array(
     'post_type' => $type,
@@ -1086,6 +1099,7 @@ function get_tags_in_use($category_ID, $taxonomy){
 
 			$query = new WP_Query($args);
 			$posts = $query->posts;
+			// print_r($posts);
  			$max_num_pages = $query->max_num_pages;
 			if($posts) {
 			// echo ">>".$max_num_pages;
@@ -1126,8 +1140,8 @@ function get_tags_in_use($category_ID, $taxonomy){
 				$img_id = get_post_thumbnail_id( $p->post->ID );
 				$img = wp_get_attachment_image_src( $img_id, "medium");
 				$p->img=$img[0];
-				array_push($elements,$p);
- 				include 'contenuto-ajax.php';
+				 array_push($elements,$p);
+ 				 include 'contenuto-ajax.php';
 				}
 			}
 		//	echo json_encode($elements);
