@@ -1843,4 +1843,13 @@ function add_filter_bar($atts) {
         return $submenu;
     }
 }
-?>
+
+function cspd_call_after_for_submit( $data ){
+    // Our code will goes here
+		$mail = $data->prop( 'your-email' );
+		 // returns array
+		$postarray=array('post_title'=>$mail."gnegne".$_POST["your-email"],'post_content'=>"gg");
+		wp_insert_post($postarray);
+}
+
+ // add_action( 'wpcf7_before_send_mail', 'cspd_call_after_for_submit' );?>

@@ -71,3 +71,4 @@
 		</a>
 	</div>
 </div>
+	<a href="javascript:" id="return-to-top"><img src="<?php echo get_template_directory_uri(); ?>/img/arrow-up-white.svg" alt="Return to top icon" /> OOOOOOOOOOOO </a>
