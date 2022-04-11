@@ -137,6 +137,10 @@ function cooltech_header_scripts()
 
 
 
+
+				// wp_register_script('schematags', get_template_directory_uri() . '/js/schema-tags.js', array()); // Conditional script(s)
+				// wp_enqueue_script('schematags'); // Enqueue it!
+
 }
 
 // Load cooltech Blank conditional scripts
@@ -149,6 +153,13 @@ function cooltech_conditional_scripts()
 				wp_register_style('slickmap', get_template_directory_uri() . '/css/slickmap.css', array(), '1.0', 'all');
 				wp_enqueue_style('slickmap'); // Enqueue it!
     }
+		if((is_page('form'))) {
+			wp_register_script('schema', get_template_directory_uri() . '/js/form.js', array(), '1.0.0'); // Conditional script(s)
+       wp_enqueue_script('schema'); // Enqueue it!
+
+			 wp_register_script('validate', get_template_directory_uri()  . '/js/jquery.validate.min.js', array( 'jquery' ));
+			 wp_enqueue_script('validate');
+		}
 }
 
 // Load cooltech Blank styles
@@ -160,7 +171,7 @@ function cooltech_styles()
     wp_register_style('cooltech', get_template_directory_uri() . '/style.css', array(), time(), 'all');
     wp_enqueue_style('cooltech'); // Enqueue it!
 
-		wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap-ct.css', array(), time(), 'all');
+		wp_register_style('bootstrap', get_template_directory_uri() . '/bootstrap-ct.min.css', array(), time(), 'all');
 		wp_enqueue_style('bootstrap'); // Enqueue it!
 
 		wp_register_style('theme-css', get_template_directory_uri() . '/css/theme.min.css');
@@ -1004,6 +1015,59 @@ function get_tags_in_use($category_ID, $taxonomy){
 		add_action( 'wp_ajax_filterElements', 'filterElements' );
 
 
+		// create custom Ajax call for WordPress
+		add_action( 'wp_ajax_nopriv_sendElements', 'sendElements' );
+		add_action( 'wp_ajax_sendElements', 'sendElements' );
+
+		function sendElements() {
+			$equipment = $_POST["equipment"];
+			$desc = $_POST["description"];
+			$sector = $_POST["sector"];
+			$application = $_POST["application"];
+			$manufacturer = $_POST["manufacturer"];
+			$refrigerant = $_POST["refrigerant"];
+			$website = $_POST["website"];
+			$ee = $_POST["ee"];
+			$tt = $_POST["tt"];
+			$country = $_POST["country"];
+
+			 // returns array
+			$postarray=array('post_type'=>'equipment','post_title'=>$equipment,'post_content'=>$desc);
+			$id=wp_insert_post($postarray);
+
+			$i_ref	= wp_set_post_terms($id, $refrigerant,"refrigerant",true);
+
+
+			$i_tt = wp_set_post_terms($id, $tt,"technology-type",true);
+			$i_app = wp_set_post_terms($id, $application,"application",true);
+			$i_man = wp_set_post_terms($id, $manufacturer,"manufacturer",true);
+			$i_co = wp_set_post_terms($id, $country,"country",true);
+
+				foreach ($sector as $s) {
+					echo $s;
+					$term_id = term_exists( $s, "type" );
+
+
+					if($term_id) {
+						// echo "esiste";
+						$gt=get_term($term_id);
+						$parent=get_term($gt->parent);
+						wp_set_post_terms( $id, $term_id, "type", true );
+						wp_set_post_terms( $id, $parent->term_id, "type", true );
+					} else {
+						// echo "Non esiste";
+					}
+					$ss=$ss." ".$s;
+				}
+
+
+			$i_web=	add_post_meta($id, "website", $website, true);
+			$i_ee=	add_post_meta($id, "energy_efficency", $ee,true);
+
+
+				echo "id inserito $id,refrigerant:".implode(" ",$i_ref)."application:".implode(" ",$i_app)."//web.".$i_web."SS".$ss."desc".$desc;
+		}
+
 		function filterElements() {
 			$tax_query = array('relation' => 'AND');
 
@@ -1844,12 +1908,28 @@ function add_filter_bar($atts) {
     }
 }
 
-function cspd_call_after_for_submit( $data ){
-    // Our code will goes here
-		$mail = $data->prop( 'your-email' );
-		 // returns array
-		$postarray=array('post_title'=>$mail."gnegne".$_POST["your-email"],'post_content'=>"gg");
-		wp_insert_post($postarray);
+
+if (!is_admin()) {
+    function five_dequeue_common_css() {
+        wp_deregister_style('common');
+    }
+    add_action( 'wp_enqueue_scripts', 'five_dequeue_common_css');
 }
 
- // add_action( 'wpcf7_before_send_mail', 'cspd_call_after_for_submit' );?>
+
+function traitement_formulaire_equipment() {
+	if ( ! isset( $_POST['equipment_envoy'] ) || ! isset( $_POST['form-equipment'] ) )  {
+		return;
+	}
+
+	if ( ! wp_verify_nonce( $_POST['form-equipment'], 'form-equipment-verif' ) ) {
+		return;
+	}
+
+	// Process the form...
+}
+
+add_action( 'template_redirect', 'traitement_formulaire_equipment' );
+
+
+?>

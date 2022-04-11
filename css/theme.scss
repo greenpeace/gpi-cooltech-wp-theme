@@ -466,3 +466,21 @@ ul.mobile-menu-first li {
     color: #fff;
     top: 5px;
 }
+
+/*** CONTACT FORM */
+
+.equipement-form label {
+  font-size:1rem;
+}
+
+.form-block > label {
+  font-weight:600;
+  font-size:1.5rem;
+  color:$fifth-color;
+}
+
+label.error {
+  color:red;
+  font-size:1rem;
+  font-weight:500;
+}
