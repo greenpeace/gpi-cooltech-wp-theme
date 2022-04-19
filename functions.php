@@ -136,11 +136,6 @@ function cooltech_header_scripts()
 				wp_enqueue_script('sidr');
 
 
-
-
-				// wp_register_script('schematags', get_template_directory_uri() . '/js/schema-tags.js', array()); // Conditional script(s)
-				// wp_enqueue_script('schematags'); // Enqueue it!
-
 }
 
 // Load cooltech Blank conditional scripts
@@ -1030,7 +1025,13 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$ee = $_POST["ee"];
 			$tt = $_POST["tt"];
 			$country = $_POST["country"];
+			$main = $_POST["main"];
+			$optApp = $_POST["optionalApp"];
+			$optTT = $_POST["optionalTT"];
 
+			$optAPP="Optional Application:".$optApp." ";
+			$optTT= "Optional TT: ".$optTT;
+			$optionals=$optApp.$optTT;
 			 // returns array
 			$postarray=array('post_type'=>'equipment','post_title'=>$equipment,'post_content'=>$desc);
 			$id=wp_insert_post($postarray);
@@ -1044,25 +1045,32 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$i_co = wp_set_post_terms($id, $country,"country",true);
 
 				foreach ($sector as $s) {
-					echo $s;
+
 					$term_id = term_exists( $s, "type" );
-
-
 					if($term_id) {
-						// echo "esiste";
-						$gt=get_term($term_id);
-						$parent=get_term($gt->parent);
 						wp_set_post_terms( $id, $term_id, "type", true );
-						wp_set_post_terms( $id, $parent->term_id, "type", true );
 					} else {
 						// echo "Non esiste";
 					}
 					$ss=$ss." ".$s;
 				}
 
+				foreach ($main as $m) {
+					$term_id = term_exists( $m, "type" );
+					if($term_id) {
+						echo "Esiste".$term_id;
+						print_r($term_id);
+						wp_set_post_terms( $id, $term_id, "type", true );
+					} else {
+						echo "Non esiste";
+					}
+
+			}
 
 			$i_web=	add_post_meta($id, "website", $website, true);
 			$i_ee=	add_post_meta($id, "energy_efficency", $ee,true);
+			add_post_meta($id, "notes", $optionals,true);
+
 
 
 				echo "id inserito $id,refrigerant:".implode(" ",$i_ref)."application:".implode(" ",$i_app)."//web.".$i_web."SS".$ss."desc".$desc;
@@ -1666,6 +1674,8 @@ function test_theme_settings(){
 		add_option('ntz',0);
 		add_settings_section( 'first_section', 'New Theme Options Section',
 		'theme_section_description','theme-options');
+		add_settings_section( 'second_section', 'Form Section',
+		'theme_section_description','theme-options');
 		add_settings_field('top_menu_option','Top Menu','options_callback',
 		'theme-options','first_section');
 		add_settings_field('carousel','Carousel','carousel_callback',
@@ -1684,8 +1694,12 @@ function test_theme_settings(){
 		//add settings field to the “first_section”
 		//add settings filed with callback display_test_twitter_element.
 		add_settings_field('footer_textbig', 'Main Text Footer', 'display_footer_main_text', 'theme-options', 'first_section');
+
+		add_settings_field('form_success', 'Form Success', 'form_success_callback', 'theme-options', 'second_section');
+
 		add_settings_field('footer_subtitle', 'Second Text Footer', 'display_footer_subtitle', 'theme-options', 'first_section');
 		register_setting( 'theme-options-grp', 'footer_textbig');
+		register_setting( 'theme-options-grp', 'form_success');
 		register_setting( 'theme-options-grp', 'footer_subtitle');
 		register_setting( 'theme-options-grp', 'footer_button_url');
 		register_setting( 'theme-options-grp', 'footer_button_text');
@@ -1707,6 +1721,14 @@ function button_url_callback() { ?>
 	<input type="text" name="footer_button_url" value="<?php echo get_option('footer_button_url'); ?>" />
 <?php
 }
+
+function form_success_callback(){
+//php code to take input from text field for twitter URL.
+?>
+<textarea rows="5" cols="50" name="form_success"><?php echo get_option('form_success'); ?> </textarea>
+<?php
+}
+
 function small_text_callback(){
 //php code to take input from text field for twitter URL.
 ?>

@@ -2,16 +2,18 @@
 	<footer id="footer" class="footer" role="contentinfo">
 		<section id="footer-form">
 					<div class="container">
-						<div class="row">
+						<?php if(!is_page_template( 'page-form.php' )) { ?>
+							<div class="row">
 								<div class="col-md-7 offset-md-2">
 									<h1> <?php echo get_option('footer_textbig'); ?></h1>
-									<p> <?php echo get_option('footer_subtitle'); ?></p>
+									<p>  <?php echo get_option('footer_subtitle'); ?></p>
 									<a href="<?php echo site_url(); ?>/<?php echo get_option('footer_button_url'); ?>" class="btn--300 btn btn-outline-light btn-arrow"><?php echo get_option('footer_button_text'); ?><i class="i-arrow-right-w"></i></a>
 								</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12 footer__line"> </div>
 						</div>
+						<?php } ?>
 						<div class="row">
 							<div class="col-md-8"><div class="footer__title"> COOLTECHNOLOGIES </div></div>
 							<div class="col-md-4">

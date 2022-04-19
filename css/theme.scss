@@ -476,11 +476,16 @@ ul.mobile-menu-first li {
 .form-block > label {
   font-weight:600;
   font-size:1.5rem;
-  color:$fifth-color;
+  //  color:$fifth-color;
+  color:$second-color;
 }
 
 label.error {
   color:red;
   font-size:1rem;
   font-weight:500;
+}
+
+#section-form {
+  background-color: $second-color;
 }
