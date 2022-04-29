@@ -107,6 +107,9 @@ id:2,
           return arrayApp.indexOf(item) == pos;
       })
 
+      uniqueTT.sort();
+      uniqueApp.sort();
+
       var tt_options="";
       var app_options="";
 
@@ -198,7 +201,8 @@ id:2,
                 action: 'sendElements',
                 main:u_main,
                 optionalTT: $("#optionalTT").val(),
-                optionalApp: $("#optionalApp").val()
+                optionalApp: $("#optionalApp").val(),
+                optionalCountry: $("#optionalCountry").val()
             },
             success: function(data, textStatus, XMLHttpRequest) {
                 var len = data.length;

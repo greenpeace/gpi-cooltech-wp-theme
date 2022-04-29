@@ -119,7 +119,7 @@ function cooltech_header_scripts()
         wp_enqueue_script('modernizr'); // Enqueue it!
 
         wp_register_script('cooltechscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), time()); // Custom scripts
-				wp_localize_script('cooltechscripts','ajax_url', admin_url( 'admin-ajax.php' ));
+				wp_localize_script('cooltechscripts','ajax_url', array(admin_url( 'admin-ajax.php' )));
 
         wp_enqueue_script('cooltechscripts'); // Enqueue it!
 
@@ -743,6 +743,10 @@ function cooltech_shortcode_demo_2($atts, $content = null)
 }
 
 function find_glossary($atts, $content) {
+	$defaults = array( 'url' => '', 'id' => '' );
+
+// use array merge to override values in $defaults with those in $atts
+	$atts = shortcode_atts( $defaults, $atts );
 
 	if($atts["url"]) {
 		$g=get_page_by_path($atts["url"],'','glossary');
@@ -909,11 +913,15 @@ $args=array("post_type"=>"case-study","numberposts"=>1,'meta_key'   => 'expand',
 	return $out;
 }
 
-function show_net_to_zero($atts) {
-	if($atts["class"]) {
-		$class=$atts["class"];
-	}
-$args=array("post_type"=>"page","numberposts"=>1,"name"=>"net-to-zero");
+function show_net_to_zero($atts=[]) {
+
+	$defaults = array( 'class' => '' );
+
+// use array merge to override values in $defaults with those in $atts
+	$atts = shortcode_atts( $defaults, $atts );
+	$class=$atts["class"];
+
+	$args=array("post_type"=>"page","numberposts"=>1,"name"=>"net-to-zero");
 	$cs=get_posts($args);
 
 	$image_id=get_post_thumbnail_id( $cs[0]->ID );
@@ -1028,10 +1036,10 @@ function get_tags_in_use($category_ID, $taxonomy){
 			$main = $_POST["main"];
 			$optApp = $_POST["optionalApp"];
 			$optTT = $_POST["optionalTT"];
+			$optCountry = $_POST["optionalCountry"];
 
-			$optAPP="Optional Application:".$optApp." ";
-			$optTT= "Optional TT: ".$optTT;
-			$optionals=$optApp.$optTT;
+
+			$optionals="Optional Application:".$optApp."/ Optional TT: ".$optTT."/ Optional Country: ".$optCountry;
 			 // returns array
 			$postarray=array('post_type'=>'equipment','post_title'=>$equipment,'post_content'=>$desc);
 			$id=wp_insert_post($postarray);

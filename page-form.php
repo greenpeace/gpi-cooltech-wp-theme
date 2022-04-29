@@ -25,7 +25,8 @@ $classes=array("generic-page");
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12">
-							<h2 class="text-white"><?php the_content(); ?></h2></div>
+							<h1 class="text-white"> <?php the_title(); ?> </h1>
+							<div class="description text-white"><?php the_content(); ?></div>
 						</div>
 			</div>
 				</div>
@@ -58,13 +59,13 @@ $classes=array("generic-page");
 			<div class="col-sm-6">
 					<div class="form-group form-block">
 					 <label for="exampleInputEmail1">Email address*</label>
-					 <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="fabrigian@gmail.com" required>
+					 <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="" required>
 					 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 				 	</div>
 					<div class="form-group form-block">
 
 						<label for="equipment"><?php _e( 'Equipment Name' ); ?>*</label>
-						<input id="equipment" class="form-control" type="text" name="equipment" value="Equipmenttt" required />
+						<input id="equipment" class="form-control" type="text" name="equipment" value="" required />
 						<small id="equipmentHelp" class="form-text text-muted">Name/number of equipment, Model name/number</small>
 					</div>
 					<div class="form-group form-block">
@@ -105,12 +106,12 @@ $classes=array("generic-page");
 			<div class="col-sm-6">
 				<div class="form-group form-block">
 					<label for="ee"><?php _e( 'Energy Efficency' ); ?>*</label>
-					<textarea id="ee" class="form-control" name="ee" required />EE</textarea>
+					<textarea id="ee" class="form-control" name="ee" required /></textarea>
 					 <small id="eeHelp" class="form-text text-muted">COP/SCOP/EER/ISEER and/or any other energy efficiency information e.g. energy label (energy star, A+++, 5 star), reported energy savings, use of waste heat, controls and monitoring etc.</small>
 				</div>
 				<div class="form-group form-block">
 				 <label for="manufacturer"><?php _e( 'Manufacturer' ); ?>*</label>
-				 <input name="manufacturer" type="text" class="form-control" id="manufacturer" aria-describedby="manufacturerHelp" placeholder="Enter Manufacturer" value="Sanyo" required>
+				 <input name="manufacturer" type="text" class="form-control" id="manufacturer" aria-describedby="manufacturerHelp" placeholder="Enter Manufacturer" value="" required>
 				 <small id="manufacturerHelp" class="form-text text-muted"></small>
 				</div>
 				<div class="form-group form-block">
@@ -120,7 +121,7 @@ $classes=array("generic-page");
 					<option value="No refrigerant"> No refrigerant </option>
 					<option value="Carbon Dioxide"> Carbon Dioxide (R-744) </option>
 					<option value="Propane"> Propane (R-290) </option>
-					<option selected value="Isobutane"> Isobutane (R-600°) </option>
+					<option value="Isobutane"> Isobutane (R-600°) </option>
 					<option value="Propene"> Propene (R-1270) </option>
 					<option value="Ammonia"> Ammonia (R-717) </option>
 					<option value="Water"> Water (R-718) </option>
@@ -134,8 +135,8 @@ $classes=array("generic-page");
 					<small id="applicationHelp" class="form-text text-muted">Select a Sector to see the options</small>
 				</div>
 				<div id="appAdd" class="form-group d-none">
-				 <input type="text" class="form-control" id="optionalApp" aria-describedby="addTTHelp" placeholder="Optional">
-				 <small id="addTTHelp" class="form-text text-muted"> </small>
+				 <input type="text" class="form-control" id="optionalApp" aria-describedby="addOptionalHelp" placeholder="Optional">
+				 <small id="addOptionalHelp" class="form-text text-muted"> </small>
 				</div>
 				<div class="form-group form-block">
 				 <label for="website"><?php _e( 'Website' ); ?></label>
@@ -151,7 +152,10 @@ $classes=array("generic-page");
 					<div class=''><input class='' id='south-america' type='checkbox' name='country' value='South America'><label class='' for='south-america'> &nbsp; South America </label></div>
 					<div class=''><input class='' id='oceania' type='checkbox' name='country' value='Oceania'><label class='' for='oceania'> &nbsp; Oceania </label></div>
 					<div class=''><input class='' id='oceania' type='checkbox' name='country' value='Worldwide'><label class='' for='worldwide'>&nbsp; Worldwide </label></div>
-				 <small id="countryHelp" class="form-text text-muted">  </small>
+					<div>
+						<small id="countryHelp" class="form-text text-muted"> Additional countries </small>
+						<input type="text" class="form-control" id="optionalCountry" aria-describedby="addCountryHelp" placeholder="Optional"> </div>
+
 				</div>
 
 			</div>

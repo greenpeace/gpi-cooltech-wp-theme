@@ -39,7 +39,7 @@
 	<div class="menu-finale">
 		<?php $menu = new NestedMenu('Menu 1');
 			foreach ($menu->items as $item) {
-					if($m->post_parent==0) {
+					if($item->post_parent==0) {
 				?>
 				<div class="ddown" style="float:left">
 					<a class="dropbtn" href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
