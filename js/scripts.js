@@ -20,8 +20,6 @@
 
         $(document).ready(function() {
 
-          console.log(types);
-
 				/* MOBILE MENU */
             $('#responsive-menu-button').sidr();
 
@@ -198,7 +196,7 @@
 
             }); */
 
-          
+
 
 
         });
